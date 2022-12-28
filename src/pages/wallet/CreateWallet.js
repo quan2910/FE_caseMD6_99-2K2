@@ -11,21 +11,19 @@ export default function CreateWallet() {
                 <div  >
                     <Formik >
                             <form >
-                                <h1 style={{color:"black", marginTop: 60}}>Register</h1>
+                                <h1 style={{color:"black", marginTop: 60}}>Create Wallet</h1>
                                 <br/>
                                 <input type="text" name={"username"} placeholder="Wallet Name" style={{backgroundColor: "lightgrey"}}/>
 
                                 <input type="password" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
 
-                                <select style={{border: 'none', color: "gray",marginTop: 10, width: 670, height: 38, backgroundColor: "lightgray"}} >
+                                <select style={{border: 'none', color: "gray",marginTop: 10, width: 645, height: 44, backgroundColor: "lightgray"}} >
                                     <option selected >Open this select menu</option>
                                     <option value="1">Vietnam Dong</option>
                                     <option value="2">Dollar</option>
                                 </select>
-
-
                                 <br/>
-                                <button>Register</button>
+                                <button>Create Wallet</button>
                             </form>
                     </Formik>
                 </div>
