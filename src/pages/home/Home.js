@@ -1,12 +1,17 @@
 import "../../style/style.css"
+import {useState} from "react";
+import {useSelector} from "react-redux";
 
 export default function Home() {
+    const user = useSelector(state => {
+        return state.user.currentUser.user.authenticUser[0]
+    })
     return (
         <>
             {/* ======= About Me ======= */}
             <div style={{marginTop: 150}} className="about-me containerTemplate">
                 <div className="section-title">
-                    <p style={{color:"black"}}>Tên Người dùng</p>
+                    <p style={{color:"black"}}>{user.username}</p>
                 </div>
                 <div className="row">
                     <div className="col-lg-4" data-aos="fade-right">
