@@ -15,9 +15,11 @@ function App() {
                 <Routes>
                     <Route path={""} element={<Login/>}/>
                     <Route path={"register"} element={<Register/>}/>
+                    <Route path={"home"} element={<Navbar/>}>
+                        <Route path={""} element={<Home/>}/>
+                        <Route path={"create-wallet"} element={<CreateWallet/>}/>
+                    </Route>
 
-                    <Route path={"home"} element={<Home/>}/>
-                    <Route path={"create-wallet"} element={<CreateWallet/>}/>
                 </Routes>
             </div>
         </div>

@@ -5,7 +5,7 @@ export default function Navbar() {
         <>
             {/* ======= Header ======= */}
             <header id="header" className="header-top">
-                <div className="container">
+                <div className="containerTemplate">
                     <h1> <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Wallet </Link></h1>
                     {/* Uncomment below if you prefer to use an image logo */}
                     {/* <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> */}
@@ -13,7 +13,7 @@ export default function Navbar() {
                     <nav id="navbar" className="navbar">
                         <ul>
                             <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Home</Link>
-                            <Link style={{marginRight: 20}} to={'/create-wallet'} className="nav-link">Create Wallet</Link>
+                            <Link style={{marginRight: 20}} to={'create-wallet'} className="nav-link">Create Wallet</Link>
                             <li><a className="nav-link" href="#about">About</a></li>
                             <li><a className="nav-link" href="#resume">Resume</a></li>
                             <li><a className="nav-link" href="#services">Services</a></li>
@@ -30,7 +30,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </header>{/* End Header */}
-            {/*<Outlet></Outlet>*/}
+            <Outlet></Outlet>
         </>
     )
 }
