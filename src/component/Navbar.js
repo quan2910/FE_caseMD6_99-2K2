@@ -19,6 +19,8 @@ export default function Navbar() {
                             <li><a className="nav-link" href="#services">Services</a></li>
                             <li><a className="nav-link" href="#portfolio">Portfolio</a></li>
                             <li><a className="nav-link" href="#contact">Contact</a></li>
+                            <li><Link className="nav-link" to={"/"}>LogOut</Link></li>
+
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>{/* .navbar */}
