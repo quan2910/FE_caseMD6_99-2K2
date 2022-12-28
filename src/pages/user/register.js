@@ -62,7 +62,7 @@ function Register(props) {
                     setTimeout(()=>{
 
                         clearTimeout();
-                        navigate('/login')
+                        navigate('/')
 
                     },2790)
                 }
