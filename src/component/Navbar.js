@@ -4,7 +4,7 @@ export default function Navbar() {
     return (
         <>
             {/* ======= Header ======= */}
-            <header id="header" className="header-top">
+            <header id="header" className="header-top" style={{background: "linear-gradient(to right, #FF4B2B, #FF416C)"}}>
                 <div className="containerTemplate">
                     <h1> <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Wallet </Link></h1>
                     {/* Uncomment below if you prefer to use an image logo */}

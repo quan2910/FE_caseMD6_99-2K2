@@ -30,7 +30,7 @@ export default function Home() {
                         </p>
                         <div className="row">
                             <div className="col-lg-12">
-                                <table className="table table-dark table-striped">
+                                <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
