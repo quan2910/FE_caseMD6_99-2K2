@@ -2,8 +2,8 @@ import React, {useEffect} from 'react';
 import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../service/userService";
-import "../../src/style/loginCSS.css"
+import {login} from "../../../service/userService";
+import "../../../style/loginCSS.css"
 
 
 function Login(props) {
@@ -34,7 +34,7 @@ function Login(props) {
                     onSubmit={(values) => {
                         handlerLogin(values).then()
                     }}>
-                        <Form action="#">
+                        <Form action="case6/src/pages/home/user/login#">
                             <h1>Login</h1>
                             <br/>
                             <Field type="text" name={"username"} placeholder="Username"/>
