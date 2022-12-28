@@ -4,18 +4,64 @@ import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../service/userService";
 import "../../style/loginCSS.css"
+import * as Yup from "yup";
+import {toast, ToastContainer} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+const SignupSchema = Yup.object().shape({
+    username: Yup.string()
+        .min(6, "Username needs than 6 characters!")
+        .max(50, "Username needs under 50 characters!")
+        .required("You must fill in the field"),
+    password: Yup.string()
+        .min(6, "Your password must be least 6 characters")
+        .max(50, "Your password must be under 50 characters")
+        .required("You must fill in the field"),
 
+});
 
 function Login(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const handlerLogin = async (value) => {
+    const showToastMessage =async () => {
+        await toast.success('Successful login!', {
+            position: "top-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+    };
+    const showToastMessage1 =async () => {
+        await toast.error('Incorrect account or loss of aperture!', {
+            position: "top-center",
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+
+    };
+    const handlerLogin = async (value,reset) => {
         let checkLogin = await dispatch(login(value))
         if (checkLogin.payload.mess =="sai tài khoản") {
-           alert('Tài khoản hoặc mật khẩu sai')
+          showToastMessage1()
+            reset()
         } else {
-            alert("Đăng nhập thành công ")
-            navigate('/home')
+            showToastMessage()
+            setTimeout(()=>{
+
+                clearTimeout();
+                navigate('/home')
+
+            },2790)
+
+
         }
     }
     const user = useSelector(state => {
@@ -27,21 +73,30 @@ function Login(props) {
         <div>
             <div className="container" id="container">
                 <div className="form-container sign-in-container">
-                    <Formik initialValues={{
+                    <Formik validationSchema={SignupSchema} initialValues={{
                         username: "",
                         password: ""
                     }}
-                    onSubmit={(values) => {
-                        handlerLogin(values).then()
+                    onSubmit={(values,{resetForm}) => {
+                        handlerLogin(values,resetForm)
                     }}>
+                        {({ errors, touched }) => (
                         <Form action="case6/src/pages/user/login#">
                             <h1>Login</h1>
                             <br/>
                             <Field type="text" name={"username"} placeholder="Username"/>
+                            {errors.username && touched.username ? (
+                                <span style={{color:"red", paddingTop:"px"}}>{errors.username}</span>
+                            ) : null}
                             <Field type="password" name={"password"} placeholder="Password"/>
+                            {errors.password && touched.password ? (
+                                <span style={{color:"red"}}>{errors.password}</span>
+                            ) : null}
                             <br/>
                             <button>Login</button>
+                            <ToastContainer />
                         </Form>
+                        )}
                     </Formik>
                 </div>
                 <div className="overlay-container">
