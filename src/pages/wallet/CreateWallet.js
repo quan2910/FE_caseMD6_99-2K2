@@ -1,38 +1,35 @@
+import {Link} from "react-router-dom";
+import {Field, Form, Formik} from "formik";
+import {ToastContainer} from "react-toastify";
+import React from "react";
+import "../../style/loginCSS.css"
+
 export default function CreateWallet() {
     return (
-        <>
-            <div style={{marginTop: 200}} className="about-me containerTemplate">
-                <form action="forms/contact.php" method="post" role="form"
-                      className="php-email-form mt-4 containerTemplate">
+        <div style={{marginTop: 70}}>
+            <div className="container" id="container">
+                <div  >
+                    <Formik >
+                            <form >
+                                <h1 style={{color:"black", marginTop: 60}}>Register</h1>
+                                <br/>
+                                <input type="text" name={"username"} placeholder="Wallet Name" style={{backgroundColor: "lightgrey"}}/>
 
-                    <div className=" form-group">
-                        <input type="text" name="name" className="form-control" id="name" placeholder="Your Name"
-                               required/>
-                    </div>
+                                <input type="password" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
 
-                    <div className=" form-group mt-3 mt-md-0">
-                        <input type="email" className="form-control" name="email" id="email"
-                               placeholder="Your Email" required/>
-                    </div>
+                                <select style={{border: 'none', color: "gray",marginTop: 10, width: 670, height: 38, backgroundColor: "lightgray"}} >
+                                    <option selected >Open this select menu</option>
+                                    <option value="1">Vietnam Dong</option>
+                                    <option value="2">Dollar</option>
+                                </select>
 
-                    <div className="form-group mt-1">
-                        <input type="text" className="form-control" name="subject" id="subject" placeholder="Subject"
-                               required/>
-                    </div>
-                    <div className="form-group mt-3">
-                        <textarea className="form-control" name="message" rows={5} placeholder="Message" required
-                                  defaultValue={""}/>
-                    </div>
-                    <div className="my-3">
-                        <div className="loading">Loading</div>
-                        <div className="error-message"/>
-                        <div className="sent-message">Your message has been sent. Thank you!</div>
-                    </div>
-                    <div className="text-center">
-                        <button type="submit">Send Message</button>
-                    </div>
-                </form>
+
+                                <br/>
+                                <button>Register</button>
+                            </form>
+                    </Formik>
+                </div>
             </div>
-        </>
+        </div>
     )
 }
