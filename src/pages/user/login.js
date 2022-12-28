@@ -70,7 +70,7 @@ function Login(props) {
     })
 
     return (
-        <div>
+        <div style={{marginTop: 70}}>
             <div className="container" id="container">
                 <div className="form-container sign-in-container">
                     <Formik validationSchema={SignupSchema} initialValues={{
