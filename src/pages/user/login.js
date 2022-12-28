@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../service/userService";
+
 
 
 function Login(props) {
