@@ -82,7 +82,7 @@ function Login(props) {
                     }}>
                         {({ errors, touched }) => (
                         <Form action="case6/src/pages/user/login#">
-                            <h1>Login</h1>
+                            <h1 style={{color:"black"}}>Login</h1>
                             <br/>
                             <Field type="text" name={"username"} placeholder="Username"/>
                             {errors.username && touched.username ? (
