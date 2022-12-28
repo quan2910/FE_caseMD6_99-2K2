@@ -15,7 +15,7 @@ export default function CreateWallet() {
                                 <br/>
                                 <input type="text" name={"username"} placeholder="Wallet Name" style={{backgroundColor: "lightgrey"}}/>
 
-                                <input type="password" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
+                                <input type="number" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
 
                                 <select style={{border: 'none', color: "gray",marginTop: 10, width: 645, height: 44, backgroundColor: "lightgray"}} >
                                     <option selected >Open this select menu</option>
