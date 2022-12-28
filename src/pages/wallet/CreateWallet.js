@@ -1,7 +1,7 @@
 export default function CreateWallet() {
     return (
         <div style={{marginTop: 200}} >
-            <form  action="forms/contact.php" method="post" role="form" className="php-email-form mt-4">
+            <form  action="forms/contact.php" method="post" role="form" className="php-email-form mt-4 containerTemplate">
                 <div className="row">
                     <div className="col-md-6 form-group">
                         <input type="text" name="name" className="form-control" id="name" placeholder="Your Name" required />

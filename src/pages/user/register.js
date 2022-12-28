@@ -42,8 +42,8 @@ function Register(props) {
                         <div className="overlay-panel overlay-right">
                             <h1>Welcome back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
-                            <Link to={"login"}>
-                                <button className="ghost" id="signIn">Login</button>
+                            <Link to={"/"}>
+                                <button  className="ghost" id="signIn">Login</button>
                             </Link>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ function Register(props) {
                         resetForm()
                     }}>
                         <Form action="case6/src/pages/user/register#">
-                            <h1>Register</h1>
+                            <h1 style={{color:"black"}}>Register</h1>
                             <br/>
                             <Field type="text" name={"username"} placeholder="Name"/>
                             <Field type="password" name={"password"} placeholder="Password"/>

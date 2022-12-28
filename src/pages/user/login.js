@@ -4,6 +4,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../service/userService";
 import "../../style/loginCSS.css"
+import Navbar from "../../component/Navbar";
 
 
 function Login(props) {
@@ -25,6 +26,7 @@ function Login(props) {
 
     return (
         <div>
+            {/*<Navbar/>*/}
             <div className="container" id="container">
                 <div className="form-container sign-in-container">
                     <Formik initialValues={{
@@ -35,7 +37,8 @@ function Login(props) {
                         handlerLogin(values).then()
                     }}>
                         <Form action="case6/src/pages/user/login#">
-                            <h1>Login</h1>
+                            <h1 style={{color:"black"}}>Login</h1>
+
                             <br/>
                             <Field type="text" name={"username"} placeholder="Username"/>
                             <Field type="password" name={"password"} placeholder="Password"/>

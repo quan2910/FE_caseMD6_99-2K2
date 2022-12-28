@@ -1,8 +1,9 @@
+import "../../style/style.css"
 export default function Home() {
     return (
         <>
             {/* ======= About Me ======= */}
-            <div style={{marginTop: 150}} className="about-me container">
+            <div style={{marginTop: 150}} className="about-me containerTemplate">
                 <div className="section-title">
                     <h2>About</h2>
                     <p>Learn more about me</p>
