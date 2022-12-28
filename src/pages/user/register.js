@@ -2,8 +2,8 @@ import React from 'react';
 import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {register} from "../../../service/userService";
-import "../../../style/loginCSS.css"
+import {register} from "../../service/userService";
+import "../../style/loginCSS.css"
 
 
 function Register(props) {
@@ -58,7 +58,7 @@ function Register(props) {
                         await handleRegister(values)
                         resetForm()
                     }}>
-                        <Form action="case6/src/pages/home/user/register#">
+                        <Form action="case6/src/pages/user/register#">
                             <h1>Register</h1>
                             <br/>
                             <Field type="text" name={"username"} placeholder="Name"/>

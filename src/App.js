@@ -1,6 +1,6 @@
 import logo from './logo.svg';
-import Login from "./pages/home/user/login";
-import Register from "./pages/home/user/register";
+import Login from "./pages/user/login";
+import Register from "./pages/user/register";
 
 function App() {
   return (
