@@ -21,8 +21,12 @@ export default function Navbar() {
                             <li><a className="nav-link" href="#contact">Contact</a></li>
                             <li>
                                 <div style={{marginLeft : '620px'}}>
-                                    <Link className="nav-link"  style={{marginRight: "10px"}} to={"/"}>LogOut</Link>
+                                    <Link className="nav-link" onClick={() => {
+                                        localStorage.clear()
+                                    }} style={{marginRight: "10px"}} to={"/"}>LogOut</Link>
+
                                 </div>
+
                             </li>
                         </ul>
 

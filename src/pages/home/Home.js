@@ -13,15 +13,21 @@ export default function Home() {
         return state.wallet.detailWalletHome
     })
     let wallet
-    useEffect(()=>{(async ()=>{
-        let detailWallet =await dispatch(showDetailWallet(user.idUser))
+    console.log(detailWalletHome)
 
-    })()},[user])
+    useEffect(()=>{
+        (async ()=>{
+        let detailWallet = await dispatch(showDetailWallet(user.idUser))
+        })()
+    }, [user])
+
     let totalConsumableMoney = ()=>{
         let totalMoney = {
-            total:0,
+            total:detailWalletHome.wallet[0].moneyAmount,
             ConsumableMoney:0,
             moneyIncome :0}
+        if (detailWalletHome) {
+            console.log(detailWalletHome)
        detailWalletHome.transactions.map((transaction,index)=>{
          if(transaction.statusCategory=="thu"){
              totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
@@ -29,9 +35,13 @@ export default function Home() {
              totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
          }
        })
-         totalMoney.total = totalMoney.moneyIncome-totalMoney.ConsumableMoney
+         totalMoney.total = totalMoney.total + totalMoney.moneyIncome-totalMoney.ConsumableMoney
+        }
+
         return totalMoney
     }
+
+    if (!detailWalletHome) return <div>Loading...</div>
 
     return (
         <>
@@ -54,7 +64,7 @@ export default function Home() {
                             </ul>
                         </div>
                         <p className="fst-italic" style={{color:"black"}}>
-                            Tổng tiền : {totalConsumableMoney().total}
+                            Tổng tiền : {totalConsumableMoney().total} $
                         </p>
                         <div className="row">
                             <div className="col-lg-12">
