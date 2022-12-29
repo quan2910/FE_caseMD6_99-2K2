@@ -23,3 +23,10 @@ export const changePassword = createAsyncThunk(
         return res.data
     }
 )
+export const changeCheckBegin = createAsyncThunk(
+    'user/changeCheckBegin',
+    async (idUser)=> {
+        const res = await axios.put('http://localhost:3000/users/change-check-begin/' + idUser)
+        return res.data
+    }
+)

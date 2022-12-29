@@ -7,6 +7,7 @@ import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {showDetailWallet} from "../../service/walletService";
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(6, "Username needs than 6 characters!")
@@ -53,11 +54,18 @@ function Login(props) {
           showToastMessage1()
             reset()
         } else {
+
             showToastMessage()
-            setTimeout(()=>{
+            setTimeout(async ()=>{
 
                 clearTimeout();
-                navigate('/home')
+                if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
+                    let detailWallet = await dispatch(showDetailWallet(checkLogin.payload.user.authenticUser[0].idUser))
+                    navigate('/home')
+                }else {
+                    navigate('/home/create-wallet')
+                }
+
 
             },2790)
 
