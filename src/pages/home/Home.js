@@ -10,12 +10,29 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
-        console.log('state wallet', state.wallet.detailWalletHome)
         return state.wallet.detailWalletHome
     })
-    useEffect(async ()=>{
-        let detailWallet=await dispatch(showDetailWallet(user.iduser))
-    },[])
+    let wallet
+    useEffect(()=>{(async ()=>{
+        let detailWallet =await dispatch(showDetailWallet(user.idUser))
+
+    })()},[user])
+    let totalConsumableMoney = ()=>{
+        let totalMoney = {
+            total:0,
+            ConsumableMoney:0,
+            moneyIncome :0}
+       detailWalletHome.transactions.map((transaction,index)=>{
+         if(transaction.statusCategory=="thu"){
+             totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
+         }else {
+             totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
+         }
+       })
+         totalMoney.total = totalMoney.moneyIncome-totalMoney.ConsumableMoney
+        return totalMoney
+    }
+
     return (
         <>
             {/* ======= About Me ======= */}
@@ -28,15 +45,16 @@ export default function Home() {
                         <img src="assets/img/me.jpg" className="img-fluid" alt=""/>
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-                        <h3>Tên ví</h3>
+
+                        <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
                         <div className="col-lg-6">
                             <ul>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi</strong></li>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu</strong></li>
+                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong></li>
+                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong></li>
                             </ul>
                         </div>
                         <p className="fst-italic" style={{color:"black"}}>
-                            Tổng tiền
+                            Tổng tiền : {totalConsumableMoney().total}
                         </p>
                         <div className="row">
                             <div className="col-lg-12">
@@ -44,29 +62,24 @@ export default function Home() {
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
-                                        <th scope="col">Note</th>
                                         <th scope="col">Time</th>
                                         <th scope="col">Total Spent</th>
+                                        <th scope="col">Name Category</th>
+                                        <th scope="col">Note</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colSpan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    {detailWalletHome.transactions.map((transaction,index)=>{
+                                        return <tr>
+                                            <th scope="row">{index+1}</th>
+                                            <td>{transaction.time}</td>
+                                            <td>{transaction.totalSpent}</td>
+                                            <td>{transaction.nameCategory}</td>
+                                            <td>{transaction.note}</td>
+                                        </tr>
+                                    })}
+
+
                                     </tbody>
                                 </table>
                             </div>

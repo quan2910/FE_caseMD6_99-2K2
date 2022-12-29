@@ -1,7 +1,6 @@
-import {Link, Outlet, useNavigate} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 
 export default function Navbar() {
-    const navigate = useNavigate()
     return (
         <>
             {/* ======= Header ======= */}
@@ -22,10 +21,7 @@ export default function Navbar() {
                             <li><a className="nav-link" href="#contact">Contact</a></li>
                             <li>
                                 <div style={{marginLeft : '620px'}}>
-                                    <a className="nav-link" style={{marginRight: "10px"}} href={'/'} onClick={()=>{
-                                        localStorage.clear()
-                                    }}>LogOut</a>
-
+                                    <Link className="nav-link"  style={{marginRight: "10px"}} to={"/"}>LogOut</Link>
                                 </div>
                             </li>
                         </ul>

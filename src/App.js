@@ -4,21 +4,24 @@ import Home from "./pages/home/Home";
 import CreateWallet from "./pages/wallet/CreateWallet";
 import Login from "./pages/user/login";
 import Register from "./pages/user/register";
-import {useEffect} from "react";
-import axios from "axios";
-import {useSelector} from "react-redux";
+import ChangePassword from "./pages/user/change-password";
 
 function App() {
     return (
         <div className={"col-12"}>
+            {/* ======= Header ======= */}
+            {/*<Navbar/>*/}
+            {/* End Header */}
             <div className={"col-12"}>
                 <Routes>
-                    <Route path={"/"} element={<Login/>}/>
-                    <Route path={"/register"} element={<Register/>}/>
+                    <Route path={""} element={<Login/>}/>
+                    <Route path={"register"} element={<Register/>}/>
                     <Route path={"home"} element={<Navbar/>}>
                         <Route path={""} element={<Home/>}/>
                         <Route path={"create-wallet"} element={<CreateWallet/>}/>
+                        <Route path={"change-password"} element={<ChangePassword/>}/>
                     </Route>
+
                 </Routes>
             </div>
         </div>
