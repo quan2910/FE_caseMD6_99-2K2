@@ -2,12 +2,13 @@ import React, {useEffect} from 'react';
 import {Field, Form, Formik} from "formik";
 import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../service/userService";
+import {login, loginFB} from "../../service/userService";
 import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {showDetailWallet} from "../../service/walletService";
+import FacebookLogin from 'react-facebook-login';
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(6, "Username needs than 6 characters!")
@@ -51,16 +52,16 @@ function Login(props) {
     const handlerLogin = async (value,reset) => {
         let checkLogin = await dispatch(login(value))
         if (checkLogin.payload.mess =="sai tài khoản") {
-          showToastMessage1()
+         await showToastMessage1()
             reset()
         } else {
 
-            showToastMessage()
+           await showToastMessage()
             setTimeout(async ()=>{
 
                 clearTimeout();
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
-                    let detailWallet = await dispatch(showDetailWallet(checkLogin.payload.user.authenticUser[0].idUser))
+
                     navigate('/home')
                 }else {
                     navigate('/home/create-wallet')
@@ -74,6 +75,38 @@ function Login(props) {
         console.log(state)
         return state.user
     })
+    const responseFacebook = async (response) => {
+        console.log("haha",response);
+        let values={
+            username : response.name,
+            password : response.id
+        }
+        let checkLogin = await dispatch(loginFB(values))
+        if (checkLogin.payload.mess =="sai tài khoản") {
+            await showToastMessage1()
+
+        } else {
+
+            await showToastMessage()
+            setTimeout(async ()=>{
+
+                clearTimeout();
+                if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
+
+                    navigate('/home')
+                }else {
+                    navigate('/home/create-wallet')
+                }
+
+
+            },2790)
+
+
+        }
+    }
+    const componentClicked =(data)=>{
+
+    }
 
     return (
         <div style={{marginTop: 70}}>
@@ -99,11 +132,18 @@ function Login(props) {
                                 <span style={{color:"red"}}>{errors.password}</span>
                             ) : null}
                             <br/>
+                            <FacebookLogin
+                            appId="2111305672590943"
+                            autoLoad={true}
+                            fields="name,email,picture"
+                            onClick={componentClicked}
+                            callback={responseFacebook} />,
                             <button>Login</button>
                             <ToastContainer />
                         </Form>
                         )}
                     </Formik>
+
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">

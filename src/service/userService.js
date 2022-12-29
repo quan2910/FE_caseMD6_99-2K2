@@ -29,3 +29,11 @@ export const changeCheckBegin = createAsyncThunk(
         return res.data
     }
 )
+
+export const loginFB = createAsyncThunk(
+    'user/loginFB',
+    async (data) => {
+        const res = await axios.post('http://localhost:3000/users/loginFB',data)
+        return res.data
+    }
+)
