@@ -1,11 +1,21 @@
 import "../../style/style.css"
-import {useState} from "react";
-import {useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {showDetailWallet} from "../../service/walletService";
+
 
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    let dispatch = useDispatch()
+    const detailWalletHome = useSelector(state => {
+        console.log(state)
+        return state.wallet.detailWalletHome
+    })
+    useEffect(async ()=>{
+        let detailWallet=await dispatch(showDetailWallet(user.iduser))
+    },[])
     return (
         <>
             {/* ======= About Me ======= */}
