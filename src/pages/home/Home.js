@@ -10,7 +10,7 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
-        console.log(state)
+        console.log('state wallet', state.wallet.detailWalletHome)
         return state.wallet.detailWalletHome
     })
     useEffect(async ()=>{

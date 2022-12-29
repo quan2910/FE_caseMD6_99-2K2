@@ -19,9 +19,12 @@ const SignupSchema = Yup.object().shape({
 
 });
 
-function Login(props) {
+function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const user = useSelector((state)=>{
+        return state
+    })
     const showToastMessage =async () => {
         await toast.success('Successful login!', {
             position: "top-center",
@@ -54,21 +57,15 @@ function Login(props) {
             reset()
         } else {
             showToastMessage()
-            setTimeout(()=>{
 
+            setTimeout(()=>{
                 clearTimeout();
                 navigate('/home')
-
             },2790)
 
 
         }
     }
-    const user = useSelector(state => {
-        console.log(state)
-        return state.user
-    })
-
     return (
         <div style={{marginTop: 70}}>
             <div className="container" id="container">

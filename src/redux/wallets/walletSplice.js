@@ -12,7 +12,6 @@ const walletSlice = createSlice({
         builder.addCase(showDetailWallet.fulfilled, (state, action) => {
            state.detailWalletHome = action.payload
         })
-
     }
 })
 

@@ -22,9 +22,10 @@ export default function Navbar() {
                             <li><a className="nav-link" href="#contact">Contact</a></li>
                             <li>
                                 <div style={{marginLeft : '620px'}}>
-                                    <Link className="nav-link" style={{marginRight: "10px"}} to={'/'} onClick={()=>{
+                                    <a className="nav-link" style={{marginRight: "10px"}} href={'/'} onClick={()=>{
                                         localStorage.clear()
-                                    }}>LogOut</Link>
+                                    }}>LogOut</a>
+
                                 </div>
                             </li>
                         </ul>
