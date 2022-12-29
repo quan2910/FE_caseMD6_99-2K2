@@ -20,12 +20,9 @@ const SignupSchema = Yup.object().shape({
 
 });
 
-function Login() {
+function Login(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state)=>{
-        return state
-    })
     const showToastMessage =async () => {
         await toast.success('Successful login!', {
             position: "top-center",
@@ -59,15 +56,27 @@ function Login() {
         } else {
 
             showToastMessage()
+            setTimeout(async ()=>{
 
-            setTimeout(()=>{
                 clearTimeout();
-                navigate('/home/create-wallet')
+                if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
+                    let detailWallet = await dispatch(showDetailWallet(checkLogin.payload.user.authenticUser[0].idUser))
+                    navigate('/home')
+                }else {
+                    navigate('/home/create-wallet')
+                }
+
+
             },2790)
 
 
         }
     }
+    const user = useSelector(state => {
+        console.log(state)
+        return state.user
+    })
+
     return (
         <div style={{marginTop: 70}}>
             <div className="container" id="container">
