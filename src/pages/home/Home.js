@@ -35,6 +35,7 @@ export default function Home() {
 
     return (
         <>
+
             {/* ======= About Me ======= */}
             <div style={{marginTop: 150}} className="about-me containerTemplate">
                 <div className="section-title">

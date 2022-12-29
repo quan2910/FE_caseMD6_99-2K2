@@ -62,7 +62,7 @@ function Login() {
 
             setTimeout(()=>{
                 clearTimeout();
-                navigate('/home')
+                navigate('/home/create-wallet')
             },2790)
 
 
