@@ -13,15 +13,13 @@ export default function Navbar() {
                     <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
                     <nav id="navbar" className="navbar">
                         <ul>
-                            <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Home</Link>
+                           <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Home</Link>
                             <Link style={{marginRight: 20}} to={'create-wallet'} className="nav-link">Create Wallet</Link>
-                            <li><a className="nav-link" href="#about">About</a></li>
-                            <li><a className="nav-link" href="#resume">Resume</a></li>
+                            <li><Link className="nav-link" to={'change-password'}>Change Password</Link></li>
                             <li><a className="nav-link" href="#services">Services</a></li>
-                            <li><a className="nav-link" href="#portfolio">Portfolio</a></li>
                             <li><a className="nav-link" href="#contact">Contact</a></li>
                             <li>
-                                <div style={{marginLeft : '620px'}}>
+                                <div style={{marginLeft : '650px'}}>
                                     <Link className="nav-link" style={{marginRight: "10px"}} to={"/"} onClick={()=> {
                                         localStorage.clear()
                                         navigate('/')
