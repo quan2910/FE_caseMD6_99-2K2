@@ -10,12 +10,12 @@ export default function CreateWallet() {
             <div className="container" id="container">
                 <div  >
                     <Formik >
-                            <form >
+                            <Form >
                                 <h1 style={{color:"black", marginTop: 60}}>Create Wallet</h1>
                                 <br/>
-                                <input type="text" name={"username"} placeholder="Wallet Name" style={{backgroundColor: "lightgrey"}}/>
+                                <Field type="text" name={"username"} placeholder="Wallet Name" style={{backgroundColor: "lightgrey"}}/>
 
-                                <input type="number" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
+                                <Field type="number" name={"password"} placeholder="Money" style={{backgroundColor: "lightgrey"}}/>
 
                                 <select style={{border: 'none', color: "gray",marginTop: 10, width: 645, height: 44, backgroundColor: "lightgray"}} >
                                     <option selected >Open this select menu</option>
@@ -24,7 +24,7 @@ export default function CreateWallet() {
                                 </select>
                                 <br/>
                                 <button>Create Wallet</button>
-                            </form>
+                            </Form>
                     </Formik>
                 </div>
             </div>
