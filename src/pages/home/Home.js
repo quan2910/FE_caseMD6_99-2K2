@@ -2,6 +2,8 @@ import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet} from "../../service/walletService";
+import CreateTransaction from "../transaction/CreateTransaction";
+import CreateCategory from "../category/CreateCategory";
 
 
 export default function Home() {
@@ -33,9 +35,10 @@ export default function Home() {
         return totalMoney
     }
 
+    if (!detailWalletHome) return <div>Loading...</div>
+
     return (
         <>
-
             {/* ======= About Me ======= */}
             <div style={{marginTop: 150}} className="about-me containerTemplate">
                 <div className="section-title">
@@ -53,10 +56,20 @@ export default function Home() {
                                 <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong></li>
                                 <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong></li>
                             </ul>
+                            <div  style={{marginLeft: 0}}>
+                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                            </div>
+                            <div  style={{marginLeft: 0}}>
+                                <CreateCategory style={{color:"black"}}></CreateCategory>
+                            </div>
                         </div>
-                        <p className="fst-italic" style={{color:"black"}}>
-                            Tổng tiền : {totalConsumableMoney().total}
-                        </p>
+                        <div>
+                                <p className="fst-italic" style={{color:"black"}}>
+                                    Tổng tiền : {totalConsumableMoney().total}
+                                    <span style={{marginRight: 600}}></span>
+                                </p>
+                        </div>
+
                         <div className="row">
                             <div className="col-lg-12">
                                 <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
@@ -79,8 +92,6 @@ export default function Home() {
                                             <td>{transaction.note}</td>
                                         </tr>
                                     })}
-
-
                                     </tbody>
                                 </table>
                             </div>

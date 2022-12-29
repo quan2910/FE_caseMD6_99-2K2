@@ -65,8 +65,6 @@ function Login(props) {
                 }else {
                     navigate('/home/create-wallet')
                 }
-
-
             },2790)
 
 

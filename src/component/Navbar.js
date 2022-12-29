@@ -1,4 +1,5 @@
 import {Link, Outlet} from "react-router-dom";
+import CreateTransaction from "../pages/transaction/CreateTransaction";
 
 export default function Navbar() {
     return (
