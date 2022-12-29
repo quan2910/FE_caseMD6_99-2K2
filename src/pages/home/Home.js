@@ -21,7 +21,7 @@ export default function Home() {
         (async ()=>{
         let detailWallet = await dispatch(showDetailWallet(user.idUser))
         })()
-    }, [user])
+    }, [detailWalletHome])
 
 
     let totalConsumableMoney = ()=>{
@@ -93,9 +93,10 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
+                                        console.log(transaction)
                                         return <tr>
                                             <th scope="row">{index+1}</th>
-                                            <td>{transaction.time}</td>
+                                            <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
                                             <td>{transaction.totalSpent}</td>
                                             <td>{transaction.nameCategory}</td>
                                             <td>{transaction.note}</td>

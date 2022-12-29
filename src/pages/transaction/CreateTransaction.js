@@ -10,6 +10,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
+import {showDetailWallet} from "../../service/walletService";
 
 export default function CreateTransaction() {
     const [open, setOpen] = React.useState(false);
@@ -25,6 +26,7 @@ export default function CreateTransaction() {
     useEffect(() => {
         dispatch(getCategory());
     }, [])
+    if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
             <Button
@@ -70,25 +72,31 @@ export default function CreateTransaction() {
                             time: '',
                             totalSpent: '',
                             categoryId: '',
-                            walletId: ''
+                            walletId: '',
+                            note: ''
                         }}
-                        onSubmit={(event) => {
+                        onSubmit={async (event) => {
                             let data = {
                                 time: event.time,
                                 totalSpent: event.totalSpent,
                                 categoryId: event.categoryId,
-                                walletId: 10
+                                walletId: 10,
+                                note: event.note
                             }
                             console.log(event)
-                            dispatch(addTransaction(data))
-                            console.log(data)
                             setOpen(false);
+                            await  dispatch(addTransaction(data))
+                            console.log(data)
+
+                         await dispatch(showDetailWallet(user.idUser))
+
                         }}
                     >
                         <Form>
                         <Stack spacing={2}>
                             <Field placeholder={'Time'} autoFocus required name={'time'}/>
                             <Field placeholder={'Total Spent'} required name={'totalSpent'}/>
+                            <Field placeholder={'Note'} required name={'note'}/>
                             <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
