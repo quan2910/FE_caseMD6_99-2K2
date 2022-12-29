@@ -56,10 +56,16 @@ function Login(props) {
         } else {
 
             showToastMessage()
-            setTimeout(()=>{
+            setTimeout(async ()=>{
 
                 clearTimeout();
-                navigate('/home')
+                if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
+                    let detailWallet = await dispatch(showDetailWallet(checkLogin.payload.user.authenticUser[0].idUser))
+                    navigate('/home')
+                }else {
+                    navigate('/home/create-wallet')
+                }
+
 
             },2790)
 

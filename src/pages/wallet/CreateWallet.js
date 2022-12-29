@@ -13,12 +13,12 @@ export default function CreateWallet() {
 
     })
 
-    const handleAddWallet = (values) => {
+    const handleAddWallet =async (values) => {
         let data = {
             ...values,userId:user.idUser
         }
         console.log(data)
-        dispatch(addWallets(data))
+       await dispatch(addWallets(data))
         navigate('/home')
     }
 
