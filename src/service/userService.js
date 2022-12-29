@@ -15,3 +15,10 @@ export const register = createAsyncThunk(
         return res.data
     }
 )
+export const changePassword = createAsyncThunk(
+    'user/changePassword',
+    async (data)=> {
+        const res = await axios.put('http://localhost:3000/users/' + data.id, data)
+        return res.data
+    }
+)

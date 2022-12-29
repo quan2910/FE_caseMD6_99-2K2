@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import CreateWallet from "./pages/wallet/CreateWallet";
 import Login from "./pages/user/login";
 import Register from "./pages/user/register";
+import ChangePassword from "./pages/user/change-password";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path={"home"} element={<Navbar/>}>
                         <Route path={""} element={<Home/>}/>
                         <Route path={"create-wallet"} element={<CreateWallet/>}/>
+                        <Route path={"change-password"} element={<ChangePassword/>}/>
                     </Route>
 
                 </Routes>
