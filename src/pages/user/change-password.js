@@ -5,7 +5,7 @@ import React from "react";
 import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changePassword} from "../../service/userService";
 
 const SignupSchema = Yup.object().shape({
@@ -24,6 +24,10 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function ChangePassword() {
+    const idUser = useSelector(state => {
+        console.log(state.user.currentUser.user.authenticUser[0].idUser)
+        return state.user.currentUser.user.authenticUser[0].idUser
+    })
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const showToastMessage = async () => {
@@ -39,21 +43,23 @@ export default function ChangePassword() {
         });
     };
 
-
-    const handleChangePassword = async (values, id)=>{
-        let data = await dispatch(changePassword)
-    }
-
     return (
         <div style={{marginTop: 70}}>
             <div className="container" id="container">
                 <div>
                     <Formik validationSchema={SignupSchema} initialValues={{
-                    //     oldPassword: "",
-                    //     newPassword: "",
-                    //     rePassword: ""
-                    // }}onSubmit={async (values,{resetForm}) => {
-                    //     await handleChangePassword(values, resetForm)
+                        oldPassword: "",
+                        newPassword: ""
+                    }}onSubmit={async (values,{resetForm}) => {
+                        let data = await dispatch(changePassword({...values, idUser}))
+                        console.log("data",data)
+                        if(data.payload.user.check) {
+                            await showToastMessage();
+                            navigate("/home")
+                        } else {
+                            alert(data.payload.mess)
+                            resetForm()
+                        }
                     }}>
                         {({errors, touched}) =>(
                             <Form>

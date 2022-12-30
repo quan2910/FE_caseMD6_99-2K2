@@ -135,7 +135,7 @@ function Login(props) {
                             ) : null}
                             <br/>
                             <FacebookLogin
-                            appId="2111305672590943"
+                            appId="1098641577548813"
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
