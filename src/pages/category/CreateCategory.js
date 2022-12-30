@@ -26,7 +26,6 @@ export default function CreateCategory() {
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
-                // startDecorator={<Add/>}
                 onClick={() => setOpen(true)}
             >
                 Create Category
