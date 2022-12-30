@@ -140,7 +140,7 @@ function Login(props) {
                             fields="name,email,picture"
                             onClick={componentClicked}
                             callback={responseFacebook} />,
-                            <button>Login</button>
+                            <button >Login</button>
                             <ToastContainer />
                         </Form>
                         )}
