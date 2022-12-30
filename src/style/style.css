@@ -405,7 +405,7 @@ section .containerTemplate {
 .about-me .content h3 {
   font-weight: 700;
   font-size: 26px;
-  color: #18d26e;
+  color: black;
 }
 
 .about-me .content ul {

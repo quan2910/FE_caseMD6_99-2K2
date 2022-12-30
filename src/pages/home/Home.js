@@ -12,17 +12,15 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
+        console.log(state)
         return state.wallet.detailWalletHome
     })
-    let wallet
-    console.log(detailWalletHome)
 
     useEffect(()=>{
         (async ()=>{
         let detailWallet = await dispatch(showDetailWallet(user.idUser))
         })()
     }, [detailWalletHome])
-
 
     let totalConsumableMoney = ()=>{
         let totalMoney = {
@@ -45,14 +43,11 @@ export default function Home() {
     }
 
     if (!detailWalletHome) return <div>Loading...</div>
+    if (!user) return <div>Loading...</div>
 
     return (
         <>
-            {/* ======= About Me ======= */}
             <div className="about-me containerTemplate">
-                {/*<div className="section-title">*/}
-                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
-                {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:50}}>
                         <div className="col-12" style={{marginBottom: 50, color: "black"}}>
@@ -74,10 +69,12 @@ export default function Home() {
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <h3 style={{textAlign:"center"}}>Chi</h3>
+                                <h5 style={{textAlign:"center"}}>{totalConsumableMoney().ConsumableMoney}</h5>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
+                                <h3 style={{textAlign:"center"}}>Thu</h3>
+                                <h5 style={{textAlign:"center"}}>{totalConsumableMoney().moneyIncome}</h5>
                             </div>
                         </div>
                         <div className="col-lg-6">
@@ -85,14 +82,9 @@ export default function Home() {
                                 <CreateTransaction style={{color:"black"}}></CreateTransaction>
                                 <span style={{marginLeft: 900}}></span>
                             </div>
-                            {/*<div  style={{marginLeft: 0}}>*/}
-                            {/*    <CreateCategory style={{color:"black"}}></CreateCategory>*/}
-                            {/*</div>*/}
                         </div>
                         <div>
-
                         </div>
-
                         <div className="row">
                             <div className="col-lg-12">
                                 <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
@@ -123,7 +115,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            {/* End About Me */}
         </>
     )
 }

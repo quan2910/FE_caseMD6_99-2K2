@@ -19,11 +19,11 @@ export default function Navbar() {
                                 <ul>
 
                                 <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
+                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15, color:"black"}}>Profile</Link>
                                     <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Create Wallet</Link>
                                     <Link className="nav-link" style={{marginLeft:15}}>
                                         <CreateCategory></CreateCategory>
                                     </Link>
-                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15}}>Profile</Link>
                                 </ul>
                             </div>
                             <i className="bi bi-list mobile-nav-toggle" />

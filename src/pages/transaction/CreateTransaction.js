@@ -93,6 +93,16 @@ export default function CreateTransaction() {
                             <Field placeholder={'Time'} autoFocus required name={'time'}/>
                             <Field placeholder={'Total Spent'} required name={'totalSpent'}/>
                             <Field placeholder={'Note'} required name={'note'}/>
+                            <div>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="option1" />
+                                    <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                                </div>
+                                <div className="form-check form-check-inline">
+                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="option2" />
+                                    <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                </div>
+                            </div>
                             <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
