@@ -42,3 +42,26 @@ export const loginFB = createAsyncThunk(
         return res.data
     }
 )
+
+export const updateProfile = createAsyncThunk(
+    'user/updateProfile',
+    async (data) => {
+        const res = await axios.put('http://localhost:3000/users/profile',data)
+        return res.data
+    }
+)
+
+export const findById = createAsyncThunk(
+    'user/findById',
+    async (idUser) => {
+        const res = await axios.get('http://localhost:3000/users/find-by-id/'+idUser)
+        return res.data
+    }
+)
+export const saveAvatar = createAsyncThunk(
+    'user/saveAvatar',
+    async (data) => {
+        const res = await axios.post('http://localhost:3000/users/avatar',data)
+        return res.data
+    }
+)

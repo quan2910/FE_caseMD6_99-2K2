@@ -13,7 +13,6 @@ const walletSlice = createSlice({
            state.detailWalletHome = action.payload
             localStorage.setItem('walletDetail',JSON.stringify(action.payload))
         })
-
     }
 })
 
