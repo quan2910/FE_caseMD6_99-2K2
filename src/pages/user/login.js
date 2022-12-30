@@ -66,8 +66,6 @@ function Login(props) {
                 }else {
                     navigate('/home/create-wallet')
                 }
-
-
             },2790)
 
 
@@ -135,11 +133,14 @@ function Login(props) {
                             ) : null}
                             <br/>
                             <FacebookLogin
-                            appId="1098641577548813"
+                                style={{height: 50}}
+                            appId="2111305672590943"
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
-                            callback={responseFacebook} />,
+                                cssClass="btn btn-primary"
+
+                                callback={responseFacebook} />,
                             <button>Login</button>
                             <ToastContainer />
                         </Form>

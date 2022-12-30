@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet} from "../../service/walletService";
 import ChangePassword from "../user/change-password";
+import CreateTransaction from "../transaction/CreateTransaction";
+import CreateCategory from "../category/CreateCategory";
 
 
 export default function Home() {
@@ -20,7 +22,8 @@ export default function Home() {
         (async ()=>{
         let detailWallet = await dispatch(showDetailWallet(user.idUser))
         })()
-    }, [user])
+    }, [detailWalletHome])
+
 
     let totalConsumableMoney = ()=>{
         let totalMoney = {
@@ -43,30 +46,54 @@ export default function Home() {
     }
 
     if (!detailWalletHome) return <div>Loading...</div>
-    if(!user)return <div>Loading...</div>
+
     return (
         <>
             {/* ======= About Me ======= */}
-            <div style={{marginTop: 150}} className="about-me containerTemplate">
-                <div className="section-title">
-                    <p style={{color:"black"}}>{user.username}</p>
-                </div>
+            <div className="about-me containerTemplate">
+                {/*<div className="section-title">*/}
+                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
+                {/*</div>*/}
                 <div className="row">
-                    <div className="col-lg-4" data-aos="fade-right">
-                        <img src="assets/img/me.jpg" className="img-fluid" alt=""/>
-                    </div>
-                    <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-
-                        <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
-                        <div className="col-lg-6">
-                            <ul>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong></li>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong></li>
-                            </ul>
+                    <div className="col-3" style={{marginTop:50}}>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
                         </div>
-                        <p className="fst-italic" style={{color:"black"}}>
-                            Tổng tiền : {totalConsumableMoney().total} $
-                        </p>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
+                        </div>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
+                        </div>
+                    </div>
+                    <div className="col-lg-8 pt-4 pt-lg-0 content">
+                        <div className="row">
+                            <div className="col-lg-4">
+                                <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <h5 style={{color:"black"}}>
+                                    Tổng tiền : {totalConsumableMoney().total}
+                                </h5>
+                            </div>
+                            <div className="col-lg-4"  >
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
+                            </div>
+                            <div className="col-lg-4">
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
+                            </div>
+                        </div>
+                        <div className="col-lg-6">
+                            <div  style={{marginLeft: 0}}>
+                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                <span style={{marginLeft: 900}}></span>
+                            </div>
+                            {/*<div  style={{marginLeft: 0}}>*/}
+                            {/*    <CreateCategory style={{color:"black"}}></CreateCategory>*/}
+                            {/*</div>*/}
+                        </div>
+                        <div>
+
+                        </div>
+
                         <div className="row">
                             <div className="col-lg-12">
                                 <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
@@ -81,26 +108,17 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
+                                        console.log(transaction)
                                         return <tr>
                                             <th scope="row">{index+1}</th>
-                                            <td>{transaction.time}</td>
+                                            <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
                                             <td>{transaction.totalSpent}</td>
                                             <td>{transaction.nameCategory}</td>
                                             <td>{transaction.note}</td>
                                         </tr>
                                     })}
-
-
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <h2 style={{color:"black"}}>Biểu đồ</h2>
-                            </div>
-                            <div className="col-lg-6">
-                                <h2 style={{color:"black"}}>Cũng là biểu đồ</h2>
                             </div>
                         </div>
                     </div>
