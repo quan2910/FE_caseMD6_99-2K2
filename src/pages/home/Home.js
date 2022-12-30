@@ -43,7 +43,7 @@ export default function Home() {
     }
 
     if (!detailWalletHome) return <div>Loading...</div>
-
+    if(!user)return <div>Loading...</div>
     return (
         <>
             {/* ======= About Me ======= */}

@@ -14,7 +14,6 @@ export default function Navbar() {
                         <ul>
                             <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Home</Link>
                             <Link style={{marginRight: 20}} to={'create-wallet'} className="nav-link">Create Wallet</Link>
-                            <Link style={{marginRight: 20}} to={'profile'}>Update Profile</Link>
                             <Link style={{marginRight: 20}} to={'change-password'}>Change Password</Link>
                             <li><a className="nav-link" href="#resume">Resume</a></li>
                             <li><a className="nav-link" href="#services">Services</a></li>
