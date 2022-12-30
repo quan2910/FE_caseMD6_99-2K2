@@ -23,8 +23,8 @@ export default function Navbar() {
                                     <Link className="nav-link" style={{marginLeft:15}}>
                                         <CreateCategory></CreateCategory>
                                     </Link>
-                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15}}>Profile</Link>
-                                    <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15}}>Change Password</Link>
+                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
+                                    <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15, color: "black"}}>Change Password</Link>
                                 </ul>
                             </div>
                             <i className="bi bi-list mobile-nav-toggle" />

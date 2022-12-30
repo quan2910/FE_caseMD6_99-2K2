@@ -3,10 +3,8 @@ import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
-import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
-import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
@@ -28,7 +26,6 @@ export default function CreateCategory() {
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
-                // startDecorator={<Add/>}
                 onClick={() => setOpen(true)}
             >
                 Create Category
