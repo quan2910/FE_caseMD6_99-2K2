@@ -49,34 +49,48 @@ export default function Home() {
     return (
         <>
             {/* ======= About Me ======= */}
-            <div style={{marginTop: 150}} className="about-me containerTemplate">
-                <div className="section-title">
-                    <p style={{color:"black"}}>{user.username}</p>
-                </div>
+            <div className="about-me containerTemplate">
+                {/*<div className="section-title">*/}
+                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
+                {/*</div>*/}
                 <div className="row">
-                    <div className="col-lg-4" data-aos="fade-right">
-                        <img src="assets/img/me.jpg" className="img-fluid" alt=""/>
+                    <div className="col-3" style={{marginTop:50}}>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
+                        </div>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
+                        </div>
+                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                            Tìm kiếm cái gì đấy
+                        </div>
                     </div>
-                    <div className="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-
-                        <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
-                        <div className="col-lg-6">
-                            <ul>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong></li>
-                                <li><i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong></li>
-                            </ul>
-                            <div  style={{marginLeft: 0}}>
-                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                    <div className="col-lg-8 pt-4 pt-lg-0 content">
+                        <div className="row">
+                            <div className="col-lg-4">
+                                <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <h5 style={{color:"black"}}>
+                                    Tổng tiền : {totalConsumableMoney().total}
+                                </h5>
                             </div>
-                            <div  style={{marginLeft: 0}}>
-                                <CreateCategory style={{color:"black"}}></CreateCategory>
+                            <div className="col-lg-4"  >
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
+                            </div>
+                            <div className="col-lg-4">
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
                         </div>
+                        <div className="col-lg-6">
+                            <div  style={{marginLeft: 0}}>
+                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                <span style={{marginLeft: 900}}></span>
+                            </div>
+                            {/*<div  style={{marginLeft: 0}}>*/}
+                            {/*    <CreateCategory style={{color:"black"}}></CreateCategory>*/}
+                            {/*</div>*/}
+                        </div>
                         <div>
-                                <p className="fst-italic" style={{color:"black"}}>
-                                    Tổng tiền : {totalConsumableMoney().total}
-                                    <span style={{marginRight: 600}}></span>
-                                </p>
+
                         </div>
 
                         <div className="row">
@@ -102,18 +116,8 @@ export default function Home() {
                                             <td>{transaction.note}</td>
                                         </tr>
                                     })}
-
-
                                     </tbody>
                                 </table>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <h2 style={{color:"black"}}>Biểu đồ</h2>
-                            </div>
-                            <div className="col-lg-6">
-                                <h2 style={{color:"black"}}>Cũng là biểu đồ</h2>
                             </div>
                         </div>
                     </div>

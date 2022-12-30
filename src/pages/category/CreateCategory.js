@@ -9,6 +9,7 @@ import {Field, Form, Formik} from "formik";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addCategory, getCategory} from "../../service/categoriesService";
+import {Link} from "react-router-dom";
 
 export default function CreateCategory() {
     const [open, setOpen] = React.useState(false);
@@ -23,15 +24,15 @@ export default function CreateCategory() {
     })
     return (
         <React.Fragment>
-            <Button
+            <Link
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
-                startDecorator={<Add/>}
+                // startDecorator={<Add/>}
                 onClick={() => setOpen(true)}
             >
                 Create Category
-            </Button>
+            </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
                     style={{color: "black"}}

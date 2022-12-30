@@ -1,46 +1,44 @@
 import {Link, Outlet} from "react-router-dom";
 import CreateTransaction from "../pages/transaction/CreateTransaction";
+import {useSelector} from "react-redux";
+import CreateCategory from "../pages/category/CreateCategory";
 
 export default function Navbar() {
+    const user = useSelector(state => {
+        return state.user.currentUser.user.authenticUser[0]
+    })
     return (
         <>
-            {/* ======= Header ======= */}
-            <header id="header" className="header-top" style={{background: "linear-gradient(to right, #FF4B2B, #FF416C)"}}>
-                <div className="containerTemplate">
-                    <h1> <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Wallet </Link></h1>
-                    {/* Uncomment below if you prefer to use an image logo */}
-                    {/* <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> */}
-                    <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
-                    <nav id="navbar" className="navbar">
-                        <ul>
-                            <Link style={{marginRight: 20}} to={'/home'} className="nav-link">Home</Link>
-                            <Link style={{marginRight: 20}} to={'create-wallet'} className="nav-link">Create Wallet</Link>
-                            <li><a className="nav-link" href="#about">About</a></li>
-                            <li><a className="nav-link" href="#resume">Resume</a></li>
-                            <li><a className="nav-link" href="#services">Services</a></li>
-                            <li><a className="nav-link" href="#portfolio">Portfolio</a></li>
-                            <li><a className="nav-link" href="#contact">Contact</a></li>
-                            <li>
-                                <div style={{marginLeft : '620px'}}>
-                                    <Link className="nav-link" onClick={() => {
-                                        localStorage.clear()
-                                    }} style={{marginRight: "10px"}} to={"/"}>LogOut</Link>
+            <header id="header" className="header-top row" style={{background: "linear-gradient(to right, #FF4B2B, #FF416C)"}}>
+                <div className="containerTemplate col-12" style={{height:50}}>
+                    <div className="col-3" style={{display:"flex"}}>
+                        <h1> <Link style={{marginLeft: 20, marginTop: 20, color:"black"}} to={'/home'} className="nav-link">Wallet </Link></h1>
 
-                                </div>
+                        <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
+                            <div  style={{marginTop:2, width:500}}>
+                                <ul>
 
-                            </li>
-                        </ul>
-
-                        <i className="bi bi-list mobile-nav-toggle" />
-                    </nav>{/* .navbar */}
-                    <div className="social-links">
-                        <a href="#" className="twitter"><i className="bi bi-twitter" /></a>
-                        <a href="#" className="facebook"><i className="bi bi-facebook" /></a>
-                        <a href="#" className="instagram"><i className="bi bi-instagram" /></a>
-                        <a href="#" className="linkedin"><i className="bi bi-linkedin" /></a>
+                                <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
+                                    <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Create Wallet</Link>
+                                    <Link className="nav-link" style={{marginLeft:15}}>
+                                        <CreateCategory></CreateCategory>
+                                    </Link>
+                                </ul>
+                            </div>
+                            <i className="bi bi-list mobile-nav-toggle" />
+                        </nav>
+                    </div>
+                    <div className="col-9">
+                        <div className="col-12" style={{display:"flex", marginRight:0}}>
+                            <div className="col-10"></div>
+                            <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src="https://i.pinimg.com/236x/2d/e2/2e/2de22e8aa035d55e5f2e01d9607cac88.jpg" alt="" className="img-fluid"/></Link></div>
+                            <div className="col-1" ><Link className="nav-link" onClick={() => {
+                                localStorage.clear()
+                            }} style={{marginRight: "8px"}} to={"/"}>LogOut</Link></div>
+                        </div>
                     </div>
                 </div>
-            </header>{/* End Header */}
+            </header>
             <Outlet></Outlet>
         </>
     )

@@ -25,7 +25,7 @@ export default function CreateTransaction() {
     })
     useEffect(() => {
         dispatch(getCategory());
-    }, [])
+    }, [categories])
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
@@ -83,13 +83,9 @@ export default function CreateTransaction() {
                                 walletId: 10,
                                 note: event.note
                             }
-                            console.log(event)
                             setOpen(false);
                             await  dispatch(addTransaction(data))
-                            console.log(data)
-
                          await dispatch(showDetailWallet(user.idUser))
-
                         }}
                     >
                         <Form>
