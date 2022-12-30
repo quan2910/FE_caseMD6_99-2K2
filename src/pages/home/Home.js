@@ -63,8 +63,8 @@ export default function Home() {
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div className="row">
                             <div className="col-lg-4">
-                                <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
-                                <h5 style={{color:"black"}}>
+                                <h3 style={{textAlign:"center"}}>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <h5 style={{color:"black", textAlign:"center"}}>
                                     Tổng tiền : {totalConsumableMoney().total}
                                 </h5>
                             </div>
@@ -77,13 +77,20 @@ export default function Home() {
                                 <h5 style={{textAlign:"center"}}>{totalConsumableMoney().moneyIncome}</h5>
                             </div>
                         </div>
-                        <div className="col-lg-6">
-                            <div  style={{marginLeft: 0}}>
-                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
-                                <span style={{marginLeft: 900}}></span>
+                        <div className="row"></div>
+                        <div style={{display:"inline"}}>
+                            <div  className="col-lg-6">
+                                <div  style={{marginLeft: 0}}>
+                                    <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                    <span style={{marginLeft: 900}}></span>
+                                </div>
                             </div>
-                        </div>
-                        <div>
+                            <div className="col-lg-6">
+                                <div  style={{marginLeft: 0}}>
+                                    <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                    <span style={{marginLeft: 900}}></span>
+                                </div>
+                            </div>
                         </div>
                         <div className="row">
                             <div className="col-lg-12">
