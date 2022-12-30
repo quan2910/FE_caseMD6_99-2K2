@@ -2,6 +2,7 @@ import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet} from "../../service/walletService";
+import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
 import CreateCategory from "../category/CreateCategory";
 
