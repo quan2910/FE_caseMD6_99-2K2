@@ -23,6 +23,7 @@ export default function Navbar() {
                                     <Link className="nav-link" style={{marginLeft:15}}>
                                         <CreateCategory></CreateCategory>
                                     </Link>
+                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15}}>Profile</Link>
                                 </ul>
                             </div>
                             <i className="bi bi-list mobile-nav-toggle" />
@@ -31,7 +32,7 @@ export default function Navbar() {
                     <div className="col-9">
                         <div className="col-12" style={{display:"flex", marginRight:0}}>
                             <div className="col-10"></div>
-                            <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src="https://i.pinimg.com/236x/2d/e2/2e/2de22e8aa035d55e5f2e01d9607cac88.jpg" alt="" className="img-fluid"/></Link></div>
+                            <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src={user.avatar==""?"https://bootdey.com/img/Content/avatar/avatar7.png":user.avatar} alt="" className="img-fluid"/></Link></div>
                             <div className="col-1" ><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
                             }} style={{marginRight: "8px"}} to={"/"}>LogOut</Link></div>
