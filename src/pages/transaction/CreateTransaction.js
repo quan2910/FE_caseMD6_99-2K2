@@ -120,7 +120,7 @@ export default function CreateTransaction(props) {
                             <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
-                                    if(user.idUser==item.userId && item.statusCategory==income ) {
+                                    if(user.idUser==item.userId && item.statusCategory==income) {
                                         return (
                                             <option value={item.idCategory}>{item.nameCategory}</option>
                                         )
