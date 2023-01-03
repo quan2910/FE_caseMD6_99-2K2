@@ -9,6 +9,7 @@ import Profile from "./pages/user/profile";
 import ShowCategory from "./pages/category/ShowCategory";
 
 function App() {
+
     return (
         <div className={"col-12"}>
             {/* ======= Header ======= */}

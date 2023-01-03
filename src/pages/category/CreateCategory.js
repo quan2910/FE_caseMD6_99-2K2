@@ -15,6 +15,7 @@ export default function CreateCategory() {
     const categories = useSelector(state => {
         return  state.category.category
     })
+
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
