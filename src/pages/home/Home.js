@@ -6,24 +6,19 @@ import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
 import CreateCategory from "../category/CreateCategory";
 
-
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
-
         return state.wallet.detailWalletHome
     })
-    let wallet
-
     useEffect(()=>{
         (async ()=>{
         let detailWallet = await dispatch(showDetailWallet(user.idUser))
         })()
     }, [detailWalletHome])
-
 
     let totalConsumableMoney = ()=>{
         let totalMoney = {
@@ -50,9 +45,6 @@ export default function Home() {
         <>
             {/* ======= About Me ======= */}
             <div className="about-me containerTemplate">
-                {/*<div className="section-title">*/}
-                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
-                {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:50}}>
                         <div className="col-12" style={{marginBottom: 50, color: "black"}}>
@@ -85,14 +77,9 @@ export default function Home() {
                                 <CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction>
                                 <span style={{marginLeft: 900}}></span>
                             </div>
-                            {/*<div  style={{marginLeft: 0}}>*/}
-                            {/*    <Category style={{color:"black"}}></Category>*/}
-                            {/*</div>*/}
                         </div>
                         <div>
-
                         </div>
-
                         <div className="row">
                             <div className="col-lg-12">
                                 <table className="table table-striped" style={{background:"#FFAE81"}}>
@@ -122,7 +109,6 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            {/* End About Me */}
         </>
     )
 }

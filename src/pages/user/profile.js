@@ -30,14 +30,11 @@ const Profile = () => {
        formData.append('File',e.target.files[0] );
        formData.append('idUser',user.idUser );
        await dispatch(saveAvatar(formData))
-
           await dispatch(findById(user.idUser))
-
-
    }
 
     return (
-        <div className="container" style={{marginTop:"50px"}}>
+        <div className="container" style={{marginTop: 30}}>
             <div className="main-body">
                 {/* Breadcrumb */}
                 <nav aria-label="breadcrumb" className="main-breadcrumb">
@@ -45,7 +42,7 @@ const Profile = () => {
                 {/* /Breadcrumb */}
                 <div className="row gutters-sm">
                     <div className="col-md-4 mb-3">
-                        <div className="card">
+                        <div className="card" style={{height:400}}>
                             <div className="card-body">
                                 <div className="d-flex flex-column align-items-center text-center">
                                     <img style={{height:"150px",width:"150px"}}
@@ -70,7 +67,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8" >
                         <div className="card mb-3">
                             <Formik enableReinitialize={true} initialValues={{fullName:`${user.fullName ?user.fullName: ""}`,phone:`${user.phone?user.phone:""}`,age:`${user.age==0?null:user.age}`,address:`${user.address}`}} onSubmit={(values)=>{
                                editProfile(values)}}>
@@ -85,30 +82,28 @@ const Profile = () => {
                                        <hr />
                                        <div className="row">
                                            <div className="col-sm-3">
-                                               <h6 className="mb-0">Age</h6>
+                                               <h6 className="mb-0" style={{marginTop: 12}}>Age</h6>
                                            </div>
                                            <div className="col-sm-9 text-secondary" ><Field name={'age'} type={"number"} style={{width:"300px",height:"30px"}} /></div>
                                        </div>
                                        <hr />
                                        <div className="row">
                                            <div className="col-sm-3">
-                                               <h6 className="mb-0" >Phone</h6>
+                                               <h6 className="mb-0" style={{marginTop: 12}}>Phone</h6>
                                            </div>
                                            <div className="col-sm-9 text-secondary" ><Field name={'phone'}  type={'text'} style={{width:"300px",height:"30px"}} /></div>
                                        </div>
                                        <hr />
-                                       <hr />
                                        <div className="row">
                                            <div className="col-sm-3">
-                                               <h6 className="mb-0">Address</h6>
+                                               <h6 className="mb-0" style={{marginTop: 12}}>Address</h6>
                                            </div>
                                            <div className="col-sm-9 text-secondary" ><Field name={'address'}  type={'text'} style={{width:"300px",height:"30px"}} /></div>
                                        </div>
                                        <hr />
                                        <div className="row">
                                            <div className="col-sm-12">
-                                                   <button class="btn btn-primary">Edit</button>
-
+                                                   <button class="btn-primary">Edit</button>
                                            </div>
                                        </div>
                                    </div>

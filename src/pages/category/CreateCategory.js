@@ -15,7 +15,6 @@ export default function CreateCategory() {
     const categories = useSelector(state => {
         return  state.category.category
     })
-
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
@@ -25,6 +24,7 @@ export default function CreateCategory() {
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
+                className={'btn-primary'}
                 onClick={() => setOpen(true)}
             >
                Create Category
@@ -80,13 +80,13 @@ export default function CreateCategory() {
                     >
                         <Form>
                             <Stack spacing={2}>
-                                <Field placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
+                                <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>
                                 </Field>
-                                <Button type="submit">Submit</Button>
+                                <Button style={{backgroundColor: "rgb(255, 75, 43)", width:100, marginLeft:47, borderRadius: "20px"}} type="submit">Submit</Button>
                             </Stack>
                         </Form>
                     </Formik>

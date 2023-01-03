@@ -4,7 +4,6 @@ import {useEffect} from "react";
 
 export default function ShowCategory() {
     const categories = useSelector(state => {
-        console.log('categories', state.category.category)
         return  state.category.category
     })
     const user = useSelector(state => {
@@ -17,7 +16,6 @@ export default function ShowCategory() {
             <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"rgb(255, 174, 129)"}}>
                 <CreateCategory></CreateCategory>
             </button>
-
             <div className="col-lg-12">
                 <table className="table table-striped" style={{background:"rgb(255, 174, 129)", width:1000, borderRadius: "1%"}}>
                     <thead>
@@ -29,10 +27,8 @@ export default function ShowCategory() {
                     </thead>
                     <tbody>
                     {
-                        categories.map((item, index)=>{
-
+                        categories.map((item)=>{
                         if(item.userId == user.idUser) {
-
                             return (
                                 <tr>
                                     <th scope="row">{stt++}</th>
@@ -42,7 +38,6 @@ export default function ShowCategory() {
                             )
                         }
                     })}
-
                     </tbody>
                 </table>
             </div>

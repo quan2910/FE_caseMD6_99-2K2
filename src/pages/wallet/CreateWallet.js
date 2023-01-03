@@ -8,10 +8,8 @@ import {getMoneyType} from "../../service/moneyTypeService";
 export default function CreateWallet() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
-
     })
         const moneyType = useSelector(state => {
             return state

@@ -35,7 +35,6 @@ function Login(props) {
             progress: undefined,
             theme: "light",
         });
-
     };
     const showToastMessage1 =async () => {
         await toast.error('Incorrect account or loss of aperture!', {
@@ -47,7 +46,6 @@ function Login(props) {
             progress: undefined,
             theme: "light",
         });
-
     };
     const handlerLogin = async (value,reset) => {
         let checkLogin = await dispatch(login(value))
@@ -55,13 +53,10 @@ function Login(props) {
          await showToastMessage1()
             reset()
         } else {
-
            await showToastMessage()
             setTimeout(async ()=>{
-
                 clearTimeout();
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
-
                     navigate('/home')
                 }else {
                     navigate('/home/create-wallet')
@@ -82,32 +77,23 @@ function Login(props) {
         let checkLogin = await dispatch(loginFB(values))
         if (checkLogin.payload.mess =="sai tài khoản") {
             await showToastMessage1()
-
         } else {
-
             await showToastMessage()
             setTimeout(async ()=>{
-
                 clearTimeout();
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
-
                     navigate('/home')
                 }else {
                     navigate('/home/create-wallet')
                 }
-
-
             },2790)
-
-
         }
     }
     const componentClicked =(data)=>{
-
     }
 
     return (
-        <div style={{marginTop: 70}}>
+        <div >
             <div className="container" id="container">
                 <div className="form-container sign-in-container">
                     <Formik validationSchema={SignupSchema} initialValues={{
@@ -131,15 +117,14 @@ function Login(props) {
                             ) : null}
                             <br/>
                             <FacebookLogin
-                                style={{height: 50}}
+                                style={{height: 50, borderRadius: "20px", borderColor:"#FFFFFF", backgroundColor: "#007bff"}}
                             appId="1322700111900192"
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
-                                cssClass="btn btn-primary"
-
-                                callback={responseFacebook} />,
-                            <button style={{backgroundColor:"#FF4B2B", height: 38, width:207}} className="btn btn-primary metro"
+                                cssClass="btn-primary"
+                                callback={responseFacebook} />
+                            <button style={{backgroundColor:"#FF4B2B", height: 44, width:232, borderRadius: "20px", borderColor:"#FFFFFF", marginTop: 12}} className="btn btn-primary metro"
                             >Login</button>
                             <ToastContainer />
                         </Form>

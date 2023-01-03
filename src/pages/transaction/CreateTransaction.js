@@ -15,7 +15,6 @@ import {findById} from "../../service/userService";
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
     const [income,setIncome]= useState('')
-    console.log(income)
     const dispatch = useDispatch();
     const categories = useSelector(state => {
         return  state.category.category
@@ -23,13 +22,6 @@ export default function CreateTransaction(props) {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
-    const wallet = useSelector(state => {
-
-        return state.wallet.detailWalletHome.wallet
-    })
-
-    let idWallet;
-
     useEffect(() => {
         dispatch(getCategory());
     }, [categories])
@@ -92,10 +84,8 @@ export default function CreateTransaction(props) {
                                 userID :user.idUser
                             }
                             setOpen(false);
-
                             await  dispatch(addTransaction(data))
                             await dispatch(showDetailWallet(user.idUser))
-
                         }}
                     >
                         <Form>

@@ -6,11 +6,8 @@ import {Field, Form, Formik} from "formik";
 export default function CreateWallet() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const user = useSelector(state => {
-
         return state.user.currentUser.user.authenticUser[0]
-
     })
 
     const handleAddWallet =async (values) => {
@@ -40,20 +37,11 @@ export default function CreateWallet() {
                             <Field type="text" className="form-control" name={"moneyAmount"} id="moneyAmount"
                                    placeholder="moneyAmount" required/>
                         </div>
-
                         <div className="form-group mt-1">
                             <Field type="text" className="form-control" name={"status"} id="status" placeholder="Status"
                                    required/>
                         </div>
-                        {/*<div className="form-group mt-3">*/}
-                        {/*    <textarea className="form-control" name="message" rows={5} placeholder="Message" required*/}
-                        {/*              defaultValue={""}/>*/}
-                        {/*</div>*/}
-                        {/*<div className="my-3">*/}
-                        {/*    <div className="loading">Loading</div>*/}
-                        {/*    <div className="error-message"/>*/}
-                        {/*    <div className="sent-message">Your message has been sent. Thank you!</div>*/}
-                        {/*</div>*/}
+
                         <div className="text-center">
                             <button type="submit">Send Message</button>
                         </div>

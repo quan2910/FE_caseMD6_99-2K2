@@ -14,7 +14,6 @@ export default function Navbar() {
                 <div className="containerTemplate col-12" style={{height:"0px"}}>
                     <div className="col-1" style={{display:"flex"}}>
                         <h1> <Link style={{marginLeft: 20, marginTop: 16, color:"black"}} to={'/home'} className="nav-link">Wallet </Link></h1>
-
                         <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
                             <div  style={{marginTop:12, width:500,position:"fixed"}}>
                                 <ul>
