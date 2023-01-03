@@ -5,7 +5,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
@@ -14,6 +14,8 @@ import {findById} from "../../service/userService";
 
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
+    const [income,setIncome]= useState('')
+    console.log(income)
     const dispatch = useDispatch();
     const categories = useSelector(state => {
         return  state.category.category
@@ -103,18 +105,22 @@ export default function CreateTransaction(props) {
                             <Field placeholder={'Note'} required name={'note'}/>
                             <div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="option1" />
-                                    <label className="form-check-label" htmlFor="inlineRadio1">1</label>
+                                    <input onChange={(event)=>{
+                                        setIncome(event.target.value)
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" />
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="option2" />
-                                    <label className="form-check-label" htmlFor="inlineRadio2">2</label>
+                                    <input onChange={(event)=>{
+                                        setIncome(event.target.value)
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" />
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
                                 </div>
                             </div>
                             <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
-                                    if(user.idUser==item.userId) {
+                                    if(user.idUser==item.userId && item.statusCategory==income ) {
                                         return (
                                             <option value={item.idCategory}>{item.nameCategory}</option>
                                         )

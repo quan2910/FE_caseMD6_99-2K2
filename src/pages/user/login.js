@@ -132,7 +132,7 @@ function Login(props) {
                             <br/>
                             <FacebookLogin
                                 style={{height: 50}}
-                            appId="1510011886149459"
+                            appId="1322700111900192"
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
