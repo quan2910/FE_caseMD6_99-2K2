@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
 import {useDispatch, useSelector} from "react-redux";
 import {changePassword} from "../../service/userService";
-
+import Swal from 'sweetalert2'
 const SignupSchema = Yup.object().shape({
     oldPassword: Yup.string()
         .min(6, "Your password must be least 6 characters")
@@ -33,7 +33,7 @@ export default function ChangePassword() {
     const showToastMessage = async () => {
         await toast.success(' Changed Password!', {
             position: "top-center",
-            autoClose: 1500,
+            autoClose: 500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -42,6 +42,31 @@ export default function ChangePassword() {
             theme: "light",
         });
     };
+    const handlePassword =async (values,resetForm)=>{
+        let data = await dispatch(changePassword({...values, idUser}))
+        if(data.payload.user.check) {
+            await showToastMessage()
+            setTimeout(async ()=>{
+
+                clearTimeout();
+
+                    navigate('/home')
+
+
+
+            },1600)
+
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'incorrect password',
+            })
+
+            resetForm()
+        }
+    }
 
     return (
         <div style={{marginTop: 70}}>
@@ -51,15 +76,19 @@ export default function ChangePassword() {
                         oldPassword: "",
                         newPassword: ""
                     }}onSubmit={async (values,{resetForm}) => {
-                        let data = await dispatch(changePassword({...values, idUser}))
-                        console.log("data",data)
-                        if(data.payload.user.check) {
-                            await showToastMessage();
-                            navigate("/home")
-                        } else {
-                            alert(data.payload.mess)
-                            resetForm()
-                        }
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                handlePassword(values,resetForm)
+                            }
+                        })
                     }}>
                         {({errors, touched}) =>(
                             <Form>
