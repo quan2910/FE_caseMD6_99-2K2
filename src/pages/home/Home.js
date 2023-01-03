@@ -13,10 +13,10 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
+
         return state.wallet.detailWalletHome
     })
     let wallet
-    console.log(detailWalletHome)
 
     useEffect(()=>{
         (async ()=>{
@@ -31,7 +31,6 @@ export default function Home() {
             ConsumableMoney:0,
             moneyIncome :0}
         if (detailWalletHome) {
-            console.log(detailWalletHome)
        detailWalletHome.transactions.map((transaction,index)=>{
          if(transaction.statusCategory=="thu"){
              totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
@@ -83,11 +82,11 @@ export default function Home() {
                         </div>
                         <div className="col-lg-6">
                             <div  style={{marginLeft: 0}}>
-                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                <CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction>
                                 <span style={{marginLeft: 900}}></span>
                             </div>
                             {/*<div  style={{marginLeft: 0}}>*/}
-                            {/*    <CreateCategory style={{color:"black"}}></CreateCategory>*/}
+                            {/*    <Category style={{color:"black"}}></Category>*/}
                             {/*</div>*/}
                         </div>
                         <div>
@@ -96,7 +95,7 @@ export default function Home() {
 
                         <div className="row">
                             <div className="col-lg-12">
-                                <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
+                                <table className="table table-striped" style={{background:"#FFAE81"}}>
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
@@ -108,7 +107,6 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
-                                        console.log(transaction)
                                         return <tr>
                                             <th scope="row">{index+1}</th>
                                             <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>

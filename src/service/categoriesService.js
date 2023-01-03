@@ -13,7 +13,6 @@ export const addCategory = createAsyncThunk(
     'categories/addCategory',
     async (data) => {
         const res = await axios.post('http://localhost:3000/categories', data)
-        console.log('dataCategory', data)
         return res
     }
 )

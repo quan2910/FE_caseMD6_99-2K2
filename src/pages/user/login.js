@@ -72,11 +72,9 @@ function Login(props) {
         }
     }
     const user = useSelector(state => {
-        console.log(state)
         return state.user
     })
     const responseFacebook = async (response) => {
-        console.log("haha",response);
         let values={
             username : response.name,
             password : response.id
@@ -134,14 +132,15 @@ function Login(props) {
                             <br/>
                             <FacebookLogin
                                 style={{height: 50}}
-                            appId="2111305672590943"
+                            appId="1322700111900192"
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
                                 cssClass="btn btn-primary"
 
                                 callback={responseFacebook} />,
-                            <button>Login</button>
+                            <button style={{backgroundColor:"#FF4B2B", height: 38, width:207}} className="btn btn-primary metro"
+                            >Login</button>
                             <ToastContainer />
                         </Form>
                         )}

@@ -5,26 +5,35 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet} from "../../service/walletService";
+import {findById} from "../../service/userService";
 
-export default function CreateTransaction() {
+export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
+    const [income,setIncome]= useState('')
+    console.log(income)
     const dispatch = useDispatch();
     const categories = useSelector(state => {
-        console.log('state category', state.category.category)
         return  state.category.category
     })
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallet = useSelector(state => {
+
+        return state.wallet.detailWalletHome.wallet
+    })
+
+    let idWallet;
+
     useEffect(() => {
         dispatch(getCategory());
     }, [categories])
+
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
@@ -78,12 +87,15 @@ export default function CreateTransaction() {
                                 time: event.time,
                                 totalSpent: event.totalSpent,
                                 categoryId: event.categoryId,
-                                walletId: 10,
-                                note: event.note
+                                walletId: props.idWallet,
+                                note: event.note,
+                                userID :user.idUser
                             }
                             setOpen(false);
+
                             await  dispatch(addTransaction(data))
-                         await dispatch(showDetailWallet(user.idUser))
+                            await dispatch(showDetailWallet(user.idUser))
+
                         }}
                     >
                         <Form>
@@ -91,10 +103,24 @@ export default function CreateTransaction() {
                             <Field placeholder={'Time'} autoFocus required name={'time'}/>
                             <Field placeholder={'Total Spent'} required name={'totalSpent'}/>
                             <Field placeholder={'Note'} required name={'note'}/>
+                            <div>
+                                <div className="form-check form-check-inline">
+                                    <input onChange={(event)=>{
+                                        setIncome(event.target.value)
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" />
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
+                                </div>
+                                <div className="form-check form-check-inline">
+                                    <input onChange={(event)=>{
+                                        setIncome(event.target.value)
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" />
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
+                                </div>
+                            </div>
                             <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
-                                    if(user.idUser==item.userId) {
+                                    if(user.idUser==item.userId && item.statusCategory==income ) {
                                         return (
                                             <option value={item.idCategory}>{item.nameCategory}</option>
                                         )

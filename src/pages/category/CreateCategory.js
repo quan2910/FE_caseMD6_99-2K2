@@ -13,11 +13,10 @@ export default function CreateCategory() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
-        console.log('state category', state.category.category)
         return  state.category.category
     })
+
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
     return (
@@ -28,7 +27,7 @@ export default function CreateCategory() {
                 style={{color: "black"}}
                 onClick={() => setOpen(true)}
             >
-                Create Category
+               Create Category
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
@@ -66,15 +65,15 @@ export default function CreateCategory() {
                             userId: '',
                             color: ''
                         }}
-                        onSubmit={(event) => {
-                            console.log(event)
+                        onSubmit={async (event) => {
                             let data = {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: user.idUser,
                                 color: 'vàng'
                             }
-                            dispatch(addCategory(data))
+                          await  dispatch(addCategory(data))
+                            await dispatch(getCategory())
                             // event.preventDefault();
                             setOpen(false);
                         }}

@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Field, Form, Formik} from "formik";
 import {showDetailWallet} from "../../service/walletService";
 import {findById, saveAvatar, updateProfile} from "../../service/userService";
+import Swal from 'sweetalert2'
 const Profile = () => {
     let user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
@@ -13,6 +14,13 @@ const Profile = () => {
         values={...values,idUser:user.idUser}
         await dispatch(updateProfile(values))
        await dispatch(findById(user.idUser))
+       Swal.fire({
+           position: 'top-end',
+           icon: 'success',
+           title: 'Your work has been saved',
+           showConfirmButton: false,
+           timer: 1000
+       })
    }
    useEffect(()=>{
        (async ()=>{await dispatch(findById(user.idUser))})()
@@ -29,21 +37,10 @@ const Profile = () => {
    }
 
     return (
-        <div className="container" style={{marginTop:"100px"}}>
+        <div className="container" style={{marginTop:"50px"}}>
             <div className="main-body">
                 {/* Breadcrumb */}
                 <nav aria-label="breadcrumb" className="main-breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item">
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <a href="javascript:void(0)">User</a>
-                        </li>
-                        <li className="breadcrumb-item active" aria-current="page">
-                            User Profile
-                        </li>
-                    </ol>
                 </nav>
                 {/* /Breadcrumb */}
                 <div className="row gutters-sm">
@@ -123,9 +120,7 @@ const Profile = () => {
                         <div className="row gutters-sm">
                             <div className="col-sm-6 mb-3">
                                 <div className="card h-100">
-                                    <div className="card-body">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
