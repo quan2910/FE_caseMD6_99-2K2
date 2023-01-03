@@ -1,7 +1,8 @@
 import {Link, Outlet} from "react-router-dom";
 import CreateTransaction from "../pages/transaction/CreateTransaction";
 import {useSelector} from "react-redux";
-import Category from "../pages/category/Category";
+import CreateCategory from "../pages/category/CreateCategory";
+import ShowCategory from "../pages/category/ShowCategory";
 
 export default function Navbar() {
     const user = useSelector(state => {
@@ -19,10 +20,8 @@ export default function Navbar() {
                                 <ul>
                                 <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
                                     <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Wallet</Link>
-                                    <Link className="nav-link" style={{marginLeft:15}}>
-                                        <Category></Category>
-                                    </Link>
-                                    <Link to={'/home/profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
+                                    <Link to={'show-category'} className="nav-link" style={{marginLeft:15, color:"black"}}>Category</Link>
+                                    <Link to={'profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
                                     <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15, color: "black"}}>Change Password</Link>
                                 </ul>
                             </div>

@@ -25,7 +25,6 @@ const SignupSchema = Yup.object().shape({
 
 export default function ChangePassword() {
     const idUser = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0].idUser)
         return state.user.currentUser.user.authenticUser[0].idUser
     })
     const dispatch = useDispatch()

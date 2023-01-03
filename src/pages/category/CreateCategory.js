@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
 
-export default function Category() {
+export default function CreateCategory() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
@@ -27,7 +27,7 @@ export default function Category() {
                 style={{color: "black"}}
                 onClick={() => setOpen(true)}
             >
-                Create Category
+               Create Category
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
@@ -65,15 +65,15 @@ export default function Category() {
                             userId: '',
                             color: ''
                         }}
-                        onSubmit={(event) => {
-                            console.log(event)
+                        onSubmit={async (event) => {
                             let data = {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: user.idUser,
                                 color: 'vàng'
                             }
-                            dispatch(addCategory(data))
+                          await  dispatch(addCategory(data))
+                            await dispatch(getCategory())
                             // event.preventDefault();
                             setOpen(false);
                         }}

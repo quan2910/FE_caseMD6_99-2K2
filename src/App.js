@@ -6,6 +6,7 @@ import Login from "./pages/user/login";
 import Register from "./pages/user/register";
 import ChangePassword from "./pages/user/change-password";
 import Profile from "./pages/user/profile";
+import ShowCategory from "./pages/category/ShowCategory";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                         <Route path={"create-wallet"} element={<CreateWallet/>}/>
                         <Route path={"change-password"} element={<ChangePassword/>}/>
                         <Route path={"profile"} element={<Profile/>}/>
+                        <Route path={"show-category"} element={<ShowCategory/>}/>
                     </Route>
 
                 </Routes>

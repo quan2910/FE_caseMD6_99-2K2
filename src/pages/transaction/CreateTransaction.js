@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet} from "../../service/walletService";
+import {findById} from "../../service/userService";
 
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
@@ -20,9 +21,17 @@ export default function CreateTransaction(props) {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallet = useSelector(state => {
+
+        return state.wallet.detailWalletHome.wallet
+    })
+
+    let idWallet;
+
     useEffect(() => {
         dispatch(getCategory());
     }, [categories])
+
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
@@ -83,7 +92,6 @@ export default function CreateTransaction(props) {
                             setOpen(false);
 
                             await  dispatch(addTransaction(data))
-
                             await dispatch(showDetailWallet(user.idUser))
 
                         }}
