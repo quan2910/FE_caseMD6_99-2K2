@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
 export const changePassword = createAsyncThunk(
     'user/changePassword',
     async (data)=> {
-        const res = await axios.put('http://localhost:3000/users/' + data.id, data)
+        const res = await axios.post('http://localhost:3000/users/change-password/' + data.idUser, data)
         return res.data
     }
 )
@@ -30,7 +30,7 @@ export const changeCheckBegin = createAsyncThunk(
     }
 )
 
-export const loginFB = createAsyncThunk(
+export const  loginFB = createAsyncThunk(
     'user/loginFB',
     async (data) => {
         const res = await axios.post('http://localhost:3000/users/loginFB',data)

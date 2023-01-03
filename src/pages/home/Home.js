@@ -2,8 +2,9 @@ import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet} from "../../service/walletService";
+import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
-import CreateCategory from "../category/CreateCategory";
+import Category from "../category/Category";
 
 
 export default function Home() {
@@ -12,9 +13,10 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
-        console.log(state)
+
         return state.wallet.detailWalletHome
     })
+    let wallet
 
     useEffect(()=>{
         (async ()=>{
@@ -22,13 +24,13 @@ export default function Home() {
         })()
     }, [detailWalletHome])
 
+
     let totalConsumableMoney = ()=>{
         let totalMoney = {
             total:detailWalletHome.wallet[0].moneyAmount,
             ConsumableMoney:0,
             moneyIncome :0}
         if (detailWalletHome) {
-            console.log(detailWalletHome)
        detailWalletHome.transactions.map((transaction,index)=>{
          if(transaction.statusCategory=="thu"){
              totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
@@ -43,11 +45,14 @@ export default function Home() {
     }
 
     if (!detailWalletHome) return <div>Loading...</div>
-    if (!user) return <div>Loading...</div>
 
     return (
         <>
+            {/* ======= About Me ======= */}
             <div className="about-me containerTemplate">
+                {/*<div className="section-title">*/}
+                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
+                {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:50}}>
                         <div className="col-12" style={{marginBottom: 50, color: "black"}}>
@@ -69,25 +74,28 @@ export default function Home() {
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <h3 style={{textAlign:"center"}}>Chi</h3>
-                                <h5 style={{textAlign:"center"}}>{totalConsumableMoney().ConsumableMoney}</h5>
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
                             </div>
                             <div className="col-lg-4">
-                                <h3 style={{textAlign:"center"}}>Thu</h3>
-                                <h5 style={{textAlign:"center"}}>{totalConsumableMoney().moneyIncome}</h5>
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div  style={{marginLeft: 0}}>
-                                <CreateTransaction style={{color:"black"}}></CreateTransaction>
+                                <CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction>
                                 <span style={{marginLeft: 900}}></span>
                             </div>
+                            {/*<div  style={{marginLeft: 0}}>*/}
+                            {/*    <Category style={{color:"black"}}></Category>*/}
+                            {/*</div>*/}
                         </div>
                         <div>
+
                         </div>
+
                         <div className="row">
                             <div className="col-lg-12">
-                                <table className="table table-striped" style={{background:"linear-gradient(to right, #FF4B2B, #FF416C)"}}>
+                                <table className="table table-striped" style={{background:"#FFAE81"}}>
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
@@ -99,7 +107,6 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
-                                        console.log(transaction)
                                         return <tr>
                                             <th scope="row">{index+1}</th>
                                             <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
@@ -115,6 +122,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            {/* End About Me */}
         </>
     )
 }

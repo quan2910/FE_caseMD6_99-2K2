@@ -3,7 +3,6 @@ import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
-import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
 import {useEffect} from "react";
@@ -12,15 +11,13 @@ import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet} from "../../service/walletService";
 
-export default function CreateTransaction() {
+export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
-        console.log('state category', state.category.category)
         return  state.category.category
     })
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
     useEffect(() => {
@@ -33,7 +30,6 @@ export default function CreateTransaction() {
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
-                startDecorator={<Add/>}
                 onClick={() => setOpen(true)}
             >
                 Create Transaction
@@ -80,12 +76,16 @@ export default function CreateTransaction() {
                                 time: event.time,
                                 totalSpent: event.totalSpent,
                                 categoryId: event.categoryId,
-                                walletId: 10,
-                                note: event.note
+                                walletId: props.idWallet,
+                                note: event.note,
+                                userID :user.idUser
                             }
                             setOpen(false);
+
                             await  dispatch(addTransaction(data))
-                         await dispatch(showDetailWallet(user.idUser))
+
+                            await dispatch(showDetailWallet(user.idUser))
+
                         }}
                     >
                         <Form>

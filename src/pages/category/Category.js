@@ -3,38 +3,28 @@ import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
-import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
-import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
-import {showDetailWallet} from "../../service/walletService";
 
-export default function CreateCategory() {
+export default function Category() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
-    // const categories = useSelector(state => {
-    //     console.log('state category', state.category.category)
-    //     return  state.category.category
-    // })
+    const categories = useSelector(state => {
+        return  state.category.category
+    })
+
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
-    useEffect(()=>{
-        (async ()=>{
-           dispatch(getCategory())
-        })()
-    }, [])
     return (
         <React.Fragment>
             <Link
                 // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
-                // startDecorator={<Add/>}
                 onClick={() => setOpen(true)}
             >
                 Create Category

@@ -72,11 +72,9 @@ function Login(props) {
         }
     }
     const user = useSelector(state => {
-        console.log(state)
         return state.user
     })
     const responseFacebook = async (response) => {
-        console.log("haha",response);
         let values={
             username : response.name,
             password : response.id
