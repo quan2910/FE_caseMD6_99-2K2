@@ -5,9 +5,9 @@ import React from "react";
 import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import 'react-toastify/dist/ReactToastify.css';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {changePassword} from "../../service/userService";
-
+import Swal from 'sweetalert2'
 const SignupSchema = Yup.object().shape({
     oldPassword: Yup.string()
         .min(6, "Your password must be least 6 characters")
@@ -24,12 +24,16 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function ChangePassword() {
+    const idUser = useSelector(state => {
+        console.log(state.user.currentUser.user.authenticUser[0].idUser)
+        return state.user.currentUser.user.authenticUser[0].idUser
+    })
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const showToastMessage = async () => {
         await toast.success(' Changed Password!', {
             position: "top-center",
-            autoClose: 1500,
+            autoClose: 500,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -38,10 +42,30 @@ export default function ChangePassword() {
             theme: "light",
         });
     };
+    const handlePassword =async (values,resetForm)=>{
+        let data = await dispatch(changePassword({...values, idUser}))
+        if(data.payload.user.check) {
+            await showToastMessage()
+            setTimeout(async ()=>{
+
+                clearTimeout();
+
+                    navigate('/home')
 
 
-    const handleChangePassword = async (values, id)=>{
-        let data = await dispatch(changePassword)
+
+            },1600)
+
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'incorrect password',
+            })
+
+            resetForm()
+        }
     }
 
     return (
@@ -49,11 +73,22 @@ export default function ChangePassword() {
             <div className="container" id="container">
                 <div>
                     <Formik validationSchema={SignupSchema} initialValues={{
-                    //     oldPassword: "",
-                    //     newPassword: "",
-                    //     rePassword: ""
-                    // }}onSubmit={async (values,{resetForm}) => {
-                    //     await handleChangePassword(values, resetForm)
+                        oldPassword: "",
+                        newPassword: ""
+                    }}onSubmit={async (values,{resetForm}) => {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                handlePassword(values,resetForm)
+                            }
+                        })
                     }}>
                         {({errors, touched}) =>(
                             <Form>

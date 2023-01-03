@@ -19,7 +19,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  background: #040404 url("https://haycafe.vn/wp-content/uploads/2022/01/Hinh-nen-trang-dep-cho-may-tinh-1.jpg") top right no-repeat;
+  background: white;
   background-size: cover;
   left: 0;
   right: 0;
