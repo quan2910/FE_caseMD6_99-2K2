@@ -130,15 +130,15 @@ function Login(props) {
                                 <span style={{color:"red"}}>{errors.password}</span>
                             ) : null}
                             <br/>
-                            {/*<FacebookLogin*/}
-                            {/*    style={{height: 50}}*/}
-                            {/*appId="1510011886149459"*/}
-                            {/*autoLoad={true}*/}
-                            {/*fields="name,email,picture"*/}
-                            {/*onClick={componentClicked}*/}
-                            {/*    cssClass="btn btn-primary"*/}
+                            <FacebookLogin
+                                style={{height: 50}}
+                            appId="1510011886149459"
+                            autoLoad={true}
+                            fields="name,email,picture"
+                            onClick={componentClicked}
+                                cssClass="btn btn-primary"
 
-                            {/*    callback={responseFacebook} />,*/}
+                                callback={responseFacebook} />,
                             <button style={{backgroundColor:"#FF4B2B", height: 38, width:207}} className="btn btn-primary metro"
                             >Login</button>
                             <ToastContainer />
