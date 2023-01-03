@@ -14,7 +14,6 @@ export default function CreateWallet() {
 
     })
         const moneyType = useSelector(state => {
-            console.log('aa',state)
             return state
         })
 
@@ -23,11 +22,9 @@ export default function CreateWallet() {
     },[])
 
     const handleAddWallet = async (values) => {
-        console.log('values', values)
         let data = {
             ...values, userId: user.idUser
         }
-        console.log('data thêm',data)
         await dispatch(addWallets(data))
         navigate('/home')
     }

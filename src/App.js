@@ -12,9 +12,6 @@ function App() {
 
     return (
         <div className={"col-12"}>
-            {/* ======= Header ======= */}
-            {/*<Navbar/>*/}
-            {/* End Header */}
             <div className={"col-12"}>
                 <Routes>
                     <Route path={""} element={<Login/>}/>
@@ -26,7 +23,6 @@ function App() {
                         <Route path={"profile"} element={<Profile/>}/>
                         <Route path={"show-category"} element={<ShowCategory/>}/>
                     </Route>
-
                 </Routes>
             </div>
         </div>
