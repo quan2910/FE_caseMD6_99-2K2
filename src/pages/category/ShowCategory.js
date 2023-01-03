@@ -1,6 +1,7 @@
 import CreateCategory from "./CreateCategory";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
+import EditCategory from "./EditCategory";
 
 export default function ShowCategory() {
     const categories = useSelector(state => {
@@ -23,17 +24,22 @@ export default function ShowCategory() {
                         <th scope="col">STT</th>
                         <th scope="col">Name Category</th>
                         <th scope="col">Status</th>
+                        <th scope="col-2">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {
-                        categories.map((item)=>{
+                        categories.map((item, index)=>{
                         if(item.userId == user.idUser) {
                             return (
                                 <tr>
                                     <th scope="row">{stt++}</th>
                                     <td>{item.nameCategory}</td>
                                     <td>{item.statusCategory}</td>
+                                    <td><button>D</button></td>
+                                    <td>
+                                        <EditCategory idCategory={item.idCategory}></EditCategory>
+                                    </td>
                                 </tr>
                             )
                         }

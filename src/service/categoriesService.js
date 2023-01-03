@@ -17,3 +17,12 @@ export const addCategory = createAsyncThunk(
     }
 )
 
+export const editCategory = createAsyncThunk(
+    'categories/editCategory',
+    async (data) => {
+        const res = await axios.put('http://localhost:3000/categories/edit-category', data)
+        console.log('res edit category', res)
+        return res
+    }
+)
+

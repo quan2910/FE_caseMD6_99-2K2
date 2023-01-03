@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {addCategory, getCategory} from "../../service/categoriesService";
+import {addCategory, editCategory, getCategory} from "../../service/categoriesService";
 
 const initialState = {
     category: JSON.parse(localStorage.getItem('category'))
@@ -15,6 +15,9 @@ const categorySlice = createSlice({
         })
         builder.addCase(addCategory.fulfilled, (state, action)=> {
             state.category.push(action.payload);
+        })
+        builder.addCase(editCategory.fulfilled,(state, action)=>{
+
         })
     }
 })
