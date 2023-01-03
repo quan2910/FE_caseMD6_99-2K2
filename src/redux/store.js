@@ -10,5 +10,6 @@ export const store = configureStore({
         wallet : walletSplice,
         category: categoriesReducer,
         transaction: transactionReducer
+        
     }
 })
