@@ -45,7 +45,13 @@ export default function ChangePassword() {
     const handlePassword =async (values,resetForm)=>{
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {
-            await showToastMessage()
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+            })
             setTimeout(async ()=>{
 
                 clearTimeout();
