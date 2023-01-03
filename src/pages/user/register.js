@@ -52,7 +52,6 @@ function Register(props) {
     };
     const handleRegister = async (value,reset) => {
             let newUser = {username: value.username, password: value.password}
-            console.log(newUser)
             let mess = await dispatch(register(newUser))
                 if (mess.payload.mess == 'Tài khoản đã tồn tại') {
                        await showToastMessage1()

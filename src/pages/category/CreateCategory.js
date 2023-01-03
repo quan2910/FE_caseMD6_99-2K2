@@ -20,7 +20,6 @@ export default function CreateCategory() {
     //     return  state.category.category
     // })
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
     useEffect(()=>{
@@ -76,7 +75,6 @@ export default function CreateCategory() {
                             color: ''
                         }}
                         onSubmit={(event) => {
-                            console.log(event)
                             let data = {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,

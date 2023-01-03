@@ -12,15 +12,10 @@ export default function Home() {
     })
     let dispatch = useDispatch()
     const detailWalletHome = useSelector(state => {
-        console.log(state)
         return state.wallet.detailWalletHome
     })
 
-    useEffect(()=>{
-        (async ()=>{
-        let detailWallet = await dispatch(showDetailWallet(user.idUser))
-        })()
-    }, [detailWalletHome])
+    console.log(detailWalletHome)
 
     let totalConsumableMoney = ()=>{
         let totalMoney = {
@@ -28,7 +23,6 @@ export default function Home() {
             ConsumableMoney:0,
             moneyIncome :0}
         if (detailWalletHome) {
-            console.log(detailWalletHome)
        detailWalletHome.transactions.map((transaction,index)=>{
          if(transaction.statusCategory=="thu"){
              totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
@@ -43,7 +37,7 @@ export default function Home() {
     }
 
     if (!detailWalletHome) return <div>Loading...</div>
-    if (!user) return <div>Loading...</div>
+    if (!user) return <div>Loading....</div>
 
     return (
         <>
@@ -62,7 +56,7 @@ export default function Home() {
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div className="row">
-                            <div className="col-lg-4">
+                            <div className="col-lg-4" style={{backgroundColor: "#fff", border: "1" }}>
                                 <h3 style={{textAlign:"center"}}>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black", textAlign:"center"}}>
                                     Tổng tiền : {totalConsumableMoney().total}
@@ -106,7 +100,6 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
-                                        console.log(transaction)
                                         return <tr>
                                             <th scope="row">{index+1}</th>
                                             <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>

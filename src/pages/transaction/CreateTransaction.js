@@ -16,16 +16,22 @@ export default function CreateTransaction() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
-        console.log('state category', state.category.category)
         return  state.category.category
     })
     const user = useSelector(state => {
-        console.log(state.user.currentUser.user.authenticUser[0])
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallet = useSelector(state => {
+        console.log(state.wallet.detailWalletHome.wallet)
+        return state.wallet.detailWalletHome.wallet
+    })
+
+    let idWallet;
+
     useEffect(() => {
         dispatch(getCategory());
     }, [categories])
+
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
