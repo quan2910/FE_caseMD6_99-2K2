@@ -10,6 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet} from "../../service/walletService";
+import {findById} from "../../service/userService";
 
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
@@ -21,7 +22,7 @@ export default function CreateTransaction(props) {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallet = useSelector(state => {
-        console.log(state.wallet.detailWalletHome.wallet)
+
         return state.wallet.detailWalletHome.wallet
     })
 
@@ -91,7 +92,6 @@ export default function CreateTransaction(props) {
                             setOpen(false);
 
                             await  dispatch(addTransaction(data))
-
                             await dispatch(showDetailWallet(user.idUser))
 
                         }}

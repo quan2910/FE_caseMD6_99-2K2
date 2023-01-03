@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet} from "../../service/walletService";
 import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
-import Category from "../category/Category";
+import CreateCategory from "../category/CreateCategory";
 
 
 export default function Home() {

@@ -17,7 +17,6 @@ export default function CreateWallet() {
         let data = {
             ...values, userId: user.idUser
         }
-        console.log(data)
         await dispatch(addWallets(data))
         navigate('/home')
     }

@@ -23,7 +23,7 @@ function App() {
                         <Route path={"create-wallet"} element={<CreateWallet/>}/>
                         <Route path={"change-password"} element={<ChangePassword/>}/>
                         <Route path={"profile"} element={<Profile/>}/>
-                        <Route path={"category"} element={<ShowCategory/>}/>
+                        <Route path={"show-category"} element={<ShowCategory/>}/>
                     </Route>
 
                 </Routes>
