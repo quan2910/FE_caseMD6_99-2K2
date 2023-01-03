@@ -70,14 +70,14 @@ export default function Home() {
                             <div className="col-lg-4">
                                 <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black"}}>
-                                    Tổng tiền : {totalConsumableMoney().total}
-                                </h5>
+                                    Total-Money : {totalConsumableMoney().total}
+                                </h5>   
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Spent: {totalConsumableMoney().ConsumableMoney}</strong>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Earning: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
                         </div>
                         <div className="col-lg-6">

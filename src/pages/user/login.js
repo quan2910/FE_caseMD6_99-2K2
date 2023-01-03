@@ -138,7 +138,8 @@ function Login(props) {
                             onClick={componentClicked}
                                 cssClass="btn btn-primary"
 
-                                callback={responseFacebook} />,
+                                callback={responseFacebook} />
+                            <hr/>
                             <button style={{backgroundColor:"#FF4B2B", height: 38, width:207}} className="btn btn-primary metro"
                             >Login</button>
                             <ToastContainer />

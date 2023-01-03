@@ -97,7 +97,6 @@ const Profile = () => {
                                            <div className="col-sm-9 text-secondary" ><Field name={'phone'}  type={'text'} style={{width:"300px",height:"30px"}} /></div>
                                        </div>
                                        <hr />
-                                       <hr />
                                        <div className="row">
                                            <div className="col-sm-3">
                                                <h6 className="mb-0">Address</h6>

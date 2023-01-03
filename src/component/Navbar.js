@@ -20,6 +20,7 @@ export default function Navbar() {
                                 <ul>
                                 <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
                                     <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Wallet</Link>
+                                    <Link to={'my-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>My Wallet</Link>
                                     <Link to={'show-category'} className="nav-link" style={{marginLeft:15, color:"black"}}>Category</Link>
                                     <Link to={'profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
                                     <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15, color: "black"}}>Change Password</Link>
@@ -30,8 +31,10 @@ export default function Navbar() {
                     </div>
                     <div className="col-11">
                         <div className="col-12" style={{display:"flex", marginRight:0}}>
-                            <div className="col-10"></div>
-                            <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src={user.avatar==""?"https://bootdey.com/img/Content/avatar/avatar7.png":user.avatar} alt="" className="img-fluid"/></Link></div>
+                            <div className="col-10">
+                            </div>
+                            <div className="col-1"><Link style={{marginLeft: -50}}><img style={{borderRadius: "50%", height:60, width:60}} src={user.avatar==""?"https://bootdey.com/img/Content/avatar/avatar7.png":user.avatar} alt="" className="img-fluid"/>  {user.username}</Link></div>
+
                             <div className="col-1" ><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
                             }} style={{marginRight: "8px"}} to={"/"}>LogOut</Link></div>
