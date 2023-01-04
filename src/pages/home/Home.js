@@ -97,7 +97,7 @@ export default function Home() {
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                                    <button className="btn btn-primary">Search</button>
+                                    <button style={{background: "#82AAE3", width:150, border: "none", borderRadius: "20px"}} className="btn btn-primary">Search</button>
                                 </div>
                             </Form>
                         </Formik>
