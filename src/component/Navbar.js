@@ -13,19 +13,19 @@ export default function Navbar() {
             <header id="header" className="header-top row" style={{background: "#82AAE3"}}>
                 <div className="containerTemplate col-12" style={{height: "0px"}}>
                     <div className="col-1" style={{display: "flex"}}>
-                        <h1><Link style={{marginLeft: 20}} to={'/home'}
-                                  className="nav-link">CVNQ</Link></h1>
+                        <h1><Link style={{marginLeft: 20}} to={'/ho me'}
+                                  className="nav-link"><img style={{width: "90px"}} src="Untitled.jpg"/></Link></h1>
                         <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
                             <div style={{width: 500, position: "fixed"}}>
                                 <ul>
                                     <Link to={'/home'} className="nav-link" >Home</Link>
                                     <Link to={'create-wallet'} className="nav-link"
                                           style={{marginLeft: 15}}>Wallet</Link>
-                                    <Link to={'show-category'} className="nav-link"
+                                    <Link to={'show-cate gory'} className="nav-link"
                                           style={{marginLeft: 15}}>Category</Link>
-                                    <Link to={'profile'} className="nav-link"
+                                    <Link to={'pro file'} className="nav-link"
                                           style={{marginLeft: 15}}>Profile</Link>
-                                    <Link to={'change-password'} style={{marginLeft: 15}}>Change
+                                    <Link to={'change-passsword'} style={{marginLeft: 15}}>Change
                                         Password</Link>
                                 </ul>
                             </div>

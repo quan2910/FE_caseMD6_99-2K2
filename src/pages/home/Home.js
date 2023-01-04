@@ -94,7 +94,7 @@ let [flag,setFlag] =useState(true)
                         {/*</Formik>*/}
 
                     </div>
-                    <div className="col-lg-8 pt-4 pt-lg-0 content">
+                    <div className="col-lg-8 pt-4 pt-lg-0 content" style={{marginTop:"-30px"}}>
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
                             <input onChange={(event)=>{
                                 handleTransactionByMoth(event)}} type={'month'}></input>
@@ -114,7 +114,7 @@ let [flag,setFlag] =useState(true)
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div style={{marginLeft: 640, marginTop: -40, marginBottom:13}}>
+                            <div style={{marginLeft: 740, marginTop: -40, marginBottom:13}}>
                                 <strong><CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
                                 <span style={{marginLeft: 400}}></span>
                             </div>
