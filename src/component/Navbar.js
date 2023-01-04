@@ -21,11 +21,11 @@ export default function Navbar() {
                                     <Link to={'/home'} className="nav-link" >Home</Link>
                                     <Link to={'create-wallet'} className="nav-link"
                                           style={{marginLeft: 15}}>Wallet</Link>
-                                    <Link to={'show-cate gory'} className="nav-link"
+                                    <Link to={'show-category'} className="nav-link"
                                           style={{marginLeft: 15}}>Category</Link>
-                                    <Link to={'pro file'} className="nav-link"
+                                    <Link to={'profile'} className="nav-link"
                                           style={{marginLeft: 15}}>Profile</Link>
-                                    <Link to={'change-passsword'} style={{marginLeft: 15}}>Change
+                                    <Link to={'change-password'} style={{marginLeft: 15}}>Change
                                         Password</Link>
                                 </ul>
                             </div>
