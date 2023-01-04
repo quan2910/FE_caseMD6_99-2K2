@@ -69,9 +69,9 @@ export default function CreateCategory() {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: user.idUser,
-                                color: 'vàng'
+                                color: event.color
                             }
-                          await  dispatch(addCategory(data))
+                            await  dispatch(addCategory(data))
                             await dispatch(getCategory())
                             // event.preventDefault();
                             setOpen(false);
@@ -79,6 +79,9 @@ export default function CreateCategory() {
                     >
                         <Form>
                             <Stack spacing={2}>
+                                <div style={{width:100}}>
+                                    <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
+                                </div>
                                 <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>

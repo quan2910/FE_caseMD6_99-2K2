@@ -8,7 +8,8 @@ import {Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {addCategory, editCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 export default function EditCategory(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ export default function EditCategory(props) {
                 className={'btn-primary'}
                 onClick={() => setOpen(true)}
             >
-                Edit
+                <i className="fa-regular fa-pen-to-square"></i>
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
@@ -79,7 +80,7 @@ export default function EditCategory(props) {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: categoryEdit.idUser,
-                                color: 'vàng'
+                                color: event.color
                             }
                             await  dispatch(editCategory(data))
                             await dispatch(getCategory())
@@ -89,6 +90,9 @@ export default function EditCategory(props) {
                     >
                         <Form>
                             <Stack spacing={2}>
+                                <div style={{width:100}}>
+                                    <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
+                                </div>
                                 <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>

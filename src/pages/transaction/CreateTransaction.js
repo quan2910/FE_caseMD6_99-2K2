@@ -10,7 +10,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet} from "../../service/walletService";
-import {findById} from "../../service/userService";
 
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
@@ -111,7 +110,9 @@ export default function CreateTransaction(props) {
                                 {categories.map(item => {
                                     if(user.idUser==item.userId && item.statusCategory==income) {
                                         return (
-                                            <option  value={item.idCategory}>{item.nameCategory}</option>
+                                            <option value={item.idCategory}>
+                                                {item.nameCategory}
+                                            </option>
                                         )
                                     }
                                 })}
