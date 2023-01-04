@@ -44,7 +44,7 @@ export default function Navbar() {
                             </div>
                             <div className="col-1 " style={{lineHeight: '80px'}}><strong><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
-                            }} style={{marginRight: 0, fontSize: 18, marginLeft: "8px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
+                            }} style={{marginRight: 0, fontSize: 18, marginLeft: "23px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
                         </div>
                     </div>
                 </div>
