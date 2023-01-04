@@ -10,7 +10,7 @@ const transactionSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(addTransaction.fulfilled, (state, action)=> {
-            state.transaction.push(action.payload);
+            // state.transaction.push(action.payload);
         })
     }
 })

@@ -10,30 +10,41 @@ export default function Navbar() {
     })
     return (
         <>
-            <header id="header" className="header-top row" style={{background: "#FFAE81"}}>
-                <div className="containerTemplate col-12" style={{height:"0px"}}>
-                    <div className="col-1" style={{display:"flex"}}>
-                        <h1> <Link style={{marginLeft: 20, marginTop: 16, color:"black"}} to={'/home'} className="nav-link">Wallet </Link></h1>
+            <header id="header" className="header-top row" style={{background: "#82AAE3"}}>
+                <div className="containerTemplate col-12" style={{height: "0px"}}>
+                    <div className="col-1" style={{display: "flex"}}>
+                        <h1><Link style={{marginLeft: 20}} to={'/home'}
+                                  className="nav-link">CVNQ</Link></h1>
                         <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
-                            <div  style={{marginTop:12, width:500,position:"fixed"}}>
+                            <div style={{width: 500, position: "fixed"}}>
                                 <ul>
-                                <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
-                                    <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Wallet</Link>
-                                    <Link to={'show-category'} className="nav-link" style={{marginLeft:15, color:"black"}}>Category</Link>
-                                    <Link to={'profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
-                                    <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15, color: "black"}}>Change Password</Link>
+                                    <Link to={'/home'} className="nav-link" >Home</Link>
+                                    <Link to={'create-wallet'} className="nav-link"
+                                          style={{marginLeft: 15}}>Wallet</Link>
+                                    <Link to={'show-category'} className="nav-link"
+                                          style={{marginLeft: 15}}>Category</Link>
+                                    <Link to={'profile'} className="nav-link"
+                                          style={{marginLeft: 15}}>Profile</Link>
+                                    <Link to={'change-password'} style={{marginLeft: 15}}>Change
+                                        Password</Link>
                                 </ul>
                             </div>
-                            <i className="bi bi-list mobile-nav-toggle" />
+                            <i className="bi bi-list mobile-nav-toggle"/>
                         </nav>
                     </div>
                     <div className="col-11">
-                        <div className="col-12" style={{display:"flex", marginRight:0}}>
+                        <div className="col-12" style={{display: "flex", marginRight: 0}}>
                             <div className="col-10"></div>
-                            <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src={user.avatar==""?"https://bootdey.com/img/Content/avatar/avatar7.png":user.avatar} alt="" className="img-fluid"/></Link></div>
-                            <div className="col-1" ><Link className="nav-link" onClick={() => {
+                            <div className="col-1  d-flex justify-content-end">
+                                <Link style={{marginLeft: 0, marginRight: 0}}>
+                                    <img style={{borderRadius: "50%", height: 50, width: 50, marginTop: 15}}
+                                         src={user.avatar == "" ? "https://bootdey.com/img/Content/avatar/avatar7.png" : user.avatar}
+                                         alt="" className="img-fluid"/>
+                                </Link>
+                            </div>
+                            <div className="col-1 " style={{lineHeight: '80px'}}><strong><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
-                            }} style={{marginRight: "8px"}} to={"/"}>LogOut</Link></div>
+                            }} style={{marginRight: "8px", fontSize: 18, marginLeft: "8px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
                         </div>
                     </div>
                 </div>

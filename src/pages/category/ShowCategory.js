@@ -36,11 +36,11 @@ export default function ShowCategory() {
     },[])
     return (
         <div className="row" style={{marginLeft:180}}>
-            <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"rgb(255, 174, 129)"}}>
+            <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"#82AAE3"}}>
                 <CreateCategory></CreateCategory>
             </button>
             <div className="col-lg-12">
-                <table className="table table-striped" style={{background:"rgb(255, 174, 129)", width:1000, borderRadius: "1%"}}>
+                <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
                         <th scope="col" style={{textAlign: "center"}}>STT</th>
