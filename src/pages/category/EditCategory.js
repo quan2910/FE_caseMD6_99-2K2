@@ -38,14 +38,12 @@ export default function EditCategory(props) {
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black"}}
+                    style={{color: "black", width:800, boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)'}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
-                        maxWidth: 500,
                         borderRadius: 'md',
-                        p: 3,
-                        boxShadow: 'lg',
+                        p: 3
                     }}
                 >
                     <Typography
@@ -62,8 +60,9 @@ export default function EditCategory(props) {
                         mt={0.5}
                         mb={2}
                         textColor="black"
+                        textAlign={"center"}
                     >
-                        Fill in the information of the project.
+                        Fill in the information of the category.
                     </Typography>
                     <Formik
                         initialValues={{
@@ -89,13 +88,13 @@ export default function EditCategory(props) {
                     >
                         <Form>
                             <Stack spacing={2}>
-                                <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
-                                <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
+                                <Field as={'select'} name={'statusCategory'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>
                                 </Field>
-                                <Button style={{backgroundColor: "rgb(255, 75, 43)", width:100, marginLeft:47, borderRadius: "20px"}} type="submit">Submit</Button>
+                                <Button style={{backgroundColor: "#82AAE3", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>
                         </Form>
                     </Formik>
