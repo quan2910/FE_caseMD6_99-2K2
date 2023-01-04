@@ -16,4 +16,11 @@ export const showTransactionByMoth = createAsyncThunk(
         return res.data
     }
 )
+export const showTransactionByDate = createAsyncThunk(
+    'wallet/showTransactionByDate',
+    async (data)=>{
+        const res = await axios.get(`http://localhost:3000/wallet/transaction-by-date/${data.idUser}?fromDate=${data.fromDate}&&toDate=${data.toDate}`)
+        return res.data
+    }
+)
 
