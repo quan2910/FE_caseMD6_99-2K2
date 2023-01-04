@@ -1,24 +1,30 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showDetailWallet} from "../../service/walletService";
+import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
 import CreateCategory from "../category/CreateCategory";
+import {Field, Form, Formik} from "formik";
+
 
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     let dispatch = useDispatch()
-    const detailWalletHome = useSelector(state => {
+    let detailWalletHome = useSelector(state => {
         return state.wallet.detailWalletHome
     })
+
+    let [time,setTime]=useState('0000-00-00')
+let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
-        let detailWallet = await dispatch(showDetailWallet(user.idUser))
+                 let detailWallet = await dispatch(showDetailWallet(user.idUser))
         })()
-    }, [detailWalletHome])
+    }, [])
+
 
     let totalConsumableMoney = ()=>{
         let totalMoney = {
@@ -39,25 +45,60 @@ export default function Home() {
         return totalMoney
     }
 
-    if (!detailWalletHome) return <div>Loading...</div>
+   const handleTransactionByMoth=async (e)=>{
+        let str = e.target.value
+         if(str==''){
+             await dispatch(showDetailWallet(user.idUser))
+             return
+         }
+       console.log(str)
+       let date = str.split('-');
+        let dataMonth = {
+            idUser:user.idUser,
+            year:date[0],
+            month:date[1]
+        }
+        await dispatch(showTransactionByMoth(dataMonth))
+    }
 
+
+    if (!detailWalletHome) return <div>Loading...</div>
+    if (!detailWalletHome.wallet) return <div>Loading...</div>
     return (
         <>
             {/* ======= About Me ======= */}
             <div className="about-me containerTemplate">
+                {/*<div className="section-title">*/}
+                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
+                {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:50}}>
-                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                            Tìm kiếm cái gì đấy
-                        </div>
-                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                            Tìm kiếm cái gì đấy
-                        </div>
-                        <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                            Tìm kiếm cái gì đấy
-                        </div>
+                        {/*<Formik initialValues={{form:time,to:time}} onSubmit={(values,{resetForm})=>{*/}
+                        {/*    console.log(values)*/}
+                        {/*    resetForm()*/}
+
+                        {/*}}*/}
+
+                        {/*>*/}
+                        {/*    <Form>*/}
+                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
+                        {/*            <Field type={'date'} name={'form'}/>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
+                        {/*            <Field type={'date'} name={'to'}/>*/}
+                        {/*        </div>*/}
+                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
+                        {/*            <button className="btn btn-primary">Search</button>*/}
+                        {/*        </div>*/}
+                        {/*    </Form>*/}
+                        {/*</Formik>*/}
+
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
+                        <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
+                            <input onChange={(event)=>{
+                                handleTransactionByMoth(event)}} type={'month'}></input>
+                        </div>
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
@@ -77,9 +118,14 @@ export default function Home() {
                                 <strong><CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
                                 <span style={{marginLeft: 400}}></span>
                             </div>
+                            {/*<div  style={{marginLeft: 0}}>*/}
+                            {/*    <Category style={{color:"black"}}></Category>*/}
+                            {/*</div>*/}
                         </div>
                         <div>
+
                         </div>
+
                         <div className="row">
                             <div className="col-lg-12">
                                 <table className="table table-striped" >
@@ -109,6 +155,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            {/* End About Me */}
         </>
     )
 }

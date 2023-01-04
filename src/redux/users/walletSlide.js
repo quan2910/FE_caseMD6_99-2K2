@@ -14,5 +14,6 @@ const walletSlide = createSlice({
             state.currentWallet = action.payload.wallet
             localStorage.setItem('user',JSON.stringify(action.payload))
         })
+
     }
 })

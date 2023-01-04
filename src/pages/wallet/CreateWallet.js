@@ -4,6 +4,7 @@ import {addWallets} from "../../service/walletsService";
 import {Field, Form, Formik} from "formik";
 import {useEffect} from "react";
 import {getMoneyType} from "../../service/moneyTypeService";
+import Swal from "sweetalert2";
 
 export default function CreateWallet() {
     const dispatch = useDispatch();
@@ -24,7 +25,23 @@ export default function CreateWallet() {
             ...values, userId: user.idUser
         }
         await dispatch(addWallets(data))
-        navigate('/home')
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Your work has been saved',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        setTimeout(async ()=>{
+
+            clearTimeout();
+
+            navigate('/home')
+
+
+
+        },1600)
+
     }
 
     return (
