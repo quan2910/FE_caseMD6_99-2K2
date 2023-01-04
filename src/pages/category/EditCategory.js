@@ -94,7 +94,7 @@ export default function EditCategory(props) {
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>
                                 </Field>
-                                <Button style={{backgroundColor: "#82AAE3", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
+                                <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>
                         </Form>
                     </Formik>
