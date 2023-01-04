@@ -38,7 +38,7 @@ export default function EditCategory(props) {
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black", width:800, boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)'}}
+                    style={{color: "black", width:800,background:"white", boxShadow: '2px 4px 5px black'}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
