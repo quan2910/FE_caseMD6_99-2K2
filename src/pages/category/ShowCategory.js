@@ -1,15 +1,11 @@
 import CreateCategory from "./CreateCategory";
-<<<<<<< HEAD
-import {useSelector} from "react-redux";
-
-=======
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import EditCategory from "./EditCategory";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
 import Swal from "sweetalert2";
 import React from 'react';
->>>>>>> 73be3441b409773063dd79304b1f7cad0dee167f
+
 
 export default function ShowCategory() {
     const categories = useSelector(state => {

@@ -22,11 +22,11 @@ export default function ShowWallet() {
 
     return (
         <div className="row" style={{marginLeft:180}}>
-            <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"rgb(255, 174, 129)"}}>
+            <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
                 <CreateWallet></CreateWallet>
             </button>
             <div className="col-lg-12">
-                <table className="table table-striped" style={{background:"rgb(255, 174, 129)", width:1000, borderRadius: "1%"}}>
+                <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
                         <th scope="col">STT</th>
@@ -48,8 +48,8 @@ export default function ShowWallet() {
                                         <td>{item.moneyAmount}</td>
                                         <td>{item.status}</td>
                                         <td>{user.idUser}</td>
-                                        <button>Edit</button>
-                                        <button>Delete</button>
+                                        <button style={{borderRadius:"none"}}>Edit</button>
+                                        <button style={{borderRadius:"none"}}>Delete</button>
                                     </tr>
                                 )
                             }

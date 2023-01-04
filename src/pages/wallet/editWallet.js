@@ -29,7 +29,6 @@ export default function EditWallet() {
     return (
         <>
 
-
         </>
 
     )

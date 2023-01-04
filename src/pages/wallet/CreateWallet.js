@@ -37,45 +37,9 @@ export default function CreateWallet() {
     }
 
     return (
-        // <div style={{marginTop: 70}}>
-        //     <div className="container" id="container">
-        //         <div>
-        //             <Formik initialValues={{nameWallet: '',moneyAmount: '', status: '1',moneyTypeId:''}} onSubmit={(values) => {
-        //                 handleAddWallet(values)
-        //             }}>
-        //                 <Form>
-        //                     <h1 style={{color: "black", marginTop: 60}}>Create Wallet</h1>
-        //                     <br/>
-        //                     <Field type="text" name={"nameWallet"} id={"nameWallet"} placeholder="Wallet Name"
-        //                            style={{backgroundColor: "lightgrey"}}/>
-        //
-        //                     <Field type="number" name={"moneyAmount"} placeholder="Money"
-        //                            style={{backgroundColor: "lightgrey"}}/>
-        //
-        //                     <Field as={'select'} name={"moneyTypeId"} style={{
-        //                         border: 'none',
-        //                         color: "gray",
-        //                         marginTop: 10,
-        //                         width: 645,
-        //                         height: 44,
-        //                         backgroundColor: "lightgray"
-        //                     }} >
-        //                         <option selected>Open this select menu</option>
-        //                         <option value={"1"}>Vietnam Dong</option>
-        //                         <option value="2">Dollar</option>
-        //                     </Field>
-        //                     <br/>
-        //                     <button type={"submit"}>Create Wallet</button>
-        //                 </Form>
-        //             </Formik>
-        //         </div>
-        //     </div>
-        // </div>
-
         <>
             <React.Fragment>
                 <Link
-                    // variant="outlined"
                     color="neutral"
                     style={{color: "black"}}
                     onClick={() => setOpen(true)}
