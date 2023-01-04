@@ -5,6 +5,7 @@ export const showDetailWallet = createAsyncThunk(
     'wallet/showDetailWallet',
     async (id)=>{
         const res = await axios.get('http://localhost:3000/wallet/detail-wallet/'+id)
+        console.log(id)
         return res.data
     }
 )

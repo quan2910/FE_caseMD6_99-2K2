@@ -6,7 +6,6 @@ import {deleteCategory, getCategory} from "../../service/categoriesService";
 import Swal from "sweetalert2";
 import React from 'react';
 
-
 export default function ShowCategory() {
     const categories = useSelector(state => {
         return  state.category.category
@@ -15,7 +14,7 @@ export default function ShowCategory() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const dispatch = useDispatch()
-    const handleDelteCategory = (idCategory)=> {
+    const handleDeleteCategory = (idCategory)=> {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -60,7 +59,7 @@ export default function ShowCategory() {
                                     <td style={{textAlign: "center"}}>{item.nameCategory}</td>
                                     <td style={{textAlign: "center"}}>{item.statusCategory}</td>
                                     <td style={{textAlign: "center"}} onClick={()=>{
-                                        handleDelteCategory(item.idCategory)
+                                        handleDeleteCategory(item.idCategory)
                                     }}>Delete</td>
                                     <td>
                                         <EditCategory idCategory={item.idCategory}></EditCategory>
