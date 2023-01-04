@@ -1,53 +1,36 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {addWallets} from "../../service/walletsService";
 import {Field, Form, Formik} from "formik";
+import CreateCategory from "../category/CreateCategory";
+import CreateWallet from "./CreateWallet";
+import {useEffect} from "react";
+import {addWallets, getWallets} from "../../service/walletsService";
+import * as React from "react";
+import {Link} from "react-router-dom";
+import Modal from "@mui/joy/Modal";
+import ModalDialog from "@mui/joy/ModalDialog";
+import Typography from "@mui/joy/Typography";
+import Stack from "@mui/joy/Stack";
+import Button from "@mui/joy/Button";
 
-export default function CreateWallet() {
+export default function EditWallet() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallets = useSelector(state => {
+        return state.wallet.wallets
+    })
 
-    const handleAddWallet =async (values) => {
-        let data = {
-            ...values,userId:user.idUser
-        }
-        await dispatch(addWallets(data))
-        navigate('/home')
-    }
+    useEffect(async ()=>{
+        let a= await dispatch(getWallets())
+    },[])
+
 
     return (
         <>
-            <div style={{marginTop: 200}} className="about-me containerTemplate">
-                <Formik initialValues={{nameWallet: '', moneyAmount: '', status: ''}} onSubmit={(values) => {
-                    handleAddWallet(values)
-                }}>
-                    <Form action="forms/contact.php" method="post" role="form"
-                          className="php-email-form mt-4 containerTemplate">
-                        <h1 style={{textAlign: 'center', color: 'red'}}>Add Wallet</h1>
-                        <div className=" form-group">
-                            <Field type="text" name={"nameWallet"} className="form-control" id="nameWallet"
-                                   placeholder="Name Wallet"
-                                   required/>
-                        </div>
 
-                        <div className=" form-group mt-3 mt-md-0">
-                            <Field type="text" className="form-control" name={"moneyAmount"} id="moneyAmount"
-                                   placeholder="moneyAmount" required/>
-                        </div>
-                        <div className="form-group mt-1">
-                            <Field type="text" className="form-control" name={"status"} id="status" placeholder="Status"
-                                   required/>
-                        </div>
 
-                        <div className="text-center">
-                            <button type="submit">Send Message</button>
-                        </div>
-                    </Form>
-                </Formik>
-            </div>
         </>
+
     )
 }
