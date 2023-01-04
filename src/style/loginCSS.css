@@ -48,7 +48,7 @@ button {
     border-radius: 20px;
     border: 1px solid white;
     background-color: #82AAE3;
-    color: black;
+    color: white;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -67,7 +67,7 @@ button:focus {
 
 button.ghost {
     background-color: transparent;
-    border-color: black;
+    border-color: white;
 }
 
 form {

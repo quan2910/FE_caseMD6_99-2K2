@@ -13,7 +13,7 @@ export default function ShowCategory() {
     let stt = 1
     return (
         <div className="row" style={{marginLeft:180}}>
-            <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"rgb(255, 174, 129)"}}>
+            <button style={{width: 200, marginBottom: 20, marginLeft: 12, background:"#82AAE3"}}>
                 <CreateCategory></CreateCategory>
             </button>
             <div className="col-lg-12">

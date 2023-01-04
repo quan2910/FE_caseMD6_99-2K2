@@ -89,9 +89,9 @@ export default function CreateTransaction(props) {
                     >
                         <Form>
                         <Stack spacing={2}>
-                            <Field placeholder={'Time'} autoFocus required name={'time'}/>
-                            <Field placeholder={'Total Spent'} required name={'totalSpent'}/>
-                            <Field placeholder={'Note'} required name={'note'}/>
+                            <Field style={{backgroundColor:"lightgray", width: "600px"}} placeholder={'Time'} autoFocus required name={'time'}/>
+                            <Field style={{backgroundColor:"lightgray"}} placeholder={'Total Spent'} required name={'totalSpent'}/>
+                            <Field style={{backgroundColor:"lightgray"}} placeholder={'Note'} required name={'note'}/>
                             <div>
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
@@ -106,7 +106,7 @@ export default function CreateTransaction(props) {
                                     <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
                                 </div>
                             </div>
-                            <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                            <Field as={'select'} name={'categoryId'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
                                     if(user.idUser==item.userId && item.statusCategory==income) {
@@ -116,7 +116,7 @@ export default function CreateTransaction(props) {
                                     }
                                 })}
                             </Field>
-                            <Button type="submit" style={{backgroundColor: "rgb(255, 174, 129)"}}>Save</Button>
+                            <Button type="submit" style={{marginLeft: 230 ,backgroundColor: "#82AAE3", color:"white", width: "150px",align:"center", borderRadius: "20px"}}>Save</Button>
                         </Stack>
                         </Form>
                     </Formik>

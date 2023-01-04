@@ -69,7 +69,7 @@ function Register(props) {
             <div className="container" id="container" >
                 <div className="overlay-container">
                     <div className="overlay">
-                        <div className="overlay-panel overlay-right" style={{color: "black"}}>
+                        <div className="overlay-panel overlay-right" style={{color: "white"}}>
                             <h1>Welcome back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
                             <Link to={"/"}>
