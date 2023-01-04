@@ -19,8 +19,8 @@ export default function Navbar() {
                             <div  style={{marginTop:12, width:500,position:"fixed"}}>
                                 <ul>
                                 <Link to={'/home'} className="nav-link" style={{color:"black"}}>Home</Link>
-                                    <Link to={'create-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Wallet</Link>
-                                    <Link to={'my-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>My Wallet</Link>
+                                    <Link to={'show-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>Wallet</Link>
+                                    <Link to={'list-wallet'} className="nav-link" style={{marginLeft:15, color:"black"}}>List Wallet</Link>
                                     <Link to={'show-category'} className="nav-link" style={{marginLeft:15, color:"black"}}>Category</Link>
                                     <Link to={'profile'} className="nav-link" style={{marginLeft:15, color: "black"}}>Profile</Link>
                                     <Link style={{marginRight: 20}} to={'change-password'}style={{marginLeft:15, color: "black"}}>Change Password</Link>

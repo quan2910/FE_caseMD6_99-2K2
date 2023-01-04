@@ -7,15 +7,13 @@ import Register from "./pages/user/register";
 import ChangePassword from "./pages/user/change-password";
 import Profile from "./pages/user/profile";
 import ShowCategory from "./pages/category/ShowCategory";
-import MyWallet from "./pages/wallet/MyWallet";
+import ListWallet from "./pages/wallet/ListWallet";
+import ShowWallet from "./pages/wallet/ShowWallet";
 
 function App() {
 
     return (
         <div className={"col-12"}>
-            {/* ======= Header ======= */}
-            {/*<Navbar/>*/}
-            {/* End Header */}
             <div className={"col-12"}>
                 <Routes>
                     <Route path={""} element={<Login/>}/>
@@ -26,7 +24,7 @@ function App() {
                         <Route path={"change-password"} element={<ChangePassword/>}/>
                         <Route path={"profile"} element={<Profile/>}/>
                         <Route path={"show-category"} element={<ShowCategory/>}/>
-                        <Route path={"my-wallet"} element={<MyWallet/>}/>
+                        <Route path={"show-wallet"} element={<ShowWallet/>}/>
                     </Route>
 
                 </Routes>

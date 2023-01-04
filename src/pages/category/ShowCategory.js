@@ -1,6 +1,6 @@
 import CreateCategory from "./CreateCategory";
 import {useSelector} from "react-redux";
-import {useEffect} from "react";
+
 
 export default function ShowCategory() {
     const categories = useSelector(state => {
