@@ -28,7 +28,7 @@ export default function CreateWallet() {
     }
 
     return (
-        <div style={{marginTop: 70}}>
+        <div>
             <div className="container" id="container">
                 <div>
                     <Formik initialValues={{nameWallet: '',moneyAmount: '', status: '1',moneyTypeId:''}} onSubmit={(values) => {

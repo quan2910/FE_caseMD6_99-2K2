@@ -115,7 +115,6 @@ const Profile = () => {
                         <div className="row gutters-sm">
                             <div className="col-sm-6 mb-3">
                                 <div className="card h-100">
-
                                 </div>
                             </div>
                         </div>

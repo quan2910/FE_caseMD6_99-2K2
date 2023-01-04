@@ -94,6 +94,7 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
+
                                         return <tr>
                                             <th scope="row">{index+1}</th>
                                             <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
