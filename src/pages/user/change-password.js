@@ -52,15 +52,9 @@ export default function ChangePassword() {
                 timer: 1500
             })
             setTimeout(async ()=>{
-
                 clearTimeout();
-
                     navigate('/home')
-
-
-
             },1600)
-
 
         } else {
             Swal.fire({
@@ -68,14 +62,13 @@ export default function ChangePassword() {
                 title: 'Oops...',
                 text: 'incorrect password',
             })
-
             resetForm()
         }
     }
 
     return (
-        <div style={{marginTop: 70}}>
-            <div className="container" id="container">
+        <div style={{marginTop: 35}}>
+            <div className="container" id="container" style={{width: 700}}>
                 <div>
                     <Formik validationSchema={SignupSchema} initialValues={{
                         oldPassword: "",
@@ -97,20 +90,20 @@ export default function ChangePassword() {
                     }}>
                         {({errors, touched}) =>(
                             <Form>
-                                <h1 style={{color: "black", marginTop: 100}}>Change Password</h1>
+                                <h3 style={{color: "black", marginTop: 75}}>Change Password</h3>
                                 <br/>
                                 <Field type="password" name={"oldPassword"} placeholder="OldPassword"
-                                       style={{backgroundColor: "lightgrey"}}/>
+                                       style={{backgroundColor: "#eee", width: 500}}/>
                                 {errors.oldPassword && touched.oldPassword ? (
                                     <span style={{color:"red"}}>{errors.oldPassword}</span>
                                 ) : null}
                                 <Field type="password" name={"newPassword"} placeholder="NewPassword"
-                                       style={{backgroundColor: "lightgrey"}}/>
+                                       style={{backgroundColor: "#eee", width: 500}}/>
                                 {errors.newPassword && touched.newPassword ? (
                                     <span style={{color:"red"}}>{errors.newPassword}</span>
                                 ) : null}
                                 <Field type="password" name={"rePassword"} placeholder="Re-NewPassword"
-                                       style={{backgroundColor: "lightgrey"}}/>
+                                       style={{backgroundColor: "#eee", width: 500}}/>
                                 {errors.rePassword && touched.rePassword ? (
                                     <span style={{color:"red"}}>{errors.rePassword}</span>
                                 ) : null}

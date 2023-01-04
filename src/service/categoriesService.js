@@ -17,3 +17,19 @@ export const addCategory = createAsyncThunk(
     }
 )
 
+export const editCategory = createAsyncThunk(
+    'categories/editCategory',
+    async (data) => {
+        const res = await axios.put('http://localhost:3000/categories/edit-category', data)
+        return data
+    }
+)
+
+export const deleteCategory = createAsyncThunk(
+    'categories/deleteCategory',
+    async (data) => {
+        const res = await axios.delete('http://localhost:3000/categories/delete/'+ data)
+        return res
+    }
+)
+

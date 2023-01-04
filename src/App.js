@@ -26,7 +26,6 @@ function App() {
                         <Route path={"show-category"} element={<ShowCategory/>}/>
                         <Route path={"show-wallet"} element={<ShowWallet/>}/>
                     </Route>
-
                 </Routes>
             </div>
         </div>

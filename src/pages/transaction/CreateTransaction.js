@@ -15,7 +15,6 @@ import {findById} from "../../service/userService";
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
     const [income,setIncome]= useState('')
-    console.log(income)
     const dispatch = useDispatch();
     const categories = useSelector(state => {
         return  state.category.category
@@ -23,13 +22,6 @@ export default function CreateTransaction(props) {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
-    const wallet = useSelector(state => {
-
-        return state.wallet.detailWalletHome.wallet
-    })
-
-    let idWallet;
-
     useEffect(() => {
         dispatch(getCategory());
     }, [categories])
@@ -43,18 +35,16 @@ export default function CreateTransaction(props) {
                 style={{color: "black"}}
                 onClick={() => setOpen(true)}
             >
-                Create Transaction
+               +Transaction
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black"}}
+                    style={{color: "black", background:'white', border: 'none', boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)', width: 800}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
-                        maxWidth: 500,
                         borderRadius: 'md',
-                        p: 3,
-                        boxShadow: 'lg',
+                        p: 3
                     }}
                 >
                     <Typography
@@ -64,15 +54,16 @@ export default function CreateTransaction(props) {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        Create Transaction
+                        Transaction
                     </Typography>
                     <Typography
                         id="basic-modal-dialog-description"
                         mt={0.5}
                         mb={2}
                         textColor="black"
+                        textAlign={"center"}
                     >
-                        Fill in the information of the project.
+                        Fill in the information of the spending.
                     </Typography>
                     <Formik
                         initialValues={{
@@ -91,43 +82,41 @@ export default function CreateTransaction(props) {
                                 note: event.note,
                                 userID :user.idUser
                             }
-                            setOpen(false);
-
-                            await  dispatch(addTransaction(data))
+                           await dispatch(addTransaction(data))
                             await dispatch(showDetailWallet(user.idUser))
-
+                            setOpen(false)
                         }}
                     >
                         <Form>
                         <Stack spacing={2}>
-                            <Field placeholder={'Time'} autoFocus required name={'time'}/>
-                            <Field placeholder={'Total Spent'} required name={'totalSpent'}/>
-                            <Field placeholder={'Note'} required name={'note'}/>
+                            <Field style={{backgroundColor:"lightgray", width: "600px"}} placeholder={'Time'} autoFocus required name={'time'}/>
+                            <Field style={{backgroundColor:"lightgray"}} placeholder={'Total Spent'} required name={'totalSpent'}/>
+                            <Field style={{backgroundColor:"lightgray"}} placeholder={'Note'} required name={'note'}/>
                             <div>
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" />
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" style={{padding: '8px 8px'}}/>
                                     <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" />
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" style={{padding: '8px 8px'}}/>
                                     <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
                                 </div>
                             </div>
-                            <Field as={'select'} name={'categoryId'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                            <Field as={'select'} name={'categoryId'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                 <option selected>Loại chi tiêu...</option>
                                 {categories.map(item => {
-                                    if(user.idUser==item.userId && item.statusCategory==income ) {
+                                    if(user.idUser==item.userId && item.statusCategory==income) {
                                         return (
-                                            <option value={item.idCategory}>{item.nameCategory}</option>
+                                            <option  value={item.idCategory}>{item.nameCategory}</option>
                                         )
                                     }
                                 })}
                             </Field>
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit" style={{marginLeft: 230 ,backgroundColor: "#82AAE3", color:"white", width: "150px",align:"center", borderRadius: "20px"}}>Save</Button>
                         </Stack>
                         </Form>
                     </Formik>

@@ -35,7 +35,6 @@ function Register(props) {
             progress: undefined,
             theme: "light",
         });
-
     };
 
     const showToastMessage1 =async () => {
@@ -48,7 +47,6 @@ function Register(props) {
             progress: undefined,
             theme: "light",
         });
-
     };
     const handleRegister = async (value,reset) => {
             let newUser = {username: value.username, password: value.password}
@@ -67,11 +65,11 @@ function Register(props) {
                 }
     }
     return (
-        <div style={{marginTop: 70}}>
-            <div className="container" id="container">
+        <div >
+            <div className="container" id="container" >
                 <div className="overlay-container">
                     <div className="overlay">
-                        <div className="overlay-panel overlay-right">
+                        <div className="overlay-panel overlay-right" style={{color: "white"}}>
                             <h1>Welcome back!</h1>
                             <p>To keep connected with us please login with your personal info</p>
                             <Link to={"/"}>
@@ -80,7 +78,7 @@ function Register(props) {
                         </div>
                     </div>
                 </div>
-                <div style={{marginTop:"-40px"}} className="form-container sign-in-container">
+                <div style={{marginTop:"-7px"}} className="form-container sign-in-container">
                     <Formik validationSchema={SignupSchema} initialValues={{
                         username: "",
                         password: "",

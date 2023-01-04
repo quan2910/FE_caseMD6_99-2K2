@@ -6,10 +6,10 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, getCategory} from "../../service/categoriesService";
+import {addCategory, editCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
 
-export default function CreateCategory() {
+export default function EditCategory(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
@@ -18,25 +18,34 @@ export default function CreateCategory() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    let categoryEdit = {}
+    categories.map(item=>{
+        if(item.idCategory == props.idCategory) {
+            categoryEdit = item;
+            return categoryEdit
+        }
+    })
     return (
         <React.Fragment>
             <Link
                 // variant="outlined"
                 color="neutral"
-                style={{color: "white"}}
+                style={{color: "black"}}
                 className={'btn-primary'}
                 onClick={() => setOpen(true)}
             >
-               Create Category
+                Edit
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black", width:800, boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)'}}
+                    style={{color: "black"}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
+                        maxWidth: 500,
                         borderRadius: 'md',
-                        p: 3
+                        p: 3,
+                        boxShadow: 'lg',
                     }}
                 >
                     <Typography
@@ -46,32 +55,33 @@ export default function CreateCategory() {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        Create Category
+                        Edit Category
                     </Typography>
                     <Typography
                         id="basic-modal-dialog-description"
                         mt={0.5}
                         mb={2}
                         textColor="black"
-                        textAlign={"center"}
                     >
-                        Fill in the information of the category.
+                        Fill in the information of the project.
                     </Typography>
                     <Formik
                         initialValues={{
-                            nameCategory: '',
+                            idCategory: categoryEdit.idCategory,
+                            nameCategory: categoryEdit.nameCategory,
                             statusCategory: '',
                             userId: '',
                             color: ''
                         }}
                         onSubmit={async (event) => {
                             let data = {
+                                idCategory: categoryEdit.idCategory,
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
-                                userId: user.idUser,
+                                userId: categoryEdit.idUser,
                                 color: 'vàng'
                             }
-                          await  dispatch(addCategory(data))
+                            await  dispatch(editCategory(data))
                             await dispatch(getCategory())
                             // event.preventDefault();
                             setOpen(false);
@@ -79,13 +89,13 @@ export default function CreateCategory() {
                     >
                         <Form>
                             <Stack spacing={2}>
-                                <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
-                                <Field as={'select'} name={'statusCategory'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
+                                <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
+                                <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>
                                 </Field>
-                                <Button style={{backgroundColor: "#82AAE3",color:"white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
+                                <Button style={{backgroundColor: "rgb(255, 75, 43)", width:100, marginLeft:47, borderRadius: "20px"}} type="submit">Submit</Button>
                             </Stack>
                         </Form>
                     </Formik>
