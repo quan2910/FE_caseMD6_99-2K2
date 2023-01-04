@@ -112,9 +112,9 @@ export default function Home() {
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3 style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
-                                <strong><h5 style={{color: "black"}}>
+                                <h5 style={{color: "black",fontWeight: "bold"}}>
                                     TotalMoney : {totalConsumableMoney().total}
-                                </h5></strong>
+                                </h5>
                             </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color: "black", marginLeft: 60}}></i> <strong
