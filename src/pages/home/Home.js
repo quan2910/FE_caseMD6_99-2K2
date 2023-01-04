@@ -60,22 +60,22 @@ export default function Home() {
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div className="row">
                             <div className="col-lg-4">
-                                <h3>{detailWalletHome.wallet[0].nameWallet}</h3>
-                                <h5 style={{color:"black"}}>
-                                    Tổng tiền : {totalConsumableMoney().total}
-                                </h5>
+                                <h3  style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <strong><h5 style={{color:"black"}}>
+                                    TotalMoney : {totalConsumableMoney().total}
+                                </h5></strong>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Chi: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black"}}></i> <strong style={{color:"black"}}>Thu: {totalConsumableMoney().moneyIncome}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div  style={{marginLeft: 0}}>
-                                <CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction>
-                                <span style={{marginLeft: 900}}></span>
+                            <div style={{marginLeft: 640, marginTop: -40, marginBottom:13}}>
+                                <strong><CreateTransaction style={{color:"black"}} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
+                                <span style={{marginLeft: 400}}></span>
                             </div>
                         </div>
                         <div>

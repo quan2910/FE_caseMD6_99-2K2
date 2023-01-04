@@ -31,9 +31,9 @@ export default function Navbar() {
                         <div className="col-12" style={{display:"flex", marginRight:0}}>
                             <div className="col-10"></div>
                             <div className="col-1"><Link style={{marginLeft: 0}}><img style={{borderRadius: "50%", height:50, width:50}} src={user.avatar==""?"https://bootdey.com/img/Content/avatar/avatar7.png":user.avatar} alt="" className="img-fluid"/></Link></div>
-                            <div className="col-1" ><Link className="nav-link" onClick={() => {
+                            <div className="col-1" ><strong><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
-                            }} style={{marginRight: "8px"}} to={"/"}>LogOut</Link></div>
+                            }} style={{marginRight: "8px", fontSize: 18}} to={"/"}>LogOut</Link></strong></div>
                         </div>
                     </div>
                 </div>

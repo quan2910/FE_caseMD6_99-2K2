@@ -124,7 +124,7 @@ function Login(props) {
                             onClick={componentClicked}
                                 cssClass="btn-primary"
                                 callback={responseFacebook} />
-                            <button style={{backgroundColor:"#FF4B2B", height: 44, width:232, borderRadius: "20px", borderColor:"#FFFFFF", marginTop: 12}} className="btn btn-primary metro"
+                            <button style={{backgroundColor:"rgb(255, 174, 129)",color: "black", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: 12}} className="btn btn-primary metro"
                             >Login</button>
                             <ToastContainer />
                         </Form>
@@ -134,7 +134,7 @@ function Login(props) {
                 </div>
                 <div className="overlay-container">
                     <div className="overlay">
-                        <div className="overlay-panel overlay-right">
+                        <div className="overlay-panel overlay-right" style={{color: "black"}}>
                             <h1>Hello, Friend!</h1>
                             <p>Enter your personal details and start journey with us</p>
                             <Link to={'register'}><button className="ghost" id="signUp">Register</button></Link>

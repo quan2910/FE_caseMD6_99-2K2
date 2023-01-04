@@ -46,9 +46,9 @@ a {
 
 button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
-    color: #FFFFFF;
+    border: 1px solid white;
+    background-color: rgb(255, 174, 129);
+    color: black;
     font-size: 12px;
     font-weight: bold;
     padding: 12px 45px;
@@ -67,7 +67,7 @@ button:focus {
 
 button.ghost {
     background-color: transparent;
-    border-color: #FFFFFF;
+    border-color: black;
 }
 
 form {
@@ -162,7 +162,7 @@ input {
 .overlay {
     background: #FF416C;
     background: rgb(255, 174, 129);
-    background:  rgb(255, 174, 129);
+    background: rgb(255, 174, 129);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

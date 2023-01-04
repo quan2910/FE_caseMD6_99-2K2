@@ -35,7 +35,7 @@ export default function CreateTransaction(props) {
                 style={{color: "black"}}
                 onClick={() => setOpen(true)}
             >
-                Create Transaction
+               +Transaction
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
@@ -56,7 +56,7 @@ export default function CreateTransaction(props) {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        Create Transaction
+                        Transaction
                     </Typography>
                     <Typography
                         id="basic-modal-dialog-description"
@@ -64,7 +64,7 @@ export default function CreateTransaction(props) {
                         mb={2}
                         textColor="black"
                     >
-                        Fill in the information of the project.
+                        Fill in the information of the spending.
                     </Typography>
                     <Formik
                         initialValues={{
@@ -117,7 +117,7 @@ export default function CreateTransaction(props) {
                                     }
                                 })}
                             </Field>
-                            <Button type="submit">Submit</Button>
+                            <Button type="submit" style={{backgroundColor: "rgb(255, 174, 129)"}}>Save</Button>
                         </Stack>
                         </Form>
                     </Formik>

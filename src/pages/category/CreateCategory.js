@@ -86,7 +86,7 @@ export default function CreateCategory() {
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>
                                 </Field>
-                                <Button style={{backgroundColor: "rgb(255, 75, 43)", width:100, marginLeft:47, borderRadius: "20px"}} type="submit">Submit</Button>
+                                <Button style={{backgroundColor: "rgb(255, 174, 129)", width:100, marginLeft:47, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>
                         </Form>
                     </Formik>
