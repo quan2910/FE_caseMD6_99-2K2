@@ -83,9 +83,9 @@ export default function CreateTransaction(props) {
                                 note: event.note,
                                 userID :user.idUser
                             }
-                            setOpen(false);
-                            await  dispatch(addTransaction(data))
+                           await dispatch(addTransaction(data))
                             await dispatch(showDetailWallet(user.idUser))
+                            setOpen(false)
                         }}
                     >
                         <Form>
@@ -112,7 +112,7 @@ export default function CreateTransaction(props) {
                                 {categories.map(item => {
                                     if(user.idUser==item.userId && item.statusCategory==income) {
                                         return (
-                                            <option value={item.idCategory}>{item.nameCategory}</option>
+                                            <option  value={item.idCategory}>{item.nameCategory}</option>
                                         )
                                     }
                                 })}
