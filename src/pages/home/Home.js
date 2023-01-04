@@ -1,7 +1,7 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
+import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
 import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
 import CreateCategory from "../category/CreateCategory";
@@ -17,7 +17,7 @@ export default function Home() {
         return state.wallet.detailWalletHome
     })
 
-    let [time,setTime]=useState('0000-00-00')
+    let [time,setTime]=useState('"yyyy-MM-dd"')
 let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
@@ -60,7 +60,15 @@ let [flag,setFlag] =useState(true)
         }
         await dispatch(showTransactionByMoth(dataMonth))
     }
+    const handleTransactionByDate =async (values)=>{
+        let date = {
+            idUser :user.idUser,
+            fromDate:values.formDate,
+            toDate:values.toDate
+        }
+       let a= await dispatch(showTransactionByDate(date))
 
+    }
 
     if (!detailWalletHome) return <div>Loading...</div>
     if (!detailWalletHome.wallet) return <div>Loading...</div>
@@ -72,32 +80,32 @@ let [flag,setFlag] =useState(true)
                 {/*    <p style={{color:"black"}}>{user.username}</p>*/}
                 {/*</div>*/}
                 <div className="row">
-                    <div className="col-3" style={{marginTop:50}}>
-                        {/*<Formik initialValues={{form:time,to:time}} onSubmit={(values,{resetForm})=>{*/}
-                        {/*    console.log(values)*/}
-                        {/*    resetForm()*/}
+                    <div className="col-3" style={{marginTop:"50px"}}>
+                        <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
 
-                        {/*}}*/}
+                            handleTransactionByDate(values)
 
-                        {/*>*/}
-                        {/*    <Form>*/}
-                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
-                        {/*            <Field type={'date'} name={'form'}/>*/}
-                        {/*        </div>*/}
-                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
-                        {/*            <Field type={'date'} name={'to'}/>*/}
-                        {/*        </div>*/}
-                        {/*        <div className="col-12" style={{marginBottom: 50, color: "black"}}>*/}
-                        {/*            <button className="btn btn-primary">Search</button>*/}
-                        {/*        </div>*/}
-                        {/*    </Form>*/}
-                        {/*</Formik>*/}
+                        }}
+
+                        >
+                            <Form>
+                                <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                                    <Field type={'date'} name={'formDate'}/>
+                                </div>
+                                <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                                    <Field type={'date'} name={'toDate'}/>
+                                </div>
+                                <div className="col-12" style={{marginBottom: 50, color: "black"}}>
+                                    <button className="btn btn-primary">Search</button>
+                                </div>
+                            </Form>
+                        </Formik>
 
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content" style={{marginTop:"-30px"}}>
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
                             <input onChange={(event)=>{
-                                handleTransactionByMoth(event)}} type={'month'}></input>
+                                handleTransactionByMoth(event)}}  type={'month'}></input>
                         </div>
                         <div className="row">
                             <div className="col-lg-4">
