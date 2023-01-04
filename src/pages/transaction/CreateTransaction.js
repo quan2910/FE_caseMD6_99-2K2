@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
-import {showDetailWallet} from "../../service/walletService";
+import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import {findById} from "../../service/userService";
 
 export default function CreateTransaction(props) {
@@ -83,7 +83,20 @@ export default function CreateTransaction(props) {
                                 userID :user.idUser
                             }
                            await dispatch(addTransaction(data))
-                            await dispatch(showDetailWallet(user.idUser))
+                            if(props.date==''){
+                                await dispatch(showDetailWallet(user.idUser))
+                            }else {
+                                let str =props.date
+                                let date = str.split('-');
+                                let dataMonth = {
+                                    idUser:user.idUser,
+                                    year:date[0],
+                                    month:date[1]
+                                }
+                                await dispatch(showTransactionByMoth(dataMonth))
+                            }
+
+
                             setOpen(false)
                         }}
                     >
