@@ -124,7 +124,7 @@ function Login(props) {
                             onClick={componentClicked}
                                 cssClass="btn-primary"
                                 callback={responseFacebook} />
-                            <button style={{backgroundColor:"rgb(255, 174, 129)",color: "black", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: 12}} className="btn btn-primary metro"
+                            <button style={{backgroundColor:"#82AAE3",color: "black", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: 12}} className="btn btn-primary metro"
                             >Login</button>
                             <ToastContainer />
                         </Form>

@@ -17,7 +17,7 @@ export default function ShowCategory() {
                 <CreateCategory></CreateCategory>
             </button>
             <div className="col-lg-12">
-                <table className="table table-striped" style={{background:"rgb(255, 174, 129)", width:1000, borderRadius: "1%"}}>
+                <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
                         <th scope="col">STT</th>

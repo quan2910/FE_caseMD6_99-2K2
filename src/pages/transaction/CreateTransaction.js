@@ -39,14 +39,12 @@ export default function CreateTransaction(props) {
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black"}}
+                    style={{color: "black", background:'white', border: 'none', boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)', width: 800}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
-                        maxWidth: 500,
                         borderRadius: 'md',
-                        p: 3,
-                        boxShadow: 'lg',
+                        p: 3
                     }}
                 >
                     <Typography
@@ -63,6 +61,7 @@ export default function CreateTransaction(props) {
                         mt={0.5}
                         mb={2}
                         textColor="black"
+                        textAlign={"center"}
                     >
                         Fill in the information of the spending.
                     </Typography>
@@ -97,13 +96,13 @@ export default function CreateTransaction(props) {
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" />
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" style={{padding: '8px 8px'}}/>
                                     <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" />
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" style={{padding: '8px 8px'}}/>
                                     <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
                                 </div>
                             </div>

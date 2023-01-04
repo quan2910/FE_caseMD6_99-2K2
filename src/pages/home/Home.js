@@ -82,7 +82,7 @@ export default function Home() {
                         </div>
                         <div className="row">
                             <div className="col-lg-12">
-                                <table className="table table-striped" style={{background:"#FFAE81"}}>
+                                <table className="table table-striped" >
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
