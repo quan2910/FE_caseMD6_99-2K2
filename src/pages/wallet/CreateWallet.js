@@ -21,7 +21,6 @@ export default function CreateWallet() {
 
     })
         const moneyType = useSelector(state => {
-            console.log('aa',state)
             return state
         })
 
@@ -91,7 +90,6 @@ export default function CreateWallet() {
                                     moneyTypeId: e.moneyTypeId,
                                     userId: user.idUser
                                 }
-                                console.log('data', data)
                                 await dispatch(addWallets(data))
                                 await dispatch(getWallets())
                                 setOpen(false)

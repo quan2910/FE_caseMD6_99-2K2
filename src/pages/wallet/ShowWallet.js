@@ -34,10 +34,11 @@ export default function ShowWallet() {
         })
     }
 
-    useEffect( async ()=>{
-       await dispatch(getWallets())
+    useEffect(  ()=>{
+        dispatch(getWallets())
     },[])
 
+    if (!wallets) return <div>Loading...</div>
     return (
         <div className="row" style={{marginLeft:180}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
@@ -61,7 +62,7 @@ export default function ShowWallet() {
                             if(item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row">{index+1}</th>
+                                        <th scope="row">{index++}</th>
                                         <td>{item.nameWallet}</td>
                                         <td>{item.moneyAmount}</td>
                                         <td>{item.status}</td>

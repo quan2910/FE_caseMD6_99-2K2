@@ -15,13 +15,9 @@ import Button from "@mui/joy/Button";
 export default function EditWallet(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
-    const user = useSelector(state => {
-        return state.user.currentUser.user.authenticUser[0]
-    })
     const wallets = useSelector(state => {
         return state.wallet.wallets
     })
-
     let walletEdit = {}
     wallets.map(item=>{
         if(item.idWallet == props.idWallet) {
@@ -29,10 +25,6 @@ export default function EditWallet(props) {
             return walletEdit
         }
     })
-
-    useEffect(async ()=>{
-        await dispatch(getWallets())
-    },[])
 
     return (
         <>
@@ -112,8 +104,6 @@ export default function EditWallet(props) {
                     </ModalDialog>
                 </Modal>
             </React.Fragment>
-
         </>
-
     )
 }
