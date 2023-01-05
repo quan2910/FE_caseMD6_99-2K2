@@ -3,8 +3,12 @@ import {Field, Form, Formik} from "formik";
 import CreateCategory from "../category/CreateCategory";
 import CreateWallet from "./CreateWallet";
 import {useEffect} from "react";
-import {addWallets, getWallets} from "../../service/walletsService";
+import {addWallets, deleteWallet, getWallets} from "../../service/walletsService";
 import data from "bootstrap/js/src/dom/data";
+import Swal from "sweetalert2";
+import {deleteCategory, getCategory} from "../../service/categoriesService";
+import EditWallet from "./EditWallet";
+import {elGR} from "@mui/material/locale";
 
 export default function ShowWallet() {
     const dispatch = useDispatch();
@@ -13,13 +17,28 @@ export default function ShowWallet() {
     })
     const wallets = useSelector(state => {
         return state.wallet.wallets
-
     })
+    const handleDeleteWallet = (idWallet)=> {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await dispatch(deleteWallet(idWallet))
+            }
+        })
+    }
 
-    useEffect(async ()=>{
-       let a= await dispatch(getWallets())
+    useEffect(  ()=>{
+        dispatch(getWallets())
     },[])
 
+    if (!wallets) return <div>Loading...</div>
     return (
         <div className="row" style={{marginLeft:180}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
@@ -43,13 +62,15 @@ export default function ShowWallet() {
                             if(item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row">{index+1}</th>
+                                        <th scope="row">{index++}</th>
                                         <td>{item.nameWallet}</td>
                                         <td>{item.moneyAmount}</td>
                                         <td>{item.status}</td>
                                         <td>{user.idUser}</td>
-                                        <button style={{borderRadius:"none"}}>Edit</button>
-                                        <button style={{borderRadius:"none"}}>Delete</button>
+                                        <td><EditWallet idWallet={item.idWallet}></EditWallet></td>
+                                        <td><button style={{borderRadius:"none"}} onClick={()=>{
+                                            handleDeleteWallet(item.idWallet)
+                                        }}>Delete</button></td>
                                     </tr>
                                 )
                             }

@@ -7,7 +7,6 @@ import Register from "./pages/user/register";
 import ChangePassword from "./pages/user/change-password";
 import Profile from "./pages/user/profile";
 import ShowCategory from "./pages/category/ShowCategory";
-import ListWallet from "./pages/wallet/ListWallet";
 import ShowWallet from "./pages/wallet/ShowWallet";
 
 function App() {

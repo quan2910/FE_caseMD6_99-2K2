@@ -4,7 +4,7 @@ import {showDetailWallet, showTransactionByMoth} from "../../service/walletServi
 import {addWallets, deleteWallet, editWallet, getWallets} from "../../service/walletsService";
 let initialState = {
     detailWalletHome :JSON.parse(localStorage.getItem('walletDetail')),
-    wallets :[]
+    wallets: []
 }
 const walletSlice = createSlice({
     name: 'wallet',
@@ -25,14 +25,14 @@ const walletSlice = createSlice({
         builder.addCase(addWallets.fulfilled, (state, action)=> {
             state.wallets.push(action.payload);
         });
-
         builder.addCase(deleteWallet.fulfilled, (state, action)=> {
-            state.wallets = state.wallets.filter((item)=>{
-
-            })
+            let arrNew = [...state.wallets];
+            let index = arrNew.findIndex(item => item.idWallet == action.payload.data);
+            arrNew.splice(index, 1);
+            state.wallets = arrNew;
+            // state.wallets = state.wallets.filter(item=>item.idWallet != action.payload)
         });
         builder.addCase(editWallet.fulfilled, (state,action)=>{
-
         })
 
     }
