@@ -102,7 +102,7 @@ export default function CreateTransaction(props) {
                     >
                         <Form>
                         <Stack spacing={2}>
-                            <Field style={{backgroundColor:"lightgray", width: "600px"}} placeholder={'Time'} autoFocus required name={'time'}/>
+                            <Field type={'date'} style={{backgroundColor:"lightgray", width: "600px"}} placeholder={'Time'} autoFocus required name={'time'}/>
                             <Field style={{backgroundColor:"lightgray"}} placeholder={'Total Spent'} required name={'totalSpent'}/>
                             <Field style={{backgroundColor:"lightgray"}} placeholder={'Note'} required name={'note'}/>
                             <div>

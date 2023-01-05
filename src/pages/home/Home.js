@@ -7,6 +7,7 @@ import CreateTransaction from "../transaction/CreateTransaction";
 import CreateCategory from "../category/CreateCategory";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
+import DeleteTransaction from "../transaction/deleteTransaction";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -115,7 +116,7 @@ let [flag,setFlag] =useState(true)
                 <div className="row">
                     <div className="col-3" style={{marginTop:"50px"}}>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
-
+                            console.log(values)
                             handleTransactionByDate(values)
 
                         }}
@@ -128,6 +129,7 @@ let [flag,setFlag] =useState(true)
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
+
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <button className="btn btn-primary">Search</button>
                                 </div>
@@ -180,6 +182,7 @@ let [flag,setFlag] =useState(true)
                                         <th scope="col">Total Spent</th>
                                         <th scope="col">Name Category</th>
                                         <th scope="col">Note</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -191,6 +194,7 @@ let [flag,setFlag] =useState(true)
                                             <td>{transaction.totalSpent}</td>
                                             <td>{transaction.nameCategory}</td>
                                             <td>{transaction.note}</td>
+                                            <td><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
                                         </tr>
                                     })}
                                     </tbody>
