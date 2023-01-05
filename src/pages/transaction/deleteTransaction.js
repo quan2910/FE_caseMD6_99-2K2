@@ -24,8 +24,8 @@ const DeleteTransaction = (props) => {
         }
     }
     return (
-        <div>
-            <button onClick={async ()=>{
+
+            <button onClick={ ()=>{
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -34,9 +34,9 @@ const DeleteTransaction = (props) => {
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        handleDelete()
+                }).then(async (result) => {
+
+                    if (result.isConfirmed) { await handleDelete()
                         Swal.fire(
                             'Deleted!',
                             'Your file has been deleted.',
@@ -45,7 +45,7 @@ const DeleteTransaction = (props) => {
                     }
                 })
             }}>delete</button>
-        </div>
+
     );
 };
 
