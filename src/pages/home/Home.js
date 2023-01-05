@@ -24,7 +24,7 @@ export default function Home() {
    let monthNow = 0 + (d.getMonth()+1).toString()
     let [month,setMonth]=useState(`${d.getFullYear()}-${monthNow}`)
    let [dataDate,setDataDate] = useState({})
-
+let [type,setType]=useState('')
 let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
@@ -224,8 +224,51 @@ let [flag,setFlag] =useState(true)
                     </div>
                 </div>
             </div>
-            <div style={{ width: 300 }}>
-              <PieChart></PieChart>
+
+            <div  style={{ width: 300 }}>
+                <div className={"row"}>
+                    <div className="custom-control custom-radio col-4">
+                        Expenditure
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultUnchecked"
+                            name="defaultExampleRadios"
+                            onChange={(event)=>{
+                             setType(event.target.value)   }}
+                            value={'chi'}
+                        />
+
+                    </div>
+                    {/* Default checked */}
+                    <div className="custom-control custom-radio col-4">
+                        Both
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultChecked"
+                            name="defaultExampleRadios"
+                            defaultChecked=""
+                       onChange={(event)=>{
+                           setType(event.target.value)}}
+                            value={''}
+                        />
+                    </div>
+                    <div className="custom-control custom-radio col-4">
+                        Revenue
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultChecked"
+                            name="defaultExampleRadios"
+                            defaultChecked=""
+                            onChange={(event)=>{
+                                setType(event.target.value)}}
+                            value={'thu'}
+                        />
+                    </div>
+                </div>
+              <PieChart type={type}></PieChart>
             </div>
             {/* End About Me */}
         </>
