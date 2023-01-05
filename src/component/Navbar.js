@@ -14,7 +14,7 @@ export default function Navbar() {
                 <div className="containerTemplate col-12" style={{height: "0px"}}>
                     <div className="col-1" style={{display: "flex"}}>
                         <h1><Link style={{marginLeft: 20}} to={'/home'}
-                                  className="nav-link">CVNQ</Link></h1>
+                                  className="nav-link"><img style={{width: "90px"}} src="Untitled.jpg"/></Link></h1>
                         <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
                             <div style={{width: 500, position: "fixed"}}>
                                 <ul>
@@ -44,7 +44,7 @@ export default function Navbar() {
                             </div>
                             <div className="col-1 " style={{lineHeight: '80px'}}><strong><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
-                            }} style={{marginRight: "8px", fontSize: 18, marginLeft: "8px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
+                            }} style={{marginRight: 0, fontSize: 18, marginLeft: "23px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
                         </div>
                     </div>
                 </div>
