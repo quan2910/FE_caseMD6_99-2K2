@@ -1,32 +1,20 @@
 import * as React from 'react';
-import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
-import {Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, editCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import StatusWallet from "./StatusWallet";
 export default function DetailWallet(props) {
     const [open, setOpen] = React.useState(false);
-    const dispatch = useDispatch();
-    const categories = useSelector(state => {
-        return  state.category.category
-    })
-    const user = useSelector(state => {
-        return state.user.currentUser.user.authenticUser[0]
-    })
     const wallets = useSelector(state => {
         return state.wallet.wallets
     })
     let walletDetail = {}
     wallets.map(item=>{
-        if(item.idWallet == props.idWallet) {
-            console.log(item)
+        if(item.idWallet === props.idWallet) {
             walletDetail = item;
             return walletDetail
         }
@@ -34,7 +22,6 @@ export default function DetailWallet(props) {
     return (
         <React.Fragment>
             <Link
-                // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
                 className={'btn-primary'}

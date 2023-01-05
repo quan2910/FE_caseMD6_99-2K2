@@ -58,7 +58,7 @@ export default function ShowWallet() {
                     <tbody>
                     {
                         wallets.map((item, index)=>{
-                            if(item.userId == user.idUser) {
+                            if(item.userId === user.idUser) {
                                 return (
                                     <tr>
                                         <th scope="row" style={{textAlign:"center"}}>{index++}</th>
