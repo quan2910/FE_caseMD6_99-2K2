@@ -11,6 +11,7 @@ import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/joy/Button";
+import Swal from "sweetalert2";
 
 export default function EditWallet(props) {
     const [open, setOpen] = React.useState(false);
@@ -31,10 +32,10 @@ export default function EditWallet(props) {
             <React.Fragment>
                 <Link
                     color="neutral"
-                    style={{color: "black"}}
+                    style={{color: "black",width: 150}}
                     onClick={() => setOpen(true)}
                 >
-                    Edit
+                    <i className="fa-regular fa-pen-to-square"></i>
                 </Link>
                 <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
@@ -84,6 +85,13 @@ export default function EditWallet(props) {
                                 }
                                 await dispatch(editWallet(data))
                                 await dispatch(getWallets())
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Edit Success!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                                 setOpen(false)
                             }}
                         >

@@ -72,7 +72,7 @@ function Login(props) {
                 }else {
                     navigate('/home/create-wallet')
                 }
-            },1600)
+            },1500)
 
 
         }

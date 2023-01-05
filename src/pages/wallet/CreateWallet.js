@@ -11,6 +11,7 @@ import Typography from "@mui/joy/Typography";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/joy/Button";
+import Swal from "sweetalert2";
 
 export default function CreateWallet() {
     const dispatch = useDispatch();
@@ -91,12 +92,19 @@ export default function CreateWallet() {
                                 }
                                 await dispatch(addWallets(data))
                                 await dispatch(getWallets())
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Create Success!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                                 setOpen(false)
                             }}
                         >
                             <Form>
                                 <Stack spacing={2}>
-                                    <Field style={{height: 40, width: 600, background: "lightgrey"}} placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
+                                    <Field style={{height: 45, width: 600, background: "lightgrey"}} placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
                                     <Field style={{background: "lightgrey"}} placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
                                     <Field style={{height:40, background: "lightgrey"}} as={'select'} name={"moneyTypeId"}  className="custom-select" id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
