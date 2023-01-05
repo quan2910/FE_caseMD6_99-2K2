@@ -33,7 +33,7 @@ export default function CreateTransaction(props) {
             <Button
                 // variant="outlined"
                 color="neutral"
-                style={{color: "black"}}
+                style={{color: "blue"}}
                 onClick={() => setOpen(true)}
             >
                +Transaction

@@ -141,6 +141,7 @@ let [flag,setFlag] =useState(true)
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
+                                <div style={{marginBottom: 20, marginTop: -20, color:"red"}}>{showDate()}</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <button>Search</button>
                                 </div>
@@ -151,7 +152,6 @@ let [flag,setFlag] =useState(true)
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
 
-                            {showDate()}
                         </div>
 
                         <div className="row">
