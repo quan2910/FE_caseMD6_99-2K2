@@ -1,5 +1,4 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-
 import axios from "axios";
 
 export const getWallets = createAsyncThunk(
@@ -13,14 +12,21 @@ export const getWallets = createAsyncThunk(
 export const addWallets = createAsyncThunk(
     'wallets/addWallets',
     async (data) => {
-        const res = await axios.post('http://localhost:3000/wallet/create/', data)
+        const res = await axios.post('http://localhost:3000/wallet/create/',data)
         return res
     }
 )
 export const editWallet = createAsyncThunk(
-    'wallet/editWallet',
+    'wallets/editWallets',
     async (data)=> {
-        const res = await axios.put('http://localhost:3000/wallet/' + data.id, data)
-        return res.data
+        const res = await axios.put('http://localhost:3000/wallet/' + data.idWallet,data)
+        return res
+    }
+)
+export const deleteWallet = createAsyncThunk(
+    'wallets/deleteWallets',
+    async (data)=> {
+        const res = await axios.delete('http://localhost:3000/wallet/' + data)
+        return {...res, data, message: "Delete success"}
     }
 )

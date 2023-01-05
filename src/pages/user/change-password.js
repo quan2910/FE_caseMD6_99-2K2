@@ -29,18 +29,7 @@ export default function ChangePassword() {
     })
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const showToastMessage = async () => {
-        await toast.success(' Changed Password!', {
-            position: "top-center",
-            autoClose: 500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
+
     const handlePassword =async (values,resetForm)=>{
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {
