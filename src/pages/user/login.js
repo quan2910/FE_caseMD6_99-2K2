@@ -122,9 +122,17 @@ function Login(props) {
                             autoLoad={true}
                             fields="name,email,picture"
                             onClick={componentClicked}
+
+                                cssClass="btn btn-primary"
+
+                                callback={responseFacebook} />
+                            <hr/>
+                            <button style={{backgroundColor:"#FF4B2B", height: 38, width:207}} className="btn btn-primary metro"
+
                                 cssClass="btn-primary"
                                 callback={responseFacebook} />
                             <button style={{backgroundColor:"#82AAE3",color: "white", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: 12}} className="btn btn-primary metro"
+
                             >Login</button>
                             <ToastContainer />
                         </Form>

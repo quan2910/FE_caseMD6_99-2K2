@@ -105,7 +105,7 @@ function Register(props) {
                                 <span style={{color:"red"}}>{errors.rePassword}</span>
                             ) : null}
                             <br/>
-                            <button>Register</button>
+                            <button >Register</button>
                             <ToastContainer />
                         </Form>
                         )}

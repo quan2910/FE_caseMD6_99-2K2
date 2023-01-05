@@ -39,7 +39,7 @@ export default function CreateTransaction(props) {
             </Button>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black", background:'white', border: 'none', boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)', width: 800}}
+                    style={{color: "black", background:'white', border: 'none', boxShadow: '2px 4px 5px black', width: 800}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
