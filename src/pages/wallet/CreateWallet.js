@@ -11,6 +11,8 @@ import Typography from "@mui/joy/Typography";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/joy/Button";
+import {login} from "../../service/userService";
+import {showDetailWallet} from "../../service/walletService";
 
 export default function CreateWallet() {
     const dispatch = useDispatch();
@@ -18,17 +20,23 @@ export default function CreateWallet() {
     const [open, setOpen] = React.useState(false);
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
-
     })
-        const moneyType = useSelector(state => {
-            return state
-        })
+    const wallets = useSelector(state => {
+        return state.wallet.wallets
+    })
+    let check = []
+    wallets.map(item => {
+        if (item.userId == user.idUser) {
+            check.push(item)
+        }
+    })
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(getMoneyType())
-    },[])
+    }, [])
 
     const handleAddWallet = async (values) => {
+
         let data = {
             ...values, userId: user.idUser
         }
@@ -78,18 +86,25 @@ export default function CreateWallet() {
                             initialValues={{
                                 nameWallet: '',
                                 moneyAmount: '',
-                                status: '1',
-                                moneyTypeId:'',
+                                status: '',
+                                moneyTypeId: '',
                                 userId: ''
                             }}
-                            onSubmit={ async (e)=>{
+                            onSubmit={async (e) => {
+                                let status;
+                                if (check.length > 0) {
+                                    status = 0
+                                } else {
+                                    status = 1
+                                }
                                 let data = {
                                     nameWallet: e.nameWallet,
                                     moneyAmount: e.moneyAmount,
-                                    status: e.status,
+                                    status: status,
                                     moneyTypeId: e.moneyTypeId,
                                     userId: user.idUser
                                 }
+
                                 await dispatch(addWallets(data))
                                 await dispatch(getWallets())
                                 setOpen(false)
@@ -99,7 +114,8 @@ export default function CreateWallet() {
                                 <Stack spacing={2}>
                                     <Field placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
                                     <Field placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
-                                    <Field as={'select'} name={"moneyTypeId"} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                    <Field as={'select'} name={"moneyTypeId"} style={{height: 40}}
+                                           className="custom-select" id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
                                         <option value={"1"}>Vietnam Dong</option>
                                         <option value="2">Dollar</option>
@@ -111,7 +127,6 @@ export default function CreateWallet() {
                     </ModalDialog>
                 </Modal>
             </React.Fragment>
-
         </>
     )
 }

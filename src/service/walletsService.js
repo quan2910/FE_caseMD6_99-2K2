@@ -20,6 +20,7 @@ export const editWallet = createAsyncThunk(
     'wallets/editWallets',
     async (data)=> {
         const res = await axios.put('http://localhost:3000/wallet/' + data.idWallet,data)
+        console.log('data', data)
         return res
     }
 )
