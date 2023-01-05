@@ -107,7 +107,6 @@ const Profile = () => {
                                         <div className="row">
                                             <div className="col-sm-12">
                                                 <button class="btn btn-primary">Edit</button>
-
                                             </div>
                                         </div>
                                     </div>

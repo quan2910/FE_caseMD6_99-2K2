@@ -2,12 +2,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {Field, Form, Formik} from "formik";
 import CreateCategory from "../category/CreateCategory";
 import CreateWallet from "./CreateWallet";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import {addWallets, deleteWallet, getWallets} from "../../service/walletsService";
 import data from "bootstrap/js/src/dom/data";
 import Swal from "sweetalert2";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
-import EditWallet from "./EditWallet";
+import EditWallet from "./editWallet";
 import {elGR} from "@mui/material/locale";
 
 export default function ShowWallet() {
@@ -48,12 +48,12 @@ export default function ShowWallet() {
                 <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Name Wallet</th>
-                        <th scope="col">Money Amount</th>
-                        <th scope="col">Status</th>
-                        <th scope={"col"}>UserId</th>
-                        <th scope={"col"}>Action</th>
+                        <th scope="col" style={{textAlign:"center"}}>STT</th>
+                        <th scope="col" style={{textAlign:"center"}}>Name Wallet</th>
+                        <th scope="col" style={{textAlign:"center"}}>Money Amount</th>
+                        <th scope="col" style={{textAlign:"center"}}>Status</th>
+                        <th scope={"col"} style={{textAlign:"center"}}>UserId</th>
+                        <th scope={"col"} style={{textAlign:"center"}}>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -62,15 +62,15 @@ export default function ShowWallet() {
                             if(item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row">{index++}</th>
-                                        <td>{item.nameWallet}</td>
-                                        <td>{item.moneyAmount}</td>
-                                        <td>{item.status}</td>
-                                        <td>{user.idUser}</td>
+                                        <th scope="row" style={{textAlign:"center"}}>{index++}</th>
+                                        <td style={{textAlign:"center"}}>{item.nameWallet}</td>
+                                        <td style={{textAlign:"center"}}>{item.moneyAmount}</td>
+                                        <td style={{textAlign:"center"}}>{item.status}</td>
+                                        <td style={{textAlign:"center"}}>{user.idUser}</td>
                                         <td><EditWallet idWallet={item.idWallet}></EditWallet></td>
-                                        <td><button style={{borderRadius:"none"}} onClick={()=>{
+                                        <td onClick={()=>{
                                             handleDeleteWallet(item.idWallet)
-                                        }}>Delete</button></td>
+                                        }}><i className="fa-regular fa-trash-can"></i></td>
                                     </tr>
                                 )
                             }

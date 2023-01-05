@@ -34,7 +34,7 @@ export default function EditWallet(props) {
                     style={{color: "black"}}
                     onClick={() => setOpen(true)}
                 >
-                    Edit
+                    <i className="fa-regular fa-pen-to-square"></i>
                 </Link>
                 <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
