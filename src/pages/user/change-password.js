@@ -36,7 +36,7 @@ export default function ChangePassword() {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Change Password Success !',
                 showConfirmButton: false,
                 timer: 1500
             })

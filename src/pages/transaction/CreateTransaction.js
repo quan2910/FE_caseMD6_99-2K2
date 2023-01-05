@@ -11,6 +11,7 @@ import {getCategory} from "../../service/categoriesService";
 import {addTransaction} from "../../service/transactionService";
 import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import {findById} from "../../service/userService";
+import Swal from "sweetalert2";
 
 export default function CreateTransaction(props) {
     const [open, setOpen] = React.useState(false);
@@ -32,7 +33,7 @@ export default function CreateTransaction(props) {
             <Button
                 // variant="outlined"
                 color="neutral"
-                style={{color: "black"}}
+                style={{color: "blue"}}
                 onClick={() => setOpen(true)}
             >
                +Transaction
@@ -94,6 +95,13 @@ export default function CreateTransaction(props) {
                                     month:date[1]
                                 }
                                 await dispatch(showTransactionByMoth(dataMonth))
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Create Success!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                             }
                             await dispatch(getCategory())
                             await dispatch(findById(user.idUser))
