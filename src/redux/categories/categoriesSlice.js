@@ -12,6 +12,7 @@ const categorySlice = createSlice({
     extraReducers: builder => {
         builder.addCase(getCategory.fulfilled, (state, action)=> {
             state.category = action.payload
+            localStorage.setItem('category',JSON.stringify(action.payload))
         })
         builder.addCase(addCategory.fulfilled, (state, action)=> {
             state.category.push(action.payload);

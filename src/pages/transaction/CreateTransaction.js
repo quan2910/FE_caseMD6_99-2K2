@@ -24,7 +24,7 @@ export default function CreateTransaction(props) {
     })
     useEffect(() => {
         dispatch(getCategory());
-    }, [categories])
+    }, [])
 
     if(!categories){return <h1>haha</h1>}
     return (
@@ -95,6 +95,8 @@ export default function CreateTransaction(props) {
                                 }
                                 await dispatch(showTransactionByMoth(dataMonth))
                             }
+                            await dispatch(getCategory())
+                            await dispatch(findById(user.idUser))
 
 
                             setOpen(false)
