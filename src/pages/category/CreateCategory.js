@@ -31,7 +31,7 @@ export default function CreateCategory() {
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black", width:800, boxShadow: '0px 0px 2px 0px rgba(0,0,0,0.75)'}}
+                    style={{color: "black", width:800, boxShadow: '2px 4px 5px black', background:"white"}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
@@ -69,9 +69,9 @@ export default function CreateCategory() {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: user.idUser,
-                                color: 'vàng'
+                                color: event.color
                             }
-                          await  dispatch(addCategory(data))
+                            await  dispatch(addCategory(data))
                             await dispatch(getCategory())
                             // event.preventDefault();
                             setOpen(false);
@@ -79,6 +79,9 @@ export default function CreateCategory() {
                     >
                         <Form>
                             <Stack spacing={2}>
+                                <div style={{width:100}}>
+                                    <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
+                                </div>
                                 <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>

@@ -5,8 +5,8 @@ import EditCategory from "./EditCategory";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
 import Swal from "sweetalert2";
 import React from 'react';
-
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'font-awesome/css/font-awesome.min.css';
 export default function ShowCategory() {
     const categories = useSelector(state => {
         return  state.category.category
@@ -45,6 +45,7 @@ export default function ShowCategory() {
                     <thead>
                     <tr>
                         <th scope="col" style={{textAlign: "center"}}>STT</th>
+                        <th scope="col"></th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Category </th>
                         <th scope="col" style={{textAlign: "center"}}>Status</th>
                         <th scope="col" colSpan={2} style={{textAlign: "center"}}>Action</th>
@@ -57,14 +58,23 @@ export default function ShowCategory() {
                             return (
                                 <tr>
                                     <th scope="row" style={{textAlign: "center"}}>{stt++}</th>
+                                    <td>
+                                        <div style={{
+                                        width: "20px",
+                                        height: "20px",
+                                        background: item.color,
+                                        marginRight: -60
+                                    }}>
+                                        </div>
+                                    </td>
                                     <td style={{textAlign: "center"}}>{item.nameCategory}</td>
                                     <td style={{textAlign: "center"}}>{item.statusCategory}</td>
-                                    <td style={{textAlign: "center"}} onClick={()=>{
-                                        handleDelteCategory(item.idCategory)
-                                    }}>Delete</td>
-                                    <td>
+                                    <td style={{textAlign: "center"}}>
                                         <EditCategory idCategory={item.idCategory}></EditCategory>
                                     </td>
+                                    <td style={{textAlign: "center"}} onClick={()=>{
+                                        handleDelteCategory(item.idCategory)
+                                    }}><i className="fa-regular fa-trash-can"></i></td>
                                 </tr>
                             )
                         }
