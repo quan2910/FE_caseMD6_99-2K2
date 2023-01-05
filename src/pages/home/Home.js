@@ -8,6 +8,7 @@ import CreateCategory from "../category/CreateCategory";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
 import DeleteTransaction from "../transaction/deleteTransaction";
+import PieChart from "../chart/PieChart";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -129,6 +130,7 @@ let [flag,setFlag] =useState(true)
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
                          setMonth('')
                             handleTransactionByDate(values)
+                            resetForm()
 
                         }}
                         >
@@ -216,10 +218,14 @@ let [flag,setFlag] =useState(true)
                                     })}
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div style={{ width: 300 }}>
+              <PieChart></PieChart>
             </div>
             {/* End About Me */}
         </>

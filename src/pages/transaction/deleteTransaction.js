@@ -1,10 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteTransaction} from "../../service/transactionService";
 import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import Swal from 'sweetalert2'
+import {getCategory} from "../../service/categoriesService";
+import {findById} from "../../service/userService";
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
+   const [a,setA]=useState(true)
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
@@ -21,12 +24,13 @@ const DeleteTransaction = (props) => {
                 month:date[1]
             }
             await dispatch(showTransactionByMoth(dataMonth))
+          setA(false)
         }
     }
     return (
 
-            <div onClick={ ()=>{
-                Swal.fire({
+            <button onClick={ async ()=>{
+              await  Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -44,7 +48,7 @@ const DeleteTransaction = (props) => {
                         )
                     }
                 })
-            }}><i className="fa-regular fa-trash-can"></i></div>
+            }}>delete</button>
 
     );
 };
