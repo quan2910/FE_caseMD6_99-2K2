@@ -4,7 +4,8 @@ import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import {useEffect} from "react";
 import {getCategory} from "../../service/categoriesService";
-const PieChart = () => {
+const PieChart = (props) => {
+    console.log(props.type)
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
@@ -35,13 +36,26 @@ const PieChart = () => {
    let showCategoryDone = ()=>{
         let arrCategoryDone =[]
        for (let category of findCategoryByUser()) {
-           for (let transaction of detailWalletHome.transactions) {
-               if(category.nameCategory==transaction.nameCategory){
-                   arrCategoryDone.push(category)
-                 break;
+           if(props.type==''){
+               for (let transaction of detailWalletHome.transactions) {
+                   if(category.nameCategory==transaction.nameCategory){
+                       arrCategoryDone.push(category)
+                       break;
+                   }
+               }
+           }else {
+               if(category.statusCategory==props.type){
+                   for (let transaction of detailWalletHome.transactions) {
+                       if(category.nameCategory==transaction.nameCategory){
+                           arrCategoryDone.push(category)
+                           break;
 
+                       }
+                   }
                }
            }
+
+
        }
        return arrCategoryDone
    }
@@ -76,7 +90,9 @@ const PieChart = () => {
         ],
     };
     if(!userData){return <h1>loading</h1>}
-    return <Pie data={userData} />;
+    return <>
+        <Pie data={userData} />;
+        </>
 
 };
 
