@@ -22,7 +22,7 @@ export default function Home() {
   let d = new Date();
    let monthNow = 0 + (d.getMonth()+1).toString()
     let [month,setMonth]=useState(`${d.getFullYear()}-${monthNow}`)
-
+   let [dataDate,setDataDate] = useState({})
 
 let [flag,setFlag] =useState(true)
     useEffect(()=>{
@@ -75,10 +75,11 @@ let [flag,setFlag] =useState(true)
         if(values.formDate == ""  ){
 
             await dispatch(showDetailWallet(user.idUser))
+            setFlag(true)
             return
         }
         if(values.formDate == `"yyyy-MM-dd"`  ){
-
+            setFlag(true)
             await dispatch(showDetailWallet(user.idUser))
             return
         }
@@ -88,6 +89,7 @@ let [flag,setFlag] =useState(true)
             fromDate:values.formDate,
             toDate:values.toDate
         }
+        setDataDate(date)
         if(values.formDate>values.toDate){
             Swal.fire({
                 position: 'top-end',
@@ -98,8 +100,16 @@ let [flag,setFlag] =useState(true)
             })
             return
         }
+        setFlag(false)
        let a= await dispatch(showTransactionByDate(date))
 
+    }
+    const showDate =()=>{
+       if(flag==false){
+           return <div>{dataDate.fromDate}---{dataDate.toDate}</div>
+       }else {
+           return ''
+       }
     }
 
 
@@ -116,7 +126,7 @@ let [flag,setFlag] =useState(true)
                 <div className="row">
                     <div className="col-3" style={{marginTop:"50px"}}>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
-                            console.log(values)
+                         setMonth('')
                             handleTransactionByDate(values)
 
                         }}
@@ -141,10 +151,15 @@ let [flag,setFlag] =useState(true)
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
                             <input  onChange={(event)=>{
                                 setMonth(event.target.value)
+                                setFlag(true)
                                 handleTransactionByMonth(event)
 
                             }}  type={'month'} value={month}></input>
+                            {showDate()}
                         </div>
+
+
+
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
