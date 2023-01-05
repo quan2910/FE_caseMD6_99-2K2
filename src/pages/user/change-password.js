@@ -29,11 +29,22 @@ export default function ChangePassword() {
     })
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const showToastMessage = async () => {
-        await toast.success(' Changed Password!', {
-            position: "top-center",
-            autoClose: 500,
+    const showToastMessage =async () => {
+        await toast.success('Changed Password!', {
+            position: "top-right",
+            autoClose: 1500,
             hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+    const showToastMessage1 =async () => {
+        await toast.error('Incorrect password!', {
+            position: "top-right",
+            hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true,
@@ -44,24 +55,14 @@ export default function ChangePassword() {
     const handlePassword =async (values,resetForm)=>{
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'Your work has been saved',
-                showConfirmButton: false,
-                timer: 1500
-            })
+            await showToastMessage()
             setTimeout(async ()=>{
                 clearTimeout();
                     navigate('/home')
             },1600)
 
         } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'incorrect password',
-            })
+            await showToastMessage1()
             resetForm()
         }
     }

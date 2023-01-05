@@ -26,7 +26,7 @@ function Login(props) {
     const dispatch = useDispatch();
     const showToastMessage =async () => {
         await toast.success('Successful login!', {
-            position: "top-center",
+            position: "top-right",
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
@@ -38,7 +38,7 @@ function Login(props) {
     };
     const showToastMessage1 =async () => {
         await toast.error('Incorrect account or loss of aperture!', {
-            position: "top-center",
+            position: "top-right",
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
