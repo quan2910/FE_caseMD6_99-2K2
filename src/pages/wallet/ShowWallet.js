@@ -62,7 +62,7 @@ export default function ShowWallet() {
                             if(item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row">{index++}</th>
+                                        <th scope="row"style={{textAlign: "center"}}>{index++}</th>
                                         <td  style={{textAlign: "center"}}>{item.nameWallet}</td>
                                         <td>{item.moneyAmount}</td>
                                         <td style={{textAlign: "center"}}>{item.status}</td>
