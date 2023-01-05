@@ -66,7 +66,7 @@ function Register(props) {
     }
     return (
         <div >
-            <div className="container" id="container" >
+            <div className="container" id="container" style={{marginTop: -20}} >
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-right" style={{color: "white"}}>
