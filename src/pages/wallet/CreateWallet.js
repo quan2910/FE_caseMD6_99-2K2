@@ -40,21 +40,19 @@ export default function CreateWallet() {
             <React.Fragment>
                 <Link
                     color="neutral"
-                    style={{color: "black"}}
+                    style={{color: "white"}}
                     onClick={() => setOpen(true)}
                 >
                     Create Wallet
                 </Link>
                 <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
-                        style={{color: "black"}}
+                        style={{color: "black", width:800, background:"white", boxShadow: '2px 4px 5px black'}}
                         aria-labelledby="basic-modal-dialog-title"
                         aria-describedby="basic-modal-dialog-description"
                         sx={{
-                            maxWidth: 500,
                             borderRadius: 'md',
                             p: 3,
-                            boxShadow: 'lg',
                         }}
                     >
                         <Typography
@@ -71,8 +69,9 @@ export default function CreateWallet() {
                             mt={0.5}
                             mb={2}
                             textColor="black"
+                            textAlign={"center"}
                         >
-                            Fill in the information of the project.
+                            Fill in the information of the wallet.
                         </Typography>
                         <Formik
                             initialValues={{
@@ -97,14 +96,14 @@ export default function CreateWallet() {
                         >
                             <Form>
                                 <Stack spacing={2}>
-                                    <Field placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
-                                    <Field placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
-                                    <Field as={'select'} name={"moneyTypeId"} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                    <Field style={{height: 40, width: 600, background: "lightgrey"}} placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
+                                    <Field style={{background: "lightgrey"}} placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
+                                    <Field style={{height:40, background: "lightgrey"}} as={'select'} name={"moneyTypeId"}  className="custom-select" id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
                                         <option value={"1"}>Vietnam Dong</option>
                                         <option value="2">Dollar</option>
                                     </Field>
-                                    <Button type="submit">Submit</Button>
+                                    <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                                 </Stack>
                             </Form>
                         </Formik>

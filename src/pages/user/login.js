@@ -9,6 +9,7 @@ import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {showDetailWallet} from "../../service/walletService";
 import FacebookLogin from 'react-facebook-login';
+import Swal from "sweetalert2";
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(6, "Username needs than 6 characters!")
@@ -26,7 +27,7 @@ function Login(props) {
     const dispatch = useDispatch();
     const showToastMessage =async () => {
         await toast.success('Successful login!', {
-            position: "top-right",
+            position: "top-center",
             autoClose: 1500,
             hideProgressBar: false,
             closeOnClick: true,
@@ -38,7 +39,7 @@ function Login(props) {
     };
     const showToastMessage1 =async () => {
         await toast.error('Incorrect account or loss of aperture!', {
-            position: "top-right",
+            position: "top-center",
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -50,10 +51,20 @@ function Login(props) {
     const handlerLogin = async (value,reset) => {
         let checkLogin = await dispatch(login(value))
         if (checkLogin.payload.mess =="sai tài khoản") {
-         await showToastMessage1()
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Incorrect username or password!',
+            })
             reset()
         } else {
-           await showToastMessage()
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Login Success !',
+                showConfirmButton: false,
+                timer: 1500
+            })
             setTimeout(async ()=>{
                 clearTimeout();
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
@@ -61,7 +72,7 @@ function Login(props) {
                 }else {
                     navigate('/home/create-wallet')
                 }
-            },2790)
+            },1600)
 
 
         }
@@ -76,9 +87,19 @@ function Login(props) {
         }
         let checkLogin = await dispatch(loginFB(values))
         if (checkLogin.payload.mess =="sai tài khoản") {
-            await showToastMessage1()
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Incorrect username or password!',
+            })
         } else {
-            await showToastMessage()
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Login Success !',
+                showConfirmButton: false,
+                timer: 1500
+            })
             setTimeout(async ()=>{
                 clearTimeout();
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
@@ -86,7 +107,7 @@ function Login(props) {
                 }else {
                     navigate('/home/create-wallet')
                 }
-            },2790)
+            },1600)
         }
     }
     const componentClicked =(data)=>{
@@ -100,38 +121,36 @@ function Login(props) {
                         username: "",
                         password: ""
                     }}
-                    onSubmit={(values,{resetForm}) => {
-                        handlerLogin(values,resetForm)
-                    }}>
+                            onSubmit={(values,{resetForm}) => {
+                                handlerLogin(values,resetForm)
+                            }}>
                         {({ errors, touched }) => (
-                        <Form action="case6/src/pages/user/login#">
-                            <h1 style={{color:"black"}}>Login</h1>
-                            <br/>
-                            <Field type="text" name={"username"} placeholder="Username"/>
-                            {errors.username && touched.username ? (
-                                <span style={{color:"red", paddingTop:"px"}}>{errors.username}</span>
-                            ) : null}
-                            <Field type="password" name={"password"} placeholder="Password"/>
-                            {errors.password && touched.password ? (
-                                <span style={{color:"red"}}>{errors.password}</span>
-                            ) : null}
-                            <br/>
-                            <FacebookLogin
-                                style={{height: 50, borderRadius: "20px", borderColor:"#FFFFFF", backgroundColor: "#007bff"}}
-                            appId="1322700111900192"
-                            autoLoad={true}
-                            fields="name,email,picture"
-                            onClick={componentClicked}
+                            <Form action="case6/src/pages/user/login#">
+                                <h1 style={{color:"black"}}>Login</h1>
+                                <br/>
+                                <Field type="text" name={"username"} placeholder="Username"/>
+                                {errors.username && touched.username ? (
+                                    <span style={{color:"red", paddingTop:"px"}}>{errors.username}</span>
+                                ) : null}
+                                <Field type="password" name={"password"} placeholder="Password"/>
+                                {errors.password && touched.password ? (
+                                    <span style={{color:"red"}}>{errors.password}</span>
+                                ) : null}
+                                <br/>
+                                <FacebookLogin
+                                    style={{height: 50, borderRadius: "20px", borderColor:"#FFFFFF", backgroundColor: "#007bff"}}
+                                    appId="1322700111900192"
+                                    autoLoad={true}
+                                    fields="name,email,picture"
+                                    onClick={componentClicked}
+                                    cssClass="btn btn-primary"
+                                    callback={responseFacebook} />
+                                <hr/>
+                                <button style={{backgroundColor:"#82AAE3",color: "white", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: -5}} className="btn btn-primary metro"
 
-                                cssClass="btn btn-primary"
-
-                                callback={responseFacebook} />
-                            <hr/>
-                            <button style={{backgroundColor:"#82AAE3",color: "white", height: 44, width:232, borderRadius: "20px", borderColor:"white", marginTop: 12}} className="btn btn-primary metro"
-
-                            >Login</button>
-                            <ToastContainer />
-                        </Form>
+                                >Login</button>
+                                <ToastContainer />
+                            </Form>
                         )}
                     </Formik>
 

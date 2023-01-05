@@ -109,7 +109,7 @@ let [flag,setFlag] =useState(true)
         <>
 
             {/* ======= About Me ======= */}
-            <div className="about-me containerTemplate">
+            <div className="about-me containerTemplate" style={{marginTop: -30}}>
                 {/*<div className="section-title">*/}
                 {/*    <p style={{color:"black"}}>{user.username}</p>*/}
                 {/*</div>*/}
@@ -131,7 +131,7 @@ let [flag,setFlag] =useState(true)
                                 </div>
 
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                                    <button className="btn btn-primary">Search</button>
+                                    <button>Search</button>
                                 </div>
                             </Form>
                         </Formik>
@@ -148,7 +148,7 @@ let [flag,setFlag] =useState(true)
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
-                                <strong><h5 style={{color:"black"}}>
+                                <strong><h5 style={{color:"black",marginTop: -10, fontWeight: "bold"}}>
                                     TotalMoney : {totalConsumableMoney().total}
                                 </h5></strong>
                             </div>
@@ -160,9 +160,9 @@ let [flag,setFlag] =useState(true)
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div style={{marginLeft: 640, marginTop: -40, marginBottom:13}}>
+                            <div style={{marginLeft: 670, marginTop: -40, marginBottom:13}}>
                                 <strong><CreateTransaction style={{color:"black"}} date={month} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
-                                <span style={{marginLeft: 400}}></span>
+                                <span style={{marginLeft: 300}}></span>
                             </div>
                             {/*<div  style={{marginLeft: 0}}>*/}
                             {/*    <Category style={{color:"black"}}></Category>*/}
