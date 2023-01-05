@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {login, register} from "../../service/userService";
 import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
+import {addWallets, deleteWallet, editWallet, getWallets} from "../../service/walletsService";
 let initialState = {
     detailWalletHome :JSON.parse(localStorage.getItem('walletDetail')),
     wallets :[]
