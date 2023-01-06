@@ -20,12 +20,12 @@ export default function Home() {
     })
 
     let [time,setTime]=useState('"yyyy-MM-dd"')
-  let d = new Date();
-   let monthNow = 0 + (d.getMonth()+1).toString()
+    let d = new Date();
+    let monthNow = 0 + (d.getMonth()+1).toString()
     let [month,setMonth]=useState(`${d.getFullYear()}-${monthNow}`)
-   let [dataDate,setDataDate] = useState({})
-let [type,setType]=useState('')
-let [flag,setFlag] =useState(true)
+    let [dataDate,setDataDate] = useState({})
+    let [type,setType]=useState('')
+    let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
             let dataMonth = {
@@ -44,27 +44,27 @@ let [flag,setFlag] =useState(true)
             ConsumableMoney:0,
             moneyIncome :0}
         if (detailWalletHome) {
-       detailWalletHome.transactions.map((transaction,index)=>{
-         if(transaction.statusCategory=="thu"){
-             totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
-         }else {
-             totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
-         }
-       })
-         totalMoney.total = totalMoney.total + totalMoney.moneyIncome-totalMoney.ConsumableMoney
+            detailWalletHome.transactions.map((transaction,index)=>{
+                if(transaction.statusCategory=="thu"){
+                    totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
+                }else {
+                    totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
+                }
+            })
+            totalMoney.total = totalMoney.total + totalMoney.moneyIncome-totalMoney.ConsumableMoney
         }
 
         return totalMoney
     }
 
-   const handleTransactionByMonth=async (e)=>{
+    const handleTransactionByMonth=async (e)=>{
         let str = e.target.value
-         if(str==''){
-             await dispatch(showDetailWallet(user.idUser))
-             return
-         }
-       console.log(str)
-       let date = str.split('-');
+        if(str==''){
+            await dispatch(showDetailWallet(user.idUser))
+            return
+        }
+        console.log(str)
+        let date = str.split('-');
         let dataMonth = {
             idUser:user.idUser,
             year:date[0],
@@ -102,15 +102,15 @@ let [flag,setFlag] =useState(true)
             return
         }
         setFlag(false)
-       let a= await dispatch(showTransactionByDate(date))
+        let a= await dispatch(showTransactionByDate(date))
 
     }
     const showDate =()=>{
-       if(flag==false){
-           return <div style={{marginTop: -5, textAlign:"center", fontWeight:"bold"}}>{dataDate.fromDate} -> {dataDate.toDate}</div>
-       }else {
-           return ''
-       }
+        if(flag==false){
+            return <div style={{marginTop: -5, textAlign:"center", fontWeight:"bold"}}>{dataDate.fromDate} -> {dataDate.toDate}</div>
+        }else {
+            return ''
+        }
     }
 
 
@@ -125,10 +125,10 @@ let [flag,setFlag] =useState(true)
                 {/*    <p style={{color:"black"}}>{user.username}</p>*/}
                 {/*</div>*/}
                 <div className="row">
-                    <div className="col-3" style={{marginTop:"50px"}}>
-                        <h5 style={{textAlign:"center", fontWeight:"bold"}}>Find Transaction</h5>
+                    <div className="col-3" style={{marginTop:"28px"}}>
+                        <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: 15}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
-                         setMonth('')
+                            setMonth('')
                             handleTransactionByDate(values)
                             resetForm()
 
@@ -139,11 +139,11 @@ let [flag,setFlag] =useState(true)
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'formDate'}/>
                                 </div>
-                                <div style={{marginLeft: -195}}>To</div>
+                                <div style={{marginLeft: -195, marginTop: -40}}>To</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
-                                <div style={{marginBottom: 20, marginTop: -20, color:"red"}}>{showDate()}</div>
+                                <div style={{marginBottom: 50, marginTop: -50, color:"red"}}>{showDate()}</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <button>Search</button>
                                 </div>
@@ -196,24 +196,24 @@ let [flag,setFlag] =useState(true)
                                 <table className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Total Spent</th>
-                                        <th scope="col">Name Category</th>
-                                        <th scope="col">Note</th>
-                                        <th scope="col">Action</th>
+                                        <th style={{textAlign:"center"}} scope="col">STT</th>
+                                        <th style={{textAlign:"center"}} scope="col">Time</th>
+                                        <th style={{textAlign:"center"}} scope="col">Total Spent</th>
+                                        <th style={{textAlign:"center"}} scope="col">Name Category</th>
+                                        <th style={{textAlign:"center"}} scope="col">Note</th>
+                                        <th style={{textAlign:"center"}} scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
 
                                         return <tr>
-                                            <th scope="row">{index+1}</th>
-                                            <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
-                                            <td>{transaction.totalSpent}</td>
-                                            <td>{transaction.nameCategory}</td>
-                                            <td>{transaction.note}</td>
-                                            <td><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
+                                            <th style={{textAlign:"center"}} scope="row">{index+1}</th>
+                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.note}</td>
+                                            <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
                                         </tr>
                                     })}
                                     </tbody>
@@ -225,9 +225,9 @@ let [flag,setFlag] =useState(true)
                 </div>
             </div>
 
-            <div  style={{ width: 300 }}>
+            <div  style={{ width: 300, marginTop: 50 }}>
                 <div className={"row"}>
-                    <div className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Expenditure
                         <input
                             type="radio"
@@ -235,13 +235,13 @@ let [flag,setFlag] =useState(true)
                             id="defaultUnchecked"
                             name="defaultExampleRadios"
                             onChange={(event)=>{
-                             setType(event.target.value)   }}
+                                setType(event.target.value)   }}
                             value={'chi'}
                         />
 
                     </div>
                     {/* Default checked */}
-                    <div className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Both
                         <input
                             type="radio"
@@ -249,13 +249,12 @@ let [flag,setFlag] =useState(true)
                             id="defaultChecked"
                             name="defaultExampleRadios"
                             defaultChecked=""
-                       onChange={(event)=>{
-                           setType(event.target.value)}}
+                            onChange={(event)=>{
+                                setType(event.target.value)}}
                             value={''}
                         />
                     </div>
-                    <div className="custom-control custom-radio col-4">
-                        Revenue
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">Revenue
                         <input
                             type="radio"
                             className="custom-control-input"
@@ -268,7 +267,7 @@ let [flag,setFlag] =useState(true)
                         />
                     </div>
                 </div>
-              <PieChart type={type}></PieChart>
+                <PieChart type={type}></PieChart>
             </div>
             {/* End About Me */}
         </>
