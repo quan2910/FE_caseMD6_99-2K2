@@ -20,12 +20,12 @@ export default function Home() {
     })
 
     let [time,setTime]=useState('"yyyy-MM-dd"')
-  let d = new Date();
-   let monthNow = 0 + (d.getMonth()+1).toString()
+    let d = new Date();
+    let monthNow = 0 + (d.getMonth()+1).toString()
     let [month,setMonth]=useState(`${d.getFullYear()}-${monthNow}`)
-   let [dataDate,setDataDate] = useState({})
-let [type,setType]=useState('')
-let [flag,setFlag] =useState(true)
+    let [dataDate,setDataDate] = useState({})
+    let [type,setType]=useState('')
+    let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
             let dataMonth = {
@@ -44,27 +44,27 @@ let [flag,setFlag] =useState(true)
             ConsumableMoney:0,
             moneyIncome :0}
         if (detailWalletHome) {
-       detailWalletHome.transactions.map((transaction,index)=>{
-         if(transaction.statusCategory=="thu"){
-             totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
-         }else {
-             totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
-         }
-       })
-         totalMoney.total = totalMoney.total + totalMoney.moneyIncome-totalMoney.ConsumableMoney
+            detailWalletHome.transactions.map((transaction,index)=>{
+                if(transaction.statusCategory=="thu"){
+                    totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
+                }else {
+                    totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
+                }
+            })
+            totalMoney.total = totalMoney.total + totalMoney.moneyIncome-totalMoney.ConsumableMoney
         }
 
         return totalMoney
     }
 
-   const handleTransactionByMonth=async (e)=>{
+    const handleTransactionByMonth=async (e)=>{
         let str = e.target.value
-         if(str==''){
-             await dispatch(showDetailWallet(user.idUser))
-             return
-         }
-       console.log(str)
-       let date = str.split('-');
+        if(str==''){
+            await dispatch(showDetailWallet(user.idUser))
+            return
+        }
+        console.log(str)
+        let date = str.split('-');
         let dataMonth = {
             idUser:user.idUser,
             year:date[0],
@@ -84,7 +84,6 @@ let [flag,setFlag] =useState(true)
             await dispatch(showDetailWallet(user.idUser))
             return
         }
-
         let date = {
             idUser :user.idUser,
             fromDate:values.formDate,
@@ -102,15 +101,15 @@ let [flag,setFlag] =useState(true)
             return
         }
         setFlag(false)
-       let a= await dispatch(showTransactionByDate(date))
+        let a= await dispatch(showTransactionByDate(date))
 
     }
     const showDate =()=>{
-       if(flag==false){
-           return <div style={{marginTop: -5, textAlign:"center", fontWeight:"bold"}}>{dataDate.fromDate} -> {dataDate.toDate}</div>
-       }else {
-           return ''
-       }
+        if(flag==false){
+            return <div style={{marginTop: -5, textAlign:"center", fontWeight:"bold"}}>{dataDate.fromDate} -> {dataDate.toDate}</div>
+        }else {
+            return ''
+        }
     }
 
 
@@ -128,7 +127,7 @@ let [flag,setFlag] =useState(true)
                     <div className="col-3" style={{marginTop:"50px"}}>
                         <h5 style={{textAlign:"center", fontWeight:"bold"}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
-                         setMonth('')
+                            setMonth('')
                             handleTransactionByDate(values)
                             resetForm()
 
@@ -235,7 +234,7 @@ let [flag,setFlag] =useState(true)
                             id="defaultUnchecked"
                             name="defaultExampleRadios"
                             onChange={(event)=>{
-                             setType(event.target.value)   }}
+                                setType(event.target.value)   }}
                             value={'chi'}
                         />
 
@@ -249,8 +248,8 @@ let [flag,setFlag] =useState(true)
                             id="defaultChecked"
                             name="defaultExampleRadios"
                             defaultChecked=""
-                       onChange={(event)=>{
-                           setType(event.target.value)}}
+                            onChange={(event)=>{
+                                setType(event.target.value)}}
                             value={''}
                         />
                     </div>
@@ -268,7 +267,7 @@ let [flag,setFlag] =useState(true)
                         />
                     </div>
                 </div>
-              <PieChart type={type}></PieChart>
+                <PieChart type={type}></PieChart>
             </div>
             {/* End About Me */}
         </>
