@@ -6,6 +6,9 @@ export default function StatusWallet(props) {
     const wallet = useSelector(state => {
         return state.wallet.wallets
     })
+    const user = useSelector(state => {
+        return state.user.currentUser.user.authenticUser[0]
+    })
     const dispatch = useDispatch();
     let walletDetail = {}
     wallet.map(item => {
@@ -17,6 +20,13 @@ export default function StatusWallet(props) {
 
     const handleChange = (idWallet) => {
         wallet.map(async item => {
+            if(item.userId === user.idUser) {
+                let data = {
+                    idWallet: item.idWallet,
+                    status: 0
+                }
+                await dispatch(editWallet(data))
+            }
             if (item.idWallet === idWallet) {
                 if (item.status === 1) {
                     let data = {
@@ -60,6 +70,5 @@ export default function StatusWallet(props) {
                 }
             })}
         </>
-
     );
 }

@@ -1,14 +1,9 @@
 import {useDispatch, useSelector} from "react-redux";
-import {Field, Form, Formik} from "formik";
-import CreateCategory from "../category/CreateCategory";
 import CreateWallet from "./CreateWallet";
 import React, {useEffect} from "react";
-import {addWallets, deleteWallet, getWallets} from "../../service/walletsService";
-import data from "bootstrap/js/src/dom/data";
+import {deleteWallet, getWallets} from "../../service/walletsService";
 import Swal from "sweetalert2";
-import {deleteCategory, getCategory} from "../../service/categoriesService";
 import EditWallet from "./EditWallet";
-import {elGR} from "@mui/material/locale";
 import DetailWallet from "./DetailWallet";
 
 export default function ShowWallet() {
@@ -17,6 +12,7 @@ export default function ShowWallet() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
+        console.log('state.wallet.wallets', state.wallet.wallets)
         return state.wallet.wallets
     })
     const handleDeleteWallet = (idWallet)=> {
