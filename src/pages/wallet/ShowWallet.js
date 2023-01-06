@@ -32,6 +32,7 @@ export default function ShowWallet() {
 
     useEffect(  ()=>{
         dispatch(getWallets())
+
     },[])
 
     if (!wallets) return <div>Loading...</div>

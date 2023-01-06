@@ -29,13 +29,6 @@ export default function StatusWallet(props) {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 wallet.map(async item => {
-                    if(item.userId === user.idUser) {
-                        let data = {
-                            idWallet: item.idWallet,
-                            status: 0
-                        }
-                        await dispatch(editWallet(data))
-                    }
                     if (item.idWallet === idWallet) {
                         if (item.status === 1) {
                             Swal.fire({
@@ -43,6 +36,15 @@ export default function StatusWallet(props) {
                                 title: 'You need turn on the other wallet if you want to turn off this wallet'
                             })
                         } else {
+                            wallet.map(async item=>{
+                                if(item.userId === user.idUser) {
+                                    let data = {
+                                        idWallet: item.idWallet,
+                                        status: 0
+                                    }
+                                    await dispatch(editWallet(data))
+                                }
+                            })
                             let data = {
                                 idWallet: walletDetail.idWallet,
                                 status: 1
