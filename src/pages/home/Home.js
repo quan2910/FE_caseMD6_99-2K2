@@ -187,7 +187,7 @@ export default function Home() {
                                         <th style={{textAlign:"center"}} scope="col">Total Spent</th>
                                         <th style={{textAlign:"center"}} scope="col">Name Category</th>
                                         <th style={{textAlign:"center"}} scope="col">Note</th>
-                                        <th style={{textAlign:"center"}} scope="col">Action</th>
+                                        <th style={{textAlign:"center"}} colSpan={2} scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -198,8 +198,8 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
+                                            <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
-                                        <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
 
                                         </tr>
                                     })}

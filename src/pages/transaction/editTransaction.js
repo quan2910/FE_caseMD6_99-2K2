@@ -46,7 +46,7 @@ if(transaction.idTransaction==props.idTransaction){
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
-            <Button
+            <div
                 // variant="outlined"
                 onClick={() =>{
                     setOpen(true)
@@ -54,7 +54,7 @@ if(transaction.idTransaction==props.idTransaction){
                 } }
             >
                 <i className="fa-regular fa-pen-to-square"></i>
-            </Button>
+            </div>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
                     style={{color: "black", background:'white', border: 'none', boxShadow: '2px 4px 5px black', width: 800}}
