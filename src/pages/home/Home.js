@@ -17,7 +17,7 @@ import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
-import BarChart from "../chart/barChart";
+
 
 export default function Home() {
     const user = useSelector(state => {
@@ -174,15 +174,10 @@ export default function Home() {
 
                                     }}  type={'month'} value={month}></input>
                             </div>
-                            <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
-                                <h5 style={{color:"black",marginTop: 23, marginLeft: 65, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
-                                </h5>
-                            </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
+
                         </div>
                         <div className="col-lg-6">
                             <div style={{marginLeft: 670, marginTop: -55, marginBottom:13}}>
