@@ -1,7 +1,12 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
+import {
+    showDetailWallet,
+    showTransactionByDate,
+    showTransactionByMoth,
+    showTransactionByOnlyMonth
+} from "../../service/walletService";
 import CreateTransaction from "../transaction/CreateTransaction";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
@@ -11,6 +16,7 @@ import PieChart from "../chart/PieChart";
 import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
+import BarChart from "../chart/barChart";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -36,6 +42,7 @@ export default function Home() {
                 month:(d.getMonth()+1)
             }
             await dispatch(showTransactionByMoth(dataMonth))
+            await dispatch(showTransactionByOnlyMonth(user.idUser))
         })()
     }, [])
 
@@ -166,6 +173,12 @@ export default function Home() {
 
                                     }}  type={'month'} value={month}></input>
                             </div>
+                            <div className="col-lg-4"  >
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <h5 style={{color:"black",marginTop: 23, marginLeft: 65, fontWeight: "bold"}}>
+                                    TotalMoney : {totalConsumableMoney().total}
+                                </h5>
+                            </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
@@ -201,11 +214,13 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
+                                        <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
 
                                         </tr>
                                     })}
                                     </tbody>
                                 </table>
+                                <div style={{width:"400px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>

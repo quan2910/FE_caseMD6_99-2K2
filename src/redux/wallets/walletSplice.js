@@ -1,10 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {login, register} from "../../service/userService";
-import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
+import {
+    showDetailWallet,
+    showTransactionByDate,
+    showTransactionByMoth,
+    showTransactionByOnlyMonth
+} from "../../service/walletService";
 import {addWallets, deleteWallet, editWallet, getWallets} from "../../service/walletsService";
 let initialState = {
     detailWalletHome :JSON.parse(localStorage.getItem('walletDetail')),
-    wallets: []
+    wallets: [],
+    transactionMonth:[]
 }
 const walletSlice = createSlice({
     name: 'wallet',
@@ -36,6 +42,9 @@ const walletSlice = createSlice({
         builder.addCase(showTransactionByDate.fulfilled, (state, action) => {
             state.detailWalletHome = action.payload
             localStorage.setItem('walletDetail',JSON.stringify(action.payload))
+        })
+        builder.addCase(showTransactionByOnlyMonth.fulfilled, (state, action) => {
+            state.transactionMonth = action.payload
         })
 
     }
