@@ -68,7 +68,7 @@ function Login(props) {
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
                     navigate('/home')
                 }else {
-                    navigate('/home/create-wallet')
+                    navigate('/home/show-wallet')
                 }
             },1500)
         }
@@ -101,7 +101,7 @@ function Login(props) {
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
                     navigate('/home')
                 }else {
-                    navigate('/home/create-wallet')
+                    navigate('/home/show-wallet')
                 }
             },1600)
         }

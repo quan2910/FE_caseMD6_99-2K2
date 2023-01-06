@@ -78,8 +78,8 @@ const Profile = () => {
                                 </div>
 
                                 <div className="mt-5 text-center">
-                                    <p>{user.username}</p>
-                                    <h4 style={{marginTop: -15}}>{user.fullName}</h4>
+                                    <p style={{color: "black"}}>{user.username}</p>
+                                    <h4 style={{marginTop: -15, color: "black"}}>{user.fullName}</h4>
                                     <p className="text-secondary mb-1">{user.phone}</p>
                                     <p className="text-muted font-size-sm">
                                         {user.address}
