@@ -116,7 +116,7 @@ export default function CreateWallet() {
                                         <option value={"1"}>Vietnam Dong</option>
                                         <option value="2">Dollar</option>
                                     </Field>
-                                    <Button type="submit">Submit</Button>
+                                    <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                                 </Stack>
                             </Form>
                         </Formik>
