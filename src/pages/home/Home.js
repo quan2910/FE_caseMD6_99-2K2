@@ -1,7 +1,12 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
+import {
+    showDetailWallet,
+    showTransactionByDate,
+    showTransactionByMoth,
+    showTransactionByOnlyMonth
+} from "../../service/walletService";
 import CreateTransaction from "../transaction/CreateTransaction";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
@@ -10,6 +15,7 @@ import PieChart from "../chart/PieChart";
 
 import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
+import BarChart from "../chart/barChart";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -35,6 +41,7 @@ export default function Home() {
                 month:(d.getMonth()+1)
             }
             await dispatch(showTransactionByMoth(dataMonth))
+            await dispatch(showTransactionByOnlyMonth(user.idUser))
         })()
     }, [])
 
@@ -205,6 +212,7 @@ export default function Home() {
                                     })}
                                     </tbody>
                                 </table>
+                                <div style={{width:"400px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>

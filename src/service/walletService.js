@@ -22,4 +22,11 @@ export const showTransactionByDate = createAsyncThunk(
         return res.data
     }
 )
+export const showTransactionByOnlyMonth = createAsyncThunk(
+    'wallet/showTransactionByOnlyMonth',
+    async (idUser)=>{
+        const res = await axios.get(`http://localhost:3000/wallet/transaction-by-only-month/${idUser}`)
+        return res.data
+    }
+)
 
