@@ -21,8 +21,7 @@ export default function StatusWallet(props) {
     const handleChange = (idWallet) => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
+            icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -39,12 +38,10 @@ export default function StatusWallet(props) {
                     }
                     if (item.idWallet === idWallet) {
                         if (item.status === 1) {
-                            let data = {
-                                idWallet: walletDetail.idWallet,
-                                status: 0
-                            }
-                            await dispatch(editWallet(data))
-                            await dispatch(getWallets())
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'You need turn on the other wallet if you want to turn off this wallet'
+                            })
                         } else {
                             let data = {
                                 idWallet: walletDetail.idWallet,
