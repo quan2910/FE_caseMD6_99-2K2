@@ -200,6 +200,7 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
                                         <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
+
                                         </tr>
                                     })}
                                     </tbody>
