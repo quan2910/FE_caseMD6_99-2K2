@@ -81,7 +81,7 @@ const PieChart = (props) => {
                 data: showTotal().map(total=>total),
                 backgroundColor: showCategoryDone().map((category)=>category.color),
                 borderColor: "black",
-                borderWidth: 2,
+                borderWidth: 1,
             },
         ],
     };

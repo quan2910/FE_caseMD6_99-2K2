@@ -5,14 +5,19 @@ import {showDetailWallet, showTransactionByMoth} from "../../service/walletServi
 import Swal from 'sweetalert2'
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
-   const [a,setA]=useState(true)
+
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     let handleDelete = async ()=>{
         await dispatch(deleteTransaction(props.idTransaction))
         if(props.date==''){
-            await dispatch(showDetailWallet(user.idUser))
+           setTimeout(async ()=>{
+               clearTimeout()
+               await dispatch(showDetailWallet(user.idUser))
+           },1000)
+
+
         }else {
             let str =props.date
             let date = str.split('-');
@@ -21,8 +26,11 @@ const DeleteTransaction = (props) => {
                 year:date[0],
                 month:date[1]
             }
-            await dispatch(showTransactionByMoth(dataMonth))
-          setA(false)
+            setTimeout(async ()=>{
+                clearTimeout()
+                await dispatch(showTransactionByMoth(dataMonth))
+            },1000)
+
         }
     }
     return (

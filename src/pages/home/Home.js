@@ -8,6 +8,9 @@ import Swal from 'sweetalert2'
 import DeleteTransaction from "../transaction/deleteTransaction";
 import PieChart from "../chart/PieChart";
 
+import {deleteTransaction} from "../../service/transactionService";
+import EditTransaction from "../transaction/editTransaction";
+
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
@@ -196,6 +199,7 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
+                                        <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
                                         </tr>
                                     })}
                                     </tbody>

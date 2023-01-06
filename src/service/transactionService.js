@@ -17,3 +17,10 @@ export const deleteTransaction = createAsyncThunk(
         return res
     }
 )
+export const updateTransaction = createAsyncThunk(
+    'transaction/updateTransaction',
+    async (data) => {
+        const res = await axios.put('http://localhost:3000/transactions/edit-transactions',data)
+        return res.data
+    }
+)
