@@ -25,7 +25,7 @@ const DeleteTransaction = (props) => {
     }
     return (
 
-            <button onClick={ ()=>{
+            <td onClick={ ()=>{
                 Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
@@ -44,7 +44,7 @@ const DeleteTransaction = (props) => {
                         )
                     }
                 })
-            }}>delete</button>
+            }}><i className="fa-regular fa-trash-can"></i></td>
 
     );
 };

@@ -62,7 +62,7 @@ let [flag,setFlag] =useState(true)
              await dispatch(showDetailWallet(user.idUser))
              return
          }
-       console.log(str)
+
        let date = str.split('-');
         let dataMonth = {
             idUser:user.idUser,

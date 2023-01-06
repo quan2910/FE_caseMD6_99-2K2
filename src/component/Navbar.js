@@ -18,7 +18,7 @@ export default function Navbar() {
                         <nav id="navbar" className="navbar" style={{marginLeft: 20}}>
                             <div style={{width: 500, position: "fixed"}}>
                                 <ul>
-                                    <Link to={'/home'} className="nav-link" >Home</Link>
+                                    <Link to={''} className="nav-link" >Home</Link>
                                     <Link to={'show-wallet'} className="nav-link"
                                           style={{marginLeft: 15}}>Wallet</Link>
                                     <Link to={'show-category'} className="nav-link"
@@ -37,14 +37,14 @@ export default function Navbar() {
                             <div className="col-10"></div>
                             <div className="col-1  d-flex justify-content-end">
                                 <Link style={{marginLeft: 0, marginRight: 0}}>
-                                    <img style={{borderRadius: "50%", height: 50, width: 50, marginTop: 15}}
-                                         src={user.avatar == "" ? "https://bootdey.com/img/Content/avatar/avatar7.png" : user.avatar}
-                                         alt="" className="img-fluid"/>
+                                        <img style={{borderRadius: "50%", height: 50, width: 50, marginTop: 15}}
+                                             src={user.avatar == "" ? "https://bootdey.com/img/Content/avatar/avatar7.png" :user.avatar}
+                                             alt="" className="img-fluid"/>
                                 </Link>
                             </div>
                             <div className="col-1 " style={{lineHeight: '80px'}}><strong><Link className="nav-link" onClick={() => {
                                 localStorage.clear()
-                            }} style={{marginRight: 0, fontSize: 18, marginLeft: "23px", color:'white'}} to={"/"}>LogOut</Link></strong></div>
+                            }} style={{marginRight: 0, fontSize: 18, marginLeft: "23px", color:'white'}} to={"/"}> LogOut</Link></strong></div>
                         </div>
                     </div>
                 </div>

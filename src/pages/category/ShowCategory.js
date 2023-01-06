@@ -15,7 +15,7 @@ export default function ShowCategory() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const dispatch = useDispatch()
-    const handleDelteCategory = (idCategory)=> {
+    const handleDeleteCategory = (idCategory)=> {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -73,7 +73,7 @@ export default function ShowCategory() {
                                         <EditCategory idCategory={item.idCategory}></EditCategory>
                                     </td>
                                     <td style={{textAlign: "center"}} onClick={()=>{
-                                        handleDelteCategory(item.idCategory)
+                                        handleDeleteCategory(item.idCategory)
                                     }}><i className="fa-regular fa-trash-can"></i></td>
                                 </tr>
                             )
