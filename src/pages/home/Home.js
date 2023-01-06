@@ -1,7 +1,12 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
+import {
+    showDetailWallet,
+    showTransactionByDate,
+    showTransactionByMoth,
+    showTransactionByOnlyMonth
+} from "../../service/walletService";
 import CreateTransaction from "../transaction/CreateTransaction";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
@@ -10,6 +15,9 @@ import PieChart from "../chart/PieChart";
 
 import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
+import {blue} from "@mui/material/colors";
+import BarChart from "../chart/barChart";
+
 
 export default function Home() {
     const user = useSelector(state => {
@@ -35,6 +43,7 @@ export default function Home() {
                 month:(d.getMonth()+1)
             }
             await dispatch(showTransactionByMoth(dataMonth))
+            await dispatch(showTransactionByOnlyMonth(user.idUser))
         })()
     }, [])
 
@@ -150,8 +159,14 @@ export default function Home() {
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                                    TotalMoney : {totalConsumableMoney().total}
+                                </h5>
+                            </div>
+                            <div className="col-lg-4"  >
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
                                 <input
-                                    style={{background:"white", width: 200, marginLeft: -10}}
+                                    style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
                                         setMonth(event.target.value)
                                         setFlag(true)
@@ -159,15 +174,10 @@ export default function Home() {
 
                                     }}  type={'month'} value={month}></input>
                             </div>
-                            <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
-                                <h5 style={{color:"black",marginTop: 23, marginLeft: 65, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
-                                </h5>
-                            </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
+
                         </div>
                         <div className="col-lg-6">
                             <div style={{marginLeft: 670, marginTop: -55, marginBottom:13}}>
@@ -187,7 +197,7 @@ export default function Home() {
                                         <th style={{textAlign:"center"}} scope="col">Total Spent</th>
                                         <th style={{textAlign:"center"}} scope="col">Name Category</th>
                                         <th style={{textAlign:"center"}} scope="col">Note</th>
-                                        <th style={{textAlign:"center"}} scope="col">Action</th>
+                                        <th style={{textAlign:"center"}} colSpan={2} scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -198,12 +208,15 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
+                                            <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
                                         <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
+
                                         </tr>
                                     })}
                                     </tbody>
                                 </table>
+                                <div style={{width:"400px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>

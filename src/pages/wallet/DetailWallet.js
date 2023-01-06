@@ -49,9 +49,9 @@ export default function DetailWallet(props) {
                         Detail Wallet
                     </Typography>
                     <div>
-                        <h1>Name: {walletDetail.nameWallet}</h1>
-                        <h3>Total: {walletDetail.moneyAmount}</h3>
-                        <h3>Money Type: {walletDetail.nameMoneyType}</h3>
+                        <h3 style={{fontWeight: "bold"}}>Name: {walletDetail.nameWallet}</h3>
+                        <h4>Money: {walletDetail.moneyAmount}</h4>
+                        <h4>Loại tiền: {walletDetail.nameMoneyType}</h4>
                         <StatusWallet idWallet={walletDetail.idWallet}/>
                     </div>
                 </ModalDialog>

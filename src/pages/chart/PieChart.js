@@ -22,7 +22,7 @@ const PieChart = (props) => {
    let findCategoryByUser = ()=>{
 
        if(categories==null){
-           return 1
+           return []
        }
        let arrCategory = []
        categories.map((category)=>{

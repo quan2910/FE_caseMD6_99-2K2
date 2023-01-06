@@ -13,9 +13,11 @@ import {showDetailWallet, showTransactionByMoth} from "../../service/walletServi
 import {findById} from "../../service/userService";
 import Swal from "sweetalert2";
 
+
 export default function EditTransaction(props) {
     const [open, setOpen] = React.useState(false);
     const [income,setIncome]= useState('')
+    const[time,setTime]=useState('')
     const dispatch = useDispatch();
     const categories = useSelector(state => {
         return  state.category.category
@@ -27,13 +29,14 @@ export default function EditTransaction(props) {
         return state.wallet.detailWalletHome
     })
     const [transaction,setTransaction]=useState({})
-    console.log(new Date(transaction.time).toLocaleString("en-US").substring(0,8))
+
     useEffect(() => {
         dispatch(getCategory());
     }, [])
     let handleFinnTransaction = ()=>{
         detailWalletHome.transactions.map((transaction)=>{
 if(transaction.idTransaction==props.idTransaction){
+    setTime(transaction.time.substring(0,10))
     return setTransaction(transaction)
 }
 
@@ -44,7 +47,7 @@ if(transaction.idTransaction==props.idTransaction){
     if(!categories){return <h1>haha</h1>}
     return (
         <React.Fragment>
-            <Button
+            <div
                 // variant="outlined"
                 onClick={() =>{
                     setOpen(true)
@@ -52,7 +55,7 @@ if(transaction.idTransaction==props.idTransaction){
                 } }
             >
                 <i className="fa-regular fa-pen-to-square"></i>
-            </Button>
+            </div>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
                     style={{color: "black", background:'white', border: 'none', boxShadow: '2px 4px 5px black', width: 800}}
@@ -83,7 +86,7 @@ if(transaction.idTransaction==props.idTransaction){
                     </Typography>
                     <Formik
                         initialValues={{
-                            time: '',
+                            time:time,
                             totalSpent: transaction.totalSpent,
                             categoryId: '',
                             walletId: transaction.walletId,
