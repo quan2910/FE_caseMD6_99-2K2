@@ -7,6 +7,7 @@ import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(6, "Username needs than 6 characters!")
@@ -52,16 +53,26 @@ function Register(props) {
             let newUser = {username: value.username, password: value.password}
             let mess = await dispatch(register(newUser))
                 if (mess.payload.mess == 'Tài khoản đã tồn tại') {
-                       await showToastMessage1()
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Account already exists!',
+                    })
                     reset()
                 } else {
-                  await  showToastMessage()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Register Success !',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     setTimeout(()=>{
 
                         clearTimeout();
                         navigate('/')
 
-                    },2790)
+                    },1500)
                 }
     }
     return (
