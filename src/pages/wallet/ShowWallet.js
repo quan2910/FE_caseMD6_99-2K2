@@ -7,7 +7,7 @@ import {addWallets, deleteWallet, getWallets} from "../../service/walletsService
 import data from "bootstrap/js/src/dom/data";
 import Swal from "sweetalert2";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
-import EditWallet from "./EditWallet";
+import EditWallet from "./EditWallet"
 import {elGR} from "@mui/material/locale";
 
 export default function ShowWallet() {
