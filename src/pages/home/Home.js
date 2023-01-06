@@ -130,14 +130,14 @@ export default function Home() {
             <div className="about-me containerTemplate" style={{marginTop: -35}}>
                 <div className="row">
                     <div className="col-3" style={{marginTop:"28px"}}>
-                        <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: 15}}>Find Transaction</h5>
+                        <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: -90}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
                             setMonth('')
                             handleTransactionByDate(values)
                             resetForm()
                         }}
                         >
-                            <Form>
+                            <Form style={{marginTop: -180}}>
                                 <div style={{marginLeft: -195}}>From</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'formDate'}/>
@@ -210,19 +210,18 @@ export default function Home() {
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
                                             <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
-                                        <td style={{textAlign:"center"}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
 
                                         </tr>
                                     })}
                                     </tbody>
                                 </table>
-                                <div style={{width:"400px"}}><BarChart></BarChart></div>
+                                <div style={{width:"800px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div  style={{ width: 300, marginTop: 50 }}>
+            <div  style={{ width: 300, marginTop: -350 }}>
                 <div className={"row"}>
                     <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Expenditure
