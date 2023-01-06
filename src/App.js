@@ -10,7 +10,6 @@ import ShowCategory from "./pages/category/ShowCategory";
 import ShowWallet from "./pages/wallet/ShowWallet";
 import './App.css';
 function App() {
-
     return (
         <div className={"col-12"}>
             <div className={"col-12"}>

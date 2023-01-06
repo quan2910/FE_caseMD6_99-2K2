@@ -1,23 +1,17 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteTransaction} from "../../service/transactionService";
 import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import Swal from 'sweetalert2'
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
-
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     let handleDelete = async ()=>{
         await dispatch(deleteTransaction(props.idTransaction))
         if(props.date==''){
-           setTimeout(async ()=>{
-               clearTimeout()
-               await dispatch(showDetailWallet(user.idUser))
-           },1000)
-
-
+            await dispatch(showDetailWallet(user.idUser))
         }else {
             let str =props.date
             let date = str.split('-');
@@ -26,16 +20,13 @@ const DeleteTransaction = (props) => {
                 year:date[0],
                 month:date[1]
             }
-            setTimeout(async ()=>{
-                clearTimeout()
-                await dispatch(showTransactionByMoth(dataMonth))
-            },1000)
-
+            await dispatch(showTransactionByMoth(dataMonth))
         }
     }
     return (
-            <div onClick={ async ()=>{
-              await  Swal.fire({
+
+            <td onClick={ ()=>{
+                Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -53,7 +44,8 @@ const DeleteTransaction = (props) => {
                         )
                     }
                 })
-            }}><i className="fa-regular fa-trash-can"></i></div>
+            }}><i className="fa-regular fa-trash-can"></i></td>
+
     );
 };
 
