@@ -130,7 +130,7 @@ export default function Home() {
             <div className="about-me containerTemplate" style={{marginTop: -35}}>
                 <div className="row">
                     <div className="col-3" style={{marginTop:"28px"}}>
-                        <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: -90}}>Find Transaction</h5>
+                        <h5 style={{textAlign:"center",color:"white", fontWeight:"bold", marginBottom: -90}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
                             setMonth('')
                             handleTransactionByDate(values)
@@ -221,9 +221,9 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div  style={{ width: 300, marginTop: -350 }}>
+            <div  style={{ width: 300, marginTop: -250 }}>
                 <div className={"row"}>
-                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
                         Expenditure
                         <input
                             type="radio"
@@ -235,7 +235,7 @@ export default function Home() {
                             value={'chi'}
                         />
                     </div>
-                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
                         Both
                         <input
                             type="radio"
@@ -248,7 +248,7 @@ export default function Home() {
                             value={''}
                         />
                     </div>
-                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">Revenue
+                    <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">Revenue
                         <input
                             type="radio"
                             className="custom-control-input"
