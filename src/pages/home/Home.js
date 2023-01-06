@@ -17,6 +17,7 @@ import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
+import BarChart from "../chart/barChart";
 
 export default function Home() {
     const user = useSelector(state => {
