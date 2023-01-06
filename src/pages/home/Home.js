@@ -10,6 +10,7 @@ import PieChart from "../chart/PieChart";
 
 import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
+import {blue} from "@mui/material/colors";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -150,20 +151,20 @@ export default function Home() {
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                                    TotalMoney : {totalConsumableMoney().total}
+                                </h5>
+                            </div>
+                            <div className="col-lg-4"  >
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
                                 <input
-                                    style={{background:"white", width: 200, marginLeft: -10}}
+                                    style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
                                         setMonth(event.target.value)
                                         setFlag(true)
                                         handleTransactionByMonth(event)
 
                                     }}  type={'month'} value={month}></input>
-                            </div>
-                            <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
-                                <h5 style={{color:"black",marginTop: 23, marginLeft: 65, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
-                                </h5>
                             </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
