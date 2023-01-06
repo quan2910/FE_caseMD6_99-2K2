@@ -10,14 +10,12 @@ import {addCategory, editCategory, getCategory} from "../../service/categoriesSe
 import {Link} from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import Swal from "sweetalert2";
 export default function EditCategory(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
         return  state.category.category
-    })
-    const user = useSelector(state => {
-        return state.user.currentUser.user.authenticUser[0]
     })
     let categoryEdit = {}
     categories.map(item=>{
@@ -29,7 +27,6 @@ export default function EditCategory(props) {
     return (
         <React.Fragment>
             <Link
-                // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
                 className={'btn-primary'}
@@ -83,7 +80,13 @@ export default function EditCategory(props) {
                             }
                             await  dispatch(editCategory(data))
                             await dispatch(getCategory())
-                            // event.preventDefault();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Edit Success!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                             setOpen(false);
                         }}
                     >
@@ -92,8 +95,8 @@ export default function EditCategory(props) {
                                 <div style={{width:100}}>
                                     <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
                                 </div>
-                                <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
-                                <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                <Field style={{height: "40px", width: 600, background: "lightgrey"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
+                                <Field as={'select'} name={'statusCategory'} style={{height:40, background: "lightgrey"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>

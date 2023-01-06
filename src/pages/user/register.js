@@ -7,6 +7,7 @@ import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
 const SignupSchema = Yup.object().shape({
     username: Yup.string()
         .min(6, "Username needs than 6 characters!")
@@ -24,49 +25,35 @@ const SignupSchema = Yup.object().shape({
 function Register(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const showToastMessage =async () => {
-        await toast.success(' Register successful!', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-    const showToastMessage1 =async () => {
-        await toast.error(' already existing accounts!', {
-            position: "top-center",
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
     const handleRegister = async (value,reset) => {
             let newUser = {username: value.username, password: value.password}
             let mess = await dispatch(register(newUser))
                 if (mess.payload.mess == 'Tài khoản đã tồn tại') {
-                       await showToastMessage1()
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Account already exists!',
+                    })
                     reset()
                 } else {
-                  await  showToastMessage()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Register Success !',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     setTimeout(()=>{
 
                         clearTimeout();
                         navigate('/')
 
-                    },2790)
+                    },1500)
                 }
     }
     return (
         <div >
-            <div className="container" id="container" >
+            <div className="container" id="container" style={{marginTop: -20}} >
                 <div className="overlay-container">
                     <div className="overlay">
                         <div className="overlay-panel overlay-right" style={{color: "white"}}>

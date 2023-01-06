@@ -11,50 +11,48 @@ import Typography from "@mui/joy/Typography";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import Stack from "@mui/joy/Stack";
 import Button from "@mui/joy/Button";
+import Swal from "sweetalert2";
+import {login} from "../../service/userService";
+import {showDetailWallet} from "../../service/walletService";
 
 export default function CreateWallet() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
-
     })
-        const moneyType = useSelector(state => {
-            return state
-        })
+    const wallets = useSelector(state => {
+        return state.wallet.wallets
+    })
+    let check = []
+    wallets.map(item => {
+        if (item.userId == user.idUser) {
+            check.push(item)
+        }
+    })
 
     useEffect(()=>{
         dispatch(getMoneyType())
     },[])
-
-    const handleAddWallet = async (values) => {
-        let data = {
-            ...values, userId: user.idUser
-        }
-        await dispatch(addWallets(data))
-    }
 
     return (
         <>
             <React.Fragment>
                 <Link
                     color="neutral"
-                    style={{color: "black"}}
+                    style={{color: "white"}}
                     onClick={() => setOpen(true)}
                 >
                     Create Wallet
                 </Link>
                 <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
-                        style={{color: "black"}}
+                        style={{color: "black", width:800, background:"white", boxShadow: '2px 4px 5px black'}}
                         aria-labelledby="basic-modal-dialog-title"
                         aria-describedby="basic-modal-dialog-description"
                         sx={{
-                            maxWidth: 500,
                             borderRadius: 'md',
                             p: 3,
-                            boxShadow: 'lg',
                         }}
                     >
                         <Typography
@@ -71,40 +69,55 @@ export default function CreateWallet() {
                             mt={0.5}
                             mb={2}
                             textColor="black"
+                            textAlign={"center"}
                         >
-                            Fill in the information of the project.
+                            Fill in the information of the wallet.
                         </Typography>
                         <Formik
                             initialValues={{
                                 nameWallet: '',
                                 moneyAmount: '',
-                                status: '1',
-                                moneyTypeId:'',
+                                status: '',
+                                moneyTypeId: '',
                                 userId: ''
                             }}
-                            onSubmit={ async (e)=>{
+                            onSubmit={async (e) => {
+                                console.log(e)
+                                let status;
+                                if (check.length > 0) {
+                                    status = 0
+                                } else {
+                                    status = 1
+                                }
                                 let data = {
                                     nameWallet: e.nameWallet,
                                     moneyAmount: e.moneyAmount,
-                                    status: e.status,
+                                    status: status,
                                     moneyTypeId: e.moneyTypeId,
                                     userId: user.idUser
                                 }
                                 await dispatch(addWallets(data))
                                 await dispatch(getWallets())
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Create Success!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
                                 setOpen(false)
                             }}
                         >
                             <Form>
                                 <Stack spacing={2}>
-                                    <Field placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
-                                    <Field placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
-                                    <Field as={'select'} name={"moneyTypeId"} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                    <Field style={{height: 45, width: 600, background: "lightgrey"}} placeholder={'Name Wallet'} autoFocus required name={'nameWallet'}/>
+                                    <Field style={{background: "lightgrey"}} placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
+                                    <Field style={{height:40, background: "lightgrey"}} as={'select'} name={"moneyTypeId"}  className="custom-select" id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
-                                        <option value={"1"}>Vietnam Dong</option>
+                                        <option value="1">Vietnam Dong</option>
                                         <option value="2">Dollar</option>
                                     </Field>
-                                    <Button type="submit">Submit</Button>
+                                    <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                                 </Stack>
                             </Form>
                         </Formik>

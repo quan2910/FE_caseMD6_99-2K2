@@ -29,14 +29,13 @@ export default function ChangePassword() {
     })
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const handlePassword =async (values,resetForm)=>{
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
-                title: 'Your work has been saved',
+                title: 'Change Password Success !',
                 showConfirmButton: false,
                 timer: 1500
             })
