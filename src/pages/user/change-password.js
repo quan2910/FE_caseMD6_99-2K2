@@ -29,7 +29,6 @@ export default function ChangePassword() {
     })
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
     const handlePassword =async (values,resetForm)=>{
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {

@@ -2,7 +2,6 @@ import Switch from "react-switch";
 import {useDispatch, useSelector} from "react-redux";
 import {editWallet, getWallets} from "../../service/walletsService";
 import Swal from "sweetalert2";
-
 export default function StatusWallet(props) {
     const wallet = useSelector(state => {
         return state.wallet.wallets

@@ -13,16 +13,12 @@ import Swal from 'sweetalert2'
 export default function CreateCategory() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
-    const categories = useSelector(state => {
-        return  state.category.category
-    })
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     return (
         <React.Fragment>
             <Link
-                // variant="outlined"
                 color="neutral"
                 style={{color: "white"}}
                 className={'btn-primary'}
@@ -81,7 +77,6 @@ export default function CreateCategory() {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            // event.preventDefault();
                             setOpen(false);
                         }}
                     >

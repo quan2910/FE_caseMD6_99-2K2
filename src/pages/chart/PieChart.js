@@ -5,7 +5,6 @@ import { Chart as ChartJS } from "chart.js/auto";
 import {useEffect} from "react";
 import {getCategory} from "../../service/categoriesService";
 const PieChart = (props) => {
-    console.log(props.type)
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
@@ -73,9 +72,6 @@ const PieChart = (props) => {
         }
         return arrTotal
     }
-    console.log(showTotal())
-
-
 
   let userData={
         labels: showCategoryDone().map((category)=>category.nameCategory),

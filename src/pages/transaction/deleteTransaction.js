@@ -3,8 +3,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {deleteTransaction} from "../../service/transactionService";
 import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
 import Swal from 'sweetalert2'
-import {getCategory} from "../../service/categoriesService";
-import {findById} from "../../service/userService";
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
    const [a,setA]=useState(true)
@@ -28,7 +26,6 @@ const DeleteTransaction = (props) => {
         }
     }
     return (
-
             <div onClick={ async ()=>{
               await  Swal.fire({
                     title: 'Are you sure?',

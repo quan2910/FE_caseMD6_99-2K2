@@ -7,7 +7,6 @@ import "../../style/loginCSS.css"
 import * as Yup from "yup";
 import {toast, ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import {showDetailWallet} from "../../service/walletService";
 import FacebookLogin from 'react-facebook-login';
 import Swal from "sweetalert2";
 const SignupSchema = Yup.object().shape({
@@ -19,7 +18,6 @@ const SignupSchema = Yup.object().shape({
         .min(6, "Your password must be least 6 characters")
         .max(50, "Your password must be under 50 characters")
         .required("You must fill in the field"),
-
 });
 
 function Login(props) {
@@ -73,8 +71,6 @@ function Login(props) {
                     navigate('/home/create-wallet')
                 }
             },1500)
-
-
         }
     }
     const user = useSelector(state => {

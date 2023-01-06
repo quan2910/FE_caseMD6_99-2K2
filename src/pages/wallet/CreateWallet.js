@@ -17,7 +17,6 @@ import {showDetailWallet} from "../../service/walletService";
 
 export default function CreateWallet() {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [open, setOpen] = React.useState(false);
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
@@ -35,13 +34,6 @@ export default function CreateWallet() {
     useEffect(()=>{
         dispatch(getMoneyType())
     },[])
-
-    const handleAddWallet = async (values) => {
-        let data = {
-            ...values, userId: user.idUser
-        }
-        await dispatch(addWallets(data))
-    }
 
     return (
         <>

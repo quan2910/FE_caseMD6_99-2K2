@@ -25,30 +25,6 @@ const SignupSchema = Yup.object().shape({
 function Register(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const showToastMessage =async () => {
-        await toast.success(' Register successful!', {
-            position: "top-center",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
-
-    const showToastMessage1 =async () => {
-        await toast.error(' already existing accounts!', {
-            position: "top-center",
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-    };
     const handleRegister = async (value,reset) => {
             let newUser = {username: value.username, password: value.password}
             let mess = await dispatch(register(newUser))

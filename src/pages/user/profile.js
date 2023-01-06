@@ -39,10 +39,8 @@ const Profile = () => {
     return (
         <div className="container" style={{marginTop: 0}}>
             <div className="main-body">
-                {/* Breadcrumb */}
                 <nav aria-label="breadcrumb" className="main-breadcrumb">
                 </nav>
-                {/* /Breadcrumb */}
                 <div className="row gutters-sm">
                     <div className="col-md-4 mb-3">
                         <div className="card" style={{height: 460}}>

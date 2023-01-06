@@ -1,9 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Field, Form, Formik} from "formik";
-import CreateCategory from "../category/CreateCategory";
-import CreateWallet from "./CreateWallet";
-import {useEffect} from "react";
-import {addWallets, editWallet, getWallets} from "../../service/walletsService";
+import {editWallet, getWallets} from "../../service/walletsService";
 import * as React from "react";
 import {Link} from "react-router-dom";
 import Modal from "@mui/joy/Modal";

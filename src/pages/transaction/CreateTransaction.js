@@ -31,7 +31,6 @@ export default function CreateTransaction(props) {
     return (
         <React.Fragment>
             <Button
-                // variant="outlined"
                 color="neutral"
                 style={{color: "blue"}}
                 onClick={() => setOpen(true)}
@@ -105,8 +104,6 @@ export default function CreateTransaction(props) {
                             }
                             await dispatch(getCategory())
                             await dispatch(findById(user.idUser))
-
-
                             setOpen(false)
                         }}
                     >

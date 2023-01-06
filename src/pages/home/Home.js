@@ -2,9 +2,7 @@ import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {showDetailWallet, showTransactionByDate, showTransactionByMoth} from "../../service/walletService";
-import ChangePassword from "../user/change-password";
 import CreateTransaction from "../transaction/CreateTransaction";
-import CreateCategory from "../category/CreateCategory";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
 import DeleteTransaction from "../transaction/deleteTransaction";
@@ -117,12 +115,7 @@ export default function Home() {
     if (!detailWalletHome.wallet) return <div>Loading...</div>
     return (
         <>
-
-            {/* ======= About Me ======= */}
             <div className="about-me containerTemplate" style={{marginTop: -35}}>
-                {/*<div className="section-title">*/}
-                {/*    <p style={{color:"black"}}>{user.username}</p>*/}
-                {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:"28px"}}>
                         <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: 15}}>Find Transaction</h5>
@@ -130,7 +123,6 @@ export default function Home() {
                             setMonth('')
                             handleTransactionByDate(values)
                             resetForm()
-
                         }}
                         >
                             <Form>
@@ -148,13 +140,10 @@ export default function Home() {
                                 </div>
                             </Form>
                         </Formik>
-
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
-
                         </div>
-
                         <div className="row">
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
@@ -182,14 +171,9 @@ export default function Home() {
                                 <strong><CreateTransaction style={{color:"black"}} date={month} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
                                 <span style={{marginLeft: 300}}></span>
                             </div>
-                            {/*<div  style={{marginLeft: 0}}>*/}
-                            {/*    <Category style={{color:"black"}}></Category>*/}
-                            {/*</div>*/}
                         </div>
                         <div>
-
                         </div>
-
                         <div className="row" >
                             <div className="col-lg-12">
                                 <table className="table table-striped" style={{marginTop: 10}}>
@@ -205,7 +189,6 @@ export default function Home() {
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
-
                                         return <tr>
                                             <th style={{textAlign:"center"}} scope="row">{index+1}</th>
                                             <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
@@ -217,13 +200,11 @@ export default function Home() {
                                     })}
                                     </tbody>
                                 </table>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div  style={{ width: 300, marginTop: 50 }}>
                 <div className={"row"}>
                     <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
@@ -237,9 +218,7 @@ export default function Home() {
                                 setType(event.target.value)   }}
                             value={'chi'}
                         />
-
                     </div>
-                    {/* Default checked */}
                     <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Both
                         <input
@@ -268,7 +247,6 @@ export default function Home() {
                 </div>
                 <PieChart type={type}></PieChart>
             </div>
-            {/* End About Me */}
         </>
     )
 }

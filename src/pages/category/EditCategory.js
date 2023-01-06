@@ -17,9 +17,6 @@ export default function EditCategory(props) {
     const categories = useSelector(state => {
         return  state.category.category
     })
-    const user = useSelector(state => {
-        return state.user.currentUser.user.authenticUser[0]
-    })
     let categoryEdit = {}
     categories.map(item=>{
         if(item.idCategory == props.idCategory) {
@@ -30,7 +27,6 @@ export default function EditCategory(props) {
     return (
         <React.Fragment>
             <Link
-                // variant="outlined"
                 color="neutral"
                 style={{color: "black"}}
                 className={'btn-primary'}
@@ -91,7 +87,6 @@ export default function EditCategory(props) {
                                 showConfirmButton: false,
                                 timer: 1500
                             })
-                            // event.preventDefault();
                             setOpen(false);
                         }}
                     >

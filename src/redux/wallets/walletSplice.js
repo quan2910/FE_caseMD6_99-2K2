@@ -30,7 +30,6 @@ const walletSlice = createSlice({
             let index = arrNew.findIndex(item => item.idWallet == action.payload.data);
             arrNew.splice(index, 1);
             state.wallets = arrNew;
-            // state.wallets = state.wallets.filter(item=>item.idWallet != action.payload)
         });
         builder.addCase(editWallet.fulfilled, (state,action)=>{
         })
