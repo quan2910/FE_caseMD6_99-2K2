@@ -124,8 +124,8 @@ export default function Home() {
                 {/*    <p style={{color:"black"}}>{user.username}</p>*/}
                 {/*</div>*/}
                 <div className="row">
-                    <div className="col-3" style={{marginTop:"50px"}}>
-                        <h5 style={{textAlign:"center", fontWeight:"bold"}}>Find Transaction</h5>
+                    <div className="col-3" style={{marginTop:"28px"}}>
+                        <h5 style={{textAlign:"center", fontWeight:"bold", marginBottom: 15}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
                             setMonth('')
                             handleTransactionByDate(values)
@@ -138,11 +138,11 @@ export default function Home() {
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'formDate'}/>
                                 </div>
-                                <div style={{marginLeft: -195}}>To</div>
+                                <div style={{marginLeft: -195, marginTop: -40}}>To</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
-                                <div style={{marginBottom: 20, marginTop: -20, color:"red"}}>{showDate()}</div>
+                                <div style={{marginBottom: 50, marginTop: -50, color:"red"}}>{showDate()}</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <button>Search</button>
                                 </div>
@@ -195,24 +195,24 @@ export default function Home() {
                                 <table className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Time</th>
-                                        <th scope="col">Total Spent</th>
-                                        <th scope="col">Name Category</th>
-                                        <th scope="col">Note</th>
-                                        <th scope="col">Action</th>
+                                        <th style={{textAlign:"center"}} scope="col">STT</th>
+                                        <th style={{textAlign:"center"}} scope="col">Time</th>
+                                        <th style={{textAlign:"center"}} scope="col">Total Spent</th>
+                                        <th style={{textAlign:"center"}} scope="col">Name Category</th>
+                                        <th style={{textAlign:"center"}} scope="col">Note</th>
+                                        <th style={{textAlign:"center"}} scope="col">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {detailWalletHome.transactions.map((transaction,index)=>{
 
                                         return <tr>
-                                            <th scope="row">{index+1}</th>
-                                            <td>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
-                                            <td>{transaction.totalSpent}</td>
-                                            <td>{transaction.nameCategory}</td>
-                                            <td>{transaction.note}</td>
-                                            <td><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
+                                            <th style={{textAlign:"center"}} scope="row">{index+1}</th>
+                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.note}</td>
+                                            <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
                                         </tr>
                                     })}
                                     </tbody>
@@ -224,9 +224,9 @@ export default function Home() {
                 </div>
             </div>
 
-            <div  style={{ width: 300 }}>
+            <div  style={{ width: 300, marginTop: 50 }}>
                 <div className={"row"}>
-                    <div className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Expenditure
                         <input
                             type="radio"
@@ -240,7 +240,7 @@ export default function Home() {
 
                     </div>
                     {/* Default checked */}
-                    <div className="custom-control custom-radio col-4">
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">
                         Both
                         <input
                             type="radio"
@@ -253,8 +253,7 @@ export default function Home() {
                             value={''}
                         />
                     </div>
-                    <div className="custom-control custom-radio col-4">
-                        Revenue
+                    <div style={{textAlign:"center"}} className="custom-control custom-radio col-4">Revenue
                         <input
                             type="radio"
                             className="custom-control-input"
