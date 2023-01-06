@@ -10,14 +10,7 @@ function BarChart() {
     let transactionByMonth = useSelector(state => {
         return state.wallet.transactionMonth
     })
-    const user = useSelector(state => {
-        return state.user.currentUser.user.authenticUser[0]
-    })
 
-    const dispatch = useDispatch()
-    useEffect(async ()=>{
-        await dispatch(showTransactionByOnlyMonth(user.idUser))
-    },[])
    let handleMonth = ()=>{
         let arrTotal =[]
         transactionByMonth.map((month)=>{
