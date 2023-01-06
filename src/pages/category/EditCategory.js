@@ -10,6 +10,7 @@ import {addCategory, editCategory, getCategory} from "../../service/categoriesSe
 import {Link} from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import Swal from "sweetalert2";
 export default function EditCategory(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
@@ -83,6 +84,13 @@ export default function EditCategory(props) {
                             }
                             await  dispatch(editCategory(data))
                             await dispatch(getCategory())
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Edit Success!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                             // event.preventDefault();
                             setOpen(false);
                         }}
@@ -92,8 +100,8 @@ export default function EditCategory(props) {
                                 <div style={{width:100}}>
                                     <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
                                 </div>
-                                <Field style={{height: "40px"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
-                                <Field as={'select'} name={'statusCategory'} style={{height:40}} className="custom-select" id="inputGroupSelect02">
+                                <Field style={{height: "40px", width: 600, background: "lightgrey"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
+                                <Field as={'select'} name={'statusCategory'} style={{height:40, background: "lightgrey"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Thu hay chi...</option>
                                     <option value="thu">Thu</option>
                                     <option value="chi">Chi</option>

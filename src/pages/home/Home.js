@@ -8,6 +8,7 @@ import CreateCategory from "../category/CreateCategory";
 import {Field, Form, Formik} from "formik";
 import Swal from 'sweetalert2'
 import DeleteTransaction from "../transaction/deleteTransaction";
+import PieChart from "../chart/PieChart";
 
 export default function Home() {
     const user = useSelector(state => {
@@ -22,8 +23,8 @@ export default function Home() {
   let d = new Date();
    let monthNow = 0 + (d.getMonth()+1).toString()
     let [month,setMonth]=useState(`${d.getFullYear()}-${monthNow}`)
-
-
+   let [dataDate,setDataDate] = useState({})
+let [type,setType]=useState('')
 let [flag,setFlag] =useState(true)
     useEffect(()=>{
         (async ()=>{
@@ -75,10 +76,11 @@ let [flag,setFlag] =useState(true)
         if(values.formDate == ""  ){
 
             await dispatch(showDetailWallet(user.idUser))
+            setFlag(true)
             return
         }
         if(values.formDate == `"yyyy-MM-dd"`  ){
-
+            setFlag(true)
             await dispatch(showDetailWallet(user.idUser))
             return
         }
@@ -88,6 +90,7 @@ let [flag,setFlag] =useState(true)
             fromDate:values.formDate,
             toDate:values.toDate
         }
+        setDataDate(date)
         if(values.formDate>values.toDate){
             Swal.fire({
                 position: 'top-end',
@@ -98,8 +101,16 @@ let [flag,setFlag] =useState(true)
             })
             return
         }
+        setFlag(false)
        let a= await dispatch(showTransactionByDate(date))
 
+    }
+    const showDate =()=>{
+       if(flag==false){
+           return <div style={{marginTop: -5, textAlign:"center", fontWeight:"bold"}}>{dataDate.fromDate} -> {dataDate.toDate}</div>
+       }else {
+           return ''
+       }
     }
 
 
@@ -109,29 +120,32 @@ let [flag,setFlag] =useState(true)
         <>
 
             {/* ======= About Me ======= */}
-            <div className="about-me containerTemplate">
+            <div className="about-me containerTemplate" style={{marginTop: -35}}>
                 {/*<div className="section-title">*/}
                 {/*    <p style={{color:"black"}}>{user.username}</p>*/}
                 {/*</div>*/}
                 <div className="row">
                     <div className="col-3" style={{marginTop:"50px"}}>
+                        <h5 style={{textAlign:"center", fontWeight:"bold"}}>Find Transaction</h5>
                         <Formik initialValues={{formDate:time,toDate:time}} onSubmit={(values,{resetForm})=>{
-                            console.log(values)
+                         setMonth('')
                             handleTransactionByDate(values)
+                            resetForm()
 
                         }}
-
                         >
                             <Form>
+                                <div style={{marginLeft: -195}}>From</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'formDate'}/>
                                 </div>
+                                <div style={{marginLeft: -195}}>To</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'toDate'}/>
                                 </div>
-
+                                <div style={{marginBottom: 20, marginTop: -20, color:"red"}}>{showDate()}</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
-                                    <button className="btn btn-primary">Search</button>
+                                    <button>Search</button>
                                 </div>
                             </Form>
                         </Formik>
@@ -139,30 +153,35 @@ let [flag,setFlag] =useState(true)
                     </div>
                     <div className="col-lg-8 pt-4 pt-lg-0 content">
                         <div style={{marginBottom:'20px'}} className={'offset-3 col-4'}>
-                            <input  onChange={(event)=>{
-                                setMonth(event.target.value)
-                                handleTransactionByMonth(event)
 
-                            }}  type={'month'} value={month}></input>
                         </div>
+
                         <div className="row">
                             <div className="col-lg-4">
-                                <h3  style={{marginBottom: 25}}>{detailWalletHome.wallet[0].nameWallet}</h3>
-                                <strong><h5 style={{color:"black"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
-                                </h5></strong>
+                                <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
+                                <input
+                                    style={{background:"white", width: 200, marginLeft: -10}}
+                                    onChange={(event)=>{
+                                        setMonth(event.target.value)
+                                        setFlag(true)
+                                        handleTransactionByMonth(event)
+
+                                    }}  type={'month'} value={month}></input>
                             </div>
                             <div className="col-lg-4"  >
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <h5 style={{color:"black",marginTop: 23, marginLeft: 65, fontWeight: "bold"}}>
+                                    TotalMoney : {totalConsumableMoney().total}
+                                </h5>
                             </div>
                             <div className="col-lg-4">
                                 <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
                             </div>
                         </div>
                         <div className="col-lg-6">
-                            <div style={{marginLeft: 640, marginTop: -40, marginBottom:13}}>
+                            <div style={{marginLeft: 670, marginTop: -55, marginBottom:13}}>
                                 <strong><CreateTransaction style={{color:"black"}} date={month} idWallet={detailWalletHome.wallet[0].idWallet}></CreateTransaction></strong>
-                                <span style={{marginLeft: 400}}></span>
+                                <span style={{marginLeft: 300}}></span>
                             </div>
                             {/*<div  style={{marginLeft: 0}}>*/}
                             {/*    <Category style={{color:"black"}}></Category>*/}
@@ -172,9 +191,9 @@ let [flag,setFlag] =useState(true)
 
                         </div>
 
-                        <div className="row">
+                        <div className="row" >
                             <div className="col-lg-12">
-                                <table className="table table-striped" >
+                                <table className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
                                         <th scope="col">STT</th>
@@ -199,10 +218,57 @@ let [flag,setFlag] =useState(true)
                                     })}
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div  style={{ width: 300 }}>
+                <div className={"row"}>
+                    <div className="custom-control custom-radio col-4">
+                        Expenditure
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultUnchecked"
+                            name="defaultExampleRadios"
+                            onChange={(event)=>{
+                             setType(event.target.value)   }}
+                            value={'chi'}
+                        />
+
+                    </div>
+                    {/* Default checked */}
+                    <div className="custom-control custom-radio col-4">
+                        Both
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultChecked"
+                            name="defaultExampleRadios"
+                            defaultChecked=""
+                       onChange={(event)=>{
+                           setType(event.target.value)}}
+                            value={''}
+                        />
+                    </div>
+                    <div className="custom-control custom-radio col-4">
+                        Revenue
+                        <input
+                            type="radio"
+                            className="custom-control-input"
+                            id="defaultChecked"
+                            name="defaultExampleRadios"
+                            defaultChecked=""
+                            onChange={(event)=>{
+                                setType(event.target.value)}}
+                            value={'thu'}
+                        />
+                    </div>
+                </div>
+              <PieChart type={type}></PieChart>
             </div>
             {/* End About Me */}
         </>

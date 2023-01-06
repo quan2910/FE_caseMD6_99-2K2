@@ -74,7 +74,8 @@ export default function ShowCategory() {
                                     </td>
                                     <td style={{textAlign: "center"}} onClick={()=>{
                                         handleDelteCategory(item.idCategory)
-                                    }}><i className="fa-regular fa-trash-can"></i></td>
+                                    }}
+                                    ><i className="fa-regular fa-trash-can"></i></td>
                                 </tr>
                             )
                         }

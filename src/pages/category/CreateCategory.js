@@ -8,6 +8,7 @@ import {Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {addCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export default function CreateCategory() {
     const [open, setOpen] = React.useState(false);
@@ -73,6 +74,13 @@ export default function CreateCategory() {
                             }
                             await  dispatch(addCategory(data))
                             await dispatch(getCategory())
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Create Success!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                             // event.preventDefault();
                             setOpen(false);
                         }}
