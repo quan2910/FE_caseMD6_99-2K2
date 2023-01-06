@@ -72,13 +72,12 @@ export default function EditWallet(props) {
                                 userId: ''
                             }}
                             onSubmit={ async (e)=>{
+                                console.log(e)
                                 let data = {
                                     idWallet: walletEdit?.idWallet,
                                     nameWallet: e?.nameWallet,
                                     moneyAmount: e?.moneyAmount,
-                                    status: e?.status,
-                                    moneyTypeId: e?.moneyTypeId,
-                                    userId: walletEdit?.idUser
+                                    moneyTypeId: e?.moneyTypeId
                                 }
                                 await dispatch(editWallet(data))
                                 await dispatch(getWallets())

@@ -82,6 +82,7 @@ export default function CreateWallet() {
                                 userId: ''
                             }}
                             onSubmit={async (e) => {
+                                console.log(e)
                                 let status;
                                 if (check.length > 0) {
                                     status = 0
@@ -113,7 +114,7 @@ export default function CreateWallet() {
                                     <Field style={{background: "lightgrey"}} placeholder={'Money Amount'} autoFocus required name={'moneyAmount'}/>
                                     <Field style={{height:40, background: "lightgrey"}} as={'select'} name={"moneyTypeId"}  className="custom-select" id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
-                                        <option value={"1"}>Vietnam Dong</option>
+                                        <option value="1">Vietnam Dong</option>
                                         <option value="2">Dollar</option>
                                     </Field>
                                     <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
