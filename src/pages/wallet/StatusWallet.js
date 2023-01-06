@@ -1,6 +1,7 @@
 import Switch from "react-switch";
 import {useDispatch, useSelector} from "react-redux";
 import {editWallet, getWallets} from "../../service/walletsService";
+import Swal from "sweetalert2";
 
 export default function StatusWallet(props) {
     const wallet = useSelector(state => {
@@ -19,30 +20,42 @@ export default function StatusWallet(props) {
     })
 
     const handleChange = (idWallet) => {
-        wallet.map(async item => {
-            if(item.userId === user.idUser) {
-                let data = {
-                    idWallet: item.idWallet,
-                    status: 0
-                }
-                await dispatch(editWallet(data))
-            }
-            if (item.idWallet === idWallet) {
-                if (item.status === 1) {
-                    let data = {
-                        idWallet: walletDetail.idWallet,
-                        status: 0
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                wallet.map(async item => {
+                    if(item.userId === user.idUser) {
+                        let data = {
+                            idWallet: item.idWallet,
+                            status: 0
+                        }
+                        await dispatch(editWallet(data))
                     }
-                    await dispatch(editWallet(data))
-                    await dispatch(getWallets())
-                } else {
-                    let data = {
-                        idWallet: walletDetail.idWallet,
-                        status: 1
+                    if (item.idWallet === idWallet) {
+                        if (item.status === 1) {
+                            let data = {
+                                idWallet: walletDetail.idWallet,
+                                status: 0
+                            }
+                            await dispatch(editWallet(data))
+                            await dispatch(getWallets())
+                        } else {
+                            let data = {
+                                idWallet: walletDetail.idWallet,
+                                status: 1
+                            }
+                            await dispatch(editWallet(data))
+                            await dispatch(getWallets())
+                        }
                     }
-                   await dispatch(editWallet(data))
-                   await dispatch(getWallets())
-                }
+                })
             }
         })
     }

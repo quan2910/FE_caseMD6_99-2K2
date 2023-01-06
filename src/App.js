@@ -8,7 +8,7 @@ import ChangePassword from "./pages/user/change-password";
 import Profile from "./pages/user/profile";
 import ShowCategory from "./pages/category/ShowCategory";
 import ShowWallet from "./pages/wallet/ShowWallet";
-
+import './App.css';
 function App() {
 
     return (
