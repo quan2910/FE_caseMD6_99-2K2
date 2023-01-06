@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
 import EditWallet from "./EditWallet"
 import {elGR} from "@mui/material/locale";
+import DetailWallet from "./DetailWallet";
 
 export default function ShowWallet() {
     const dispatch = useDispatch();
@@ -49,11 +50,9 @@ export default function ShowWallet() {
                     <thead>
                     <tr>
                         <th scope="col" style={{textAlign: "center"}}>STT</th>
+                        <th scope={"col"} style={{textAlign: "center"}}>Detail</th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Wallet</th>
-                        <th scope="col" >Money Amount</th>
-                        <th scope="col" style={{textAlign: "center"}}>Status</th>
-                        <th scope={"col"} style={{textAlign: "center"}}>UserId</th>
-                        <th scope={"col"} style={{textAlign:"center"}}>Action</th>
+                        <th scope={"col"} colSpan={2} style={{textAlign: "center"}}>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -63,11 +62,9 @@ export default function ShowWallet() {
                                 return (
                                     <tr>
                                         <th scope="row"style={{textAlign: "center"}}>{index++}</th>
-                                        <td  style={{textAlign: "center"}}>{item.nameWallet}</td>
-                                        <td>{item.moneyAmount}</td>
-                                        <td style={{textAlign: "center"}}>{item.status}</td>
-                                        <td style={{textAlign: "center"}}>{user.idUser}</td>
-                                        <td><EditWallet idWallet={item.idWallet}></EditWallet></td>
+                                        <th scope="row"style={{textAlign: "center"}}><DetailWallet idWallet={item.idWallet}/> </th>
+                                        <td style={{textAlign: "center"}}>{item.nameWallet}</td>
+                                        <td style={{textAlign:"center"}}><EditWallet idWallet={item.idWallet}></EditWallet></td>
                                         <td style={{textAlign:"center"}} onClick={()=>{
                                             handleDeleteWallet(item.idWallet)
                                         }}><i className="fa-regular fa-trash-can"></i></td>
