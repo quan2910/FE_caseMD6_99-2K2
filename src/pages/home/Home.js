@@ -160,11 +160,11 @@ export default function Home() {
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
+                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>
                                 <input
                                     style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
@@ -175,7 +175,7 @@ export default function Home() {
                                     }}  type={'month'} value={month}></input>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>
                             </div>
 
                         </div>
@@ -205,7 +205,7 @@ export default function Home() {
                                         return <tr>
                                             <th style={{textAlign:"center"}} scope="row">{index+1}</th>
                                             <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
-                                            <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
@@ -215,13 +215,15 @@ export default function Home() {
                                     })}
                                     </tbody>
                                 </table>
+                                <h4 style={{fontWeight:"bold"}}>Chart of the last 6 months</h4>
                                 <div style={{width:"800px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div  style={{ width: 300, marginTop: -250 }}>
+            <div  style={{ width: 300, marginTop: -280 }}>
+                <h4 style={{fontWeight:"bold"}}>This month's chart</h4>
                 <div className={"row"}>
                     <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
                         Expenditure
