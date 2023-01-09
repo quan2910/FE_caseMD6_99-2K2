@@ -14,11 +14,11 @@ export default function EditWallet(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const wallets = useSelector(state => {
-        return state.wallet.wallets
+        return state.wallet.detailWalletHome.wallet
     })
     let walletEdit = {}
-    wallets.map(item=>{
-        if(item.idWallet == props.idWallet) {
+    wallets.map(item => {
+        if (item.idWallet == props.idWallet) {
             walletEdit = item;
             return walletEdit
         }
@@ -29,14 +29,14 @@ export default function EditWallet(props) {
             <React.Fragment>
                 <Link
                     color="neutral"
-                    style={{color: "black",width: 150}}
+                    style={{color: "black", width: 150}}
                     onClick={() => setOpen(true)}
                 >
                     <i className="fa-regular fa-pen-to-square"></i>
                 </Link>
                 <Modal open={open} onClose={() => setOpen(false)}>
                     <ModalDialog
-                        style={{color: "black", width:800, background:"white", boxShadow: '2px 4px 5px black'}}
+                        style={{color: "black", width: 800, background: "white", boxShadow: '2px 4px 5px black'}}
                         aria-labelledby="basic-modal-dialog-title"
                         aria-describedby="basic-modal-dialog-description"
                         sx={{
@@ -68,10 +68,10 @@ export default function EditWallet(props) {
                                 nameWallet: walletEdit?.nameWallet,
                                 moneyAmount: walletEdit?.moneyAmount,
                                 status: '',
-                                moneyTypeId:'',
+                                moneyTypeId: '',
                                 userId: ''
                             }}
-                            onSubmit={ async (e)=>{
+                            onSubmit={async (e) => {
                                 console.log(e)
                                 let data = {
                                     idWallet: walletEdit?.idWallet,
@@ -93,14 +93,25 @@ export default function EditWallet(props) {
                         >
                             <Form>
                                 <Stack spacing={2}>
-                                    <Field placeholder={'Name Wallet'} style={{height: 40, width: 600, background: "lightgrey"}} autoFocus required name={'nameWallet'}/>
-                                    <Field placeholder={'Money Amount'} style={{background: "lightgrey"}} autoFocus required name={'moneyAmount'}/>
-                                    <Field as={'select'} name={"moneyTypeId"} style={{height:40, background: "lightgrey"}} className="custom-select" id="inputGroupSelect02">
+                                    <Field placeholder={'Name Wallet'}
+                                           style={{height: 40, width: 600, background: "lightgrey"}} autoFocus required
+                                           name={'nameWallet'}/>
+                                    <Field placeholder={'Money Amount'} style={{background: "lightgrey"}} autoFocus
+                                           required name={'moneyAmount'}/>
+                                    <Field as={'select'} name={"moneyTypeId"}
+                                           style={{height: 40, background: "lightgrey"}} className="custom-select"
+                                           id="inputGroupSelect02">
                                         <option selected>Open this select menu</option>
                                         <option value={"1"}>Vietnam Dong</option>
                                         <option value="2">Dollar</option>
                                     </Field>
-                                    <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
+                                    <Button style={{
+                                        backgroundColor: "#82AAE3",
+                                        color: "white",
+                                        width: 150,
+                                        marginLeft: 237,
+                                        borderRadius: "20px"
+                                    }} type="submit">Save</Button>
                                 </Stack>
                             </Form>
                         </Formik>

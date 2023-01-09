@@ -15,7 +15,7 @@ export default function EditCategory(props) {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
     const categories = useSelector(state => {
-        return  state.category.category
+        return state.category.category
     })
     let categoryEdit = {}
     categories.map(item=>{

@@ -12,9 +12,9 @@ export default function ShowWallet() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        return state.wallet.wallets
+        return state.wallet.detailWalletHome.wallet
     })
-    const handleDeleteWallet = (idWallet)=> {
+    const handleDeleteWallet = (idWallet) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -30,19 +30,19 @@ export default function ShowWallet() {
         })
     }
 
-    useEffect(  ()=>{
+    useEffect(  () => {
         dispatch(getWallets())
 
-    },[])
+    }, [])
 
     if (!wallets) return <div>Loading...</div>
     return (
-        <div className="row" style={{marginLeft:180}}>
+        <div className="row" style={{marginLeft: 180}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
                 <CreateWallet></CreateWallet>
             </button>
             <div className="col-lg-12">
-                <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
+                <table className="table table-striped" style={{width: 1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
                         <th scope="col" style={{textAlign: "center"}}>STT</th>
@@ -53,19 +53,23 @@ export default function ShowWallet() {
                     </thead>
                     <tbody>
                     {
-                        wallets.map((item, index)=>{
-                            if(item.userId == user.idUser) {
+                        wallets.map((item, index) => {
+                            if (item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row"style={{textAlign: "center"}}>{index++}</th>
-                                        <th scope="row"style={{textAlign: "center"}}><DetailWallet idWallet={item.idWallet}/> </th>
+                                        <th scope="row" style={{textAlign: "center"}}>{index++}</th>
+                                        <th scope="row" style={{textAlign: "center"}}><DetailWallet
+                                            idWallet={item.idWallet}/></th>
                                         <td style={{textAlign: "center"}}>{item.nameWallet}</td>
-                                        <td style={{textAlign:"center"}}><EditWallet idWallet={item.idWallet}></EditWallet></td>
-                                        <td style={{textAlign:"center"}} onClick={()=>{
+                                        <td style={{textAlign: "center"}}><EditWallet
+                                            idWallet={item.idWallet}></EditWallet></td>
+                                        <td style={{textAlign: "center"}} onClick={() => {
                                             handleDeleteWallet(item.idWallet)
                                         }}><i className="fa-regular fa-trash-can"></i></td>
                                     </tr>
                                 )
+                            }else {
+                                <></>
                             }
                         })}
                     </tbody>

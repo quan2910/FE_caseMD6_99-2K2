@@ -21,8 +21,9 @@ export default function CreateWallet() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+
     const wallets = useSelector(state => {
-        return state.wallet.wallets
+        return state.wallet.detailWalletHome.wallet
     })
     let check = []
     wallets.map(item => {

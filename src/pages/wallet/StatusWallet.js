@@ -4,7 +4,7 @@ import {editWallet, getWallets} from "../../service/walletsService";
 import Swal from "sweetalert2";
 export default function StatusWallet(props) {
     const wallet = useSelector(state => {
-        return state.wallet.wallets
+        return state.wallet.detailWalletHome.wallet
     })
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
