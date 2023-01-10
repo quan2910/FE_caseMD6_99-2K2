@@ -34,6 +34,7 @@ const DeleteTransaction = (props) => {
             },1000)
 
         }
+
     }
     return (
             <div onClick={ async ()=>{

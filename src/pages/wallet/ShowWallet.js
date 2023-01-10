@@ -34,6 +34,13 @@ export default function ShowWallet() {
         dispatch(getWallets())
 
     },[])
+    let handleTypeMoney = (moneyTypeId)=>{
+        if(moneyTypeId==1){
+            return "VND"
+        }else {
+            return "$"
+        }
+    }
 
     if (!wallets) return <div>Loading...</div>
     return (
@@ -61,7 +68,7 @@ export default function ShowWallet() {
                                         <th scope="row"style={{textAlign: "center"}}>{stt++}</th>
                                         <th scope="row"style={{textAlign: "center"}}><DetailWallet idWallet={item.idWallet}/> </th>
                                         <td style={{textAlign: "center"}}>{item.nameWallet}</td>
-                                        <td style={{textAlign: "center"}}>{item.nameMoneyType}</td>
+                                        <td style={{textAlign: "center"}}>{handleTypeMoney(item.moneyTypeId)}</td>
                                         <td style={{textAlign:"center"}}><EditWallet idWallet={item.idWallet}></EditWallet></td>
                                         <td style={{textAlign:"center"}} onClick={()=>{
                                             handleDeleteWallet(item.idWallet)
