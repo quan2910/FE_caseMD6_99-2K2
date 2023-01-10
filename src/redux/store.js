@@ -5,6 +5,7 @@ import walletSplice from "./wallets/walletSplice";
 import categoriesReducer from "./categories/categoriesSlice";
 import transactionReducer from "./transaction/transactionSlice";
 import moneyTypeSlice from "./moneyTypes/moneyTypeSlice";
+import loanDebtReducer from "./loanDebt/loanDebtSlice";
 
 export const store = configureStore({
     reducer: {
@@ -13,5 +14,6 @@ export const store = configureStore({
         category: categoriesReducer,
         transaction: transactionReducer,
         moneyType: moneyTypeSlice,
+        loanDebt: loanDebtReducer
     }
 })

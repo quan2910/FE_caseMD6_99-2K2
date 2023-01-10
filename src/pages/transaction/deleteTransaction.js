@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteTransaction} from "../../service/transactionService";
-import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
+import {showDetailWallet, showTransactionByMoth, showTransactionByOnlyMonth} from "../../service/walletService";
 import Swal from 'sweetalert2'
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
@@ -29,6 +29,7 @@ const DeleteTransaction = (props) => {
             setTimeout(async ()=>{
                 clearTimeout()
                 await dispatch(showTransactionByMoth(dataMonth))
+                await dispatch(showTransactionByOnlyMonth(user.idUser))
             },1000)
 
         }

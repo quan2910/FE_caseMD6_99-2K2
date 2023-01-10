@@ -23,10 +23,12 @@ export default function Navbar() {
                                           style={{marginLeft: 15}}>Wallet</Link>
                                     <Link to={'show-category'} className="nav-link"
                                           style={{marginLeft: 15}}>Category</Link>
+                                    <Link to={'loan-debt'}
+                                          style={{marginLeft: 15}}>Loan Debt</Link>
                                     <Link to={'profile'} className="nav-link"
                                           style={{marginLeft: 15}}>Profile</Link>
-                                    <Link to={'change-password'} style={{marginLeft: 15}}>Change
-                                        Password</Link>
+                                    <Link to={'change-password'}
+                                          style={{marginLeft: 15}}>Change Password</Link>
                                 </ul>
                             </div>
                             <i className="bi bi-list mobile-nav-toggle"/>
