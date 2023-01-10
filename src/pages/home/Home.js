@@ -1,6 +1,8 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import React, {useRef} from 'react';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import {
     showDetailWallet,
     showTransactionByDate,
@@ -23,11 +25,21 @@ export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallets = useSelector(state => {
+        console.log(state)
+        return state.wallet.wallets
+    })
     let dispatch = useDispatch()
     let detailWalletHome = useSelector(state => {
         return state.wallet.detailWalletHome
     })
+    const tableRef = useRef(null);
 
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
     let [time,setTime]=useState('"yyyy-MM-dd"')
     let d = new Date();
     let monthNow = 0 + (d.getMonth()+1).toString()
@@ -160,7 +172,7 @@ export default function Home() {
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{wallets.nameMoneyType}
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
@@ -189,7 +201,8 @@ export default function Home() {
                         </div>
                         <div className="row" >
                             <div className="col-lg-12">
-                                <table className="table table-striped" style={{marginTop: 10}}>
+                                <button onClick={onDownload}> Export excel </button>
+                                <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
                                         <th style={{textAlign:"center"}} scope="col">STT</th>

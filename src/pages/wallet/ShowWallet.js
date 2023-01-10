@@ -29,7 +29,7 @@ export default function ShowWallet() {
             }
         })
     }
-
+    let stt = 1
     useEffect(  ()=>{
         dispatch(getWallets())
 
@@ -48,6 +48,7 @@ export default function ShowWallet() {
                         <th scope="col" style={{textAlign: "center"}}>STT</th>
                         <th scope={"col"} style={{textAlign: "center"}}>Detail</th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Wallet</th>
+                        <th scope="col" style={{width: 300, textAlign: "center"}}>Money Type</th>
                         <th scope={"col"} colSpan={2} style={{textAlign: "center"}}>Action</th>
                     </tr>
                     </thead>
@@ -57,9 +58,10 @@ export default function ShowWallet() {
                             if(item.userId == user.idUser) {
                                 return (
                                     <tr>
-                                        <th scope="row"style={{textAlign: "center"}}>{index++}</th>
+                                        <th scope="row"style={{textAlign: "center"}}>{stt++}</th>
                                         <th scope="row"style={{textAlign: "center"}}><DetailWallet idWallet={item.idWallet}/> </th>
                                         <td style={{textAlign: "center"}}>{item.nameWallet}</td>
+                                        <td style={{textAlign: "center"}}>{item.nameMoneyType}</td>
                                         <td style={{textAlign:"center"}}><EditWallet idWallet={item.idWallet}></EditWallet></td>
                                         <td style={{textAlign:"center"}} onClick={()=>{
                                             handleDeleteWallet(item.idWallet)
