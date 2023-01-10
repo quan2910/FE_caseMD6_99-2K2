@@ -135,7 +135,7 @@ export default function Home() {
     }
   let  handleTypeMoney = ()=>{
         if(detailWalletHome.wallet[0].moneyTypeId==2){
-            return "$"
+            return "USD"
         }else {
             return "VND"
         }

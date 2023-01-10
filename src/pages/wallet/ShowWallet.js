@@ -38,7 +38,7 @@ export default function ShowWallet() {
         if(moneyTypeId==1){
             return "VND"
         }else {
-            return "$"
+            return "USD"
         }
     }
 
