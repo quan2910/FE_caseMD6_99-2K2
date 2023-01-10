@@ -133,6 +133,13 @@ export default function Home() {
             return ''
         }
     }
+  let  handleTypeMoney = ()=>{
+        if(detailWalletHome.wallet[0].moneyTypeId==2){
+            return "$"
+        }else {
+            return "VND"
+        }
+    }
 
 
     if (!detailWalletHome) return <div>Loading...</div>
@@ -172,11 +179,11 @@ export default function Home() {
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{wallets.nameMoneyType}
+                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{wallets.nameMoneyType} {handleTypeMoney()}
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
                                 <input
                                     style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
@@ -187,7 +194,7 @@ export default function Home() {
                                     }}  type={'month'} value={month}></input>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</strong>
                             </div>
 
                         </div>
@@ -217,8 +224,8 @@ export default function Home() {
                                     {detailWalletHome.transactions.map((transaction,index)=>{
                                         return <tr>
                                             <th style={{textAlign:"center"}} scope="row">{index+1}</th>
-                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
-                                            <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
