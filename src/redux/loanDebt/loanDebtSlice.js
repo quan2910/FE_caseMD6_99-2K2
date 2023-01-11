@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {getDetailLoanDebt} from "../../service/loanDebtService";
+import {deleteLoanDebt, getDetailLoanDebt} from "../../service/loanDebtService";
+import {deleteCategory} from "../../service/categoriesService";
 
 const initialState = {
     loanDebt: JSON.parse(localStorage.getItem('loanDebt'))
