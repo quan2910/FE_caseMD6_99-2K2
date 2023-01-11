@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import React from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import {showDetailWallet} from "../../service/walletService";
 
 export default function ShowCategory() {
     const categories = useSelector(state => {
@@ -16,25 +17,44 @@ export default function ShowCategory() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const dispatch = useDispatch()
+    const transaction = useSelector(state => {
+        return state.wallet.detailWalletHome.transactions
+    })
     const handleDelteCategory = (idCategory) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                await dispatch(deleteCategory(idCategory))
-                await dispatch(getCategory())
+        let check = true
+        transaction.map(transaction=>{
+            if(transaction.idCategory == idCategory) {
+               check = false
+            } else {
             }
         })
+        if (check === false) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'cái này có giao dịch xoa đb'
+            })
+        } else {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await dispatch(deleteCategory(idCategory))
+                    await dispatch(getCategory())
+                }
+            })
+        }
+
     }
     let stt = 1
     useEffect(() => {
         dispatch(getCategory())
+        dispatch(showDetailWallet(user.idUser))
     }, [])
     return (
         <div className="row" style={{marginLeft: 180}}>
@@ -49,12 +69,12 @@ export default function ShowCategory() {
                         <th scope="col"></th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Category</th>
                         <th scope="col" style={{textAlign: "center"}}>Status</th>
-                        <th scope="col" style={{textAlign: "center"}}>Action</th>
+                        <th scope="col" colSpan={2} style={{textAlign: "center"}}>Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     {
-                        categories.map((item) => {
+                        categories && categories.map((item) => {
                             if (item.userId == user.idUser) {
                                 return (
                                     <tr>
@@ -73,10 +93,10 @@ export default function ShowCategory() {
                                         <td style={{textAlign: "center"}}>
                                             <EditCategory idCategory={item.idCategory}></EditCategory>
                                         </td>
-                                        {/*<td style={{textAlign: "center"}} onClick={() => {*/}
-                                        {/*    handleDelteCategory(item.idCategory)*/}
-                                        {/*}}*/}
-                                        {/*><i className="fa-regular fa-trash-can"></i></td>*/}
+                                        <td style={{textAlign: "center"}} onClick={() => {
+                                            handleDelteCategory(item.idCategory)
+                                        }}
+                                        ><i className="fa-regular fa-trash-can"></i></td>
                                     </tr>
                                 )
                             }

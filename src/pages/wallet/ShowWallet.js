@@ -14,20 +14,30 @@ export default function ShowWallet() {
     const wallets = useSelector(state => {
         return state.wallet.wallets
     })
+    const currentWallet = useSelector(state => {
+        return state.wallet.detailWalletHome.wallet[0]
+    })
     const handleDeleteWallet = (idWallet)=> {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                await dispatch(deleteWallet(idWallet))
-            }
-        })
+        if(idWallet==currentWallet.idWallet) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ví đang bật xóa đb'
+            })
+        } else {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    await dispatch(deleteWallet(idWallet))
+                }
+            })
+        }
     }
     let stt = 1
     useEffect(  ()=>{

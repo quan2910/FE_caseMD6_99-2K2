@@ -18,7 +18,7 @@ export default function EditCategory(props) {
         return  state.category.category
     })
     let categoryEdit = {}
-    categories.map(item=>{
+    categories && categories.map(item=>{
         if(item.idCategory == props.idCategory) {
             categoryEdit = item;
             return categoryEdit

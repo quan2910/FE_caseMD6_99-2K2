@@ -13,7 +13,6 @@ export const addLoanDebt = createAsyncThunk(
     'loanDebt/addLoanDebt',
     async (data)=> {
         const res = await axios.post('http://localhost:3000/loan-debt',data)
-        console.log(res)
         return res
     }
 )
@@ -22,7 +21,6 @@ export const editLoanDebt = createAsyncThunk(
     'loanDebt/editLoanDebt',
     async (data)=> {
         const res = await axios.put('http://localhost:3000/loan-debt/edit-loan-debt', data)
-        console.log('data', data)
         return data
     }
 )

@@ -27,7 +27,6 @@ export default function Home() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        console.log(state)
         return state.wallet.wallets
     })
     let dispatch = useDispatch()

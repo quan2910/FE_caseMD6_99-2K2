@@ -89,27 +89,55 @@ export default function ShowLoanDebt() {
                     1000
                 )
                 await dispatch(deleteLoanDebt(idLoanDebt))
-               setTimeout(async ()=>{
-                   await dispatch(getDetailLoanDebt(wallet.idWallet))
-               },1000)
+                setTimeout(async () => {
+                    await dispatch(getDetailLoanDebt(wallet.idWallet))
+                }, 1000)
 
             }
         })
+    }
+    let  handleTypeMoney = ()=>{
+        if(detailWalletHome.wallet[0].moneyTypeId==2){
+            return "USD"
+        }else {
+            return "VND"
+        }
     }
     useEffect(() => {
         dispatch(getDetailLoanDebt(wallet.idWallet))
     }, [])
     return (
-        <div className="row" style={{marginLeft: 180}}>
+        <div className="row" style={{marginLeft: 250}}>
+            <div className="row">
+                <div className="col-lg-4"  >
+                    <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                        TotalMoney
+                    </h4>
+                    <h5>
+                        {loanDebtTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}
+                    </h5>
+                </div>
+                <div className="col-lg-4">
+                    <h4 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                        Nợ
+                    </h4>
+                    <h5>
+                        {totalLoanDebt().debt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}
+                    </h5>
+                </div>
+                <div className="col-lg-4">
+                    <h4 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                        Cho vay
+                    </h4>
+                    <h5>
+                        {totalLoanDebt().loan.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}
+                    </h5>
+                </div>
+
+            </div>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12, background: "#82AAE3"}}>
                 <CreateLoanDebt></CreateLoanDebt>
             </button>
-            <div className="col-lg-4">
-                <h3 style={{marginBottom: -2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
-                <h5 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                    TotalMoney : {loanDebtTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                </h5>
-            </div>
             <div className="col-lg-12">
                 <table className="table table-striped" style={{width: 1000, borderRadius: "1%"}}>
                     <thead>
@@ -128,7 +156,7 @@ export default function ShowLoanDebt() {
                             <tr>
                                 <th scope="row" style={{textAlign: "center"}}>{index++}</th>
                                 <td style={{textAlign: "center"}}>{item.namePersonLoanDebt}</td>
-                                <td style={{textAlign: "center"}}>{item.moneyLoanDebt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
+                                <td style={{textAlign: "center"}}>{item.moneyLoanDebt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>
                                 <td style={{textAlign: "center"}}>{item.contentLoanDebt}</td>
                                 <td style={{textAlign: "center"}}>{item.nameCategoryLoanDebt}</td>
                                 <td style={{textAlign: "center"}}>
