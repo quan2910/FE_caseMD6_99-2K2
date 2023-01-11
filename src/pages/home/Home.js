@@ -19,6 +19,7 @@ import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
+import Pagination from "./pagination";
 
 
 export default function Home() {
@@ -47,6 +48,10 @@ export default function Home() {
     let [dataDate,setDataDate] = useState({})
     let [type,setType]=useState('')
     let [flag,setFlag] =useState(true)
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
     useEffect(()=>{
         (async ()=>{
             let dataMonth = {
@@ -140,6 +145,12 @@ export default function Home() {
             return "VND"
         }
     }
+    const indexOfLastPost = currentPage * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = detailWalletHome.transactions.slice(indexOfFirstPost, indexOfLastPost);
+
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
 
     if (!detailWalletHome) return <div>Loading...</div>
@@ -221,9 +232,9 @@ export default function Home() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {detailWalletHome.transactions.map((transaction,index)=>{
+                                    {currentPosts.map((transaction,index)=>{
                                         return <tr>
-                                            <th style={{textAlign:"center"}} scope="row">{index+1}</th>
+                                            <th style={{textAlign:"center"}} scope="row">{++indexOfFirstPost }</th>
                                             <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>
                                             <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
@@ -234,6 +245,11 @@ export default function Home() {
                                         </tr>
                                     })}
                                     </tbody>
+                                    <Pagination
+                                        postsPerPage={postsPerPage}
+                                        totalPosts={detailWalletHome.transactions.length}
+                                        paginate={paginate}
+                                    />
                                 </table>
                                 <h4 style={{fontWeight:"bold"}}>Chart of the last 6 months</h4>
                                 <div style={{width:"800px"}}><BarChart></BarChart></div>
