@@ -106,6 +106,7 @@ if(transaction.idTransaction==props.idTransaction){
                             await dispatch(updateTransaction(data))
                             if(props.date==''){
                                 await dispatch(showDetailWallet(user.idUser))
+
                             }else {
                                 let str =props.date
                                 let date = str.split('-');

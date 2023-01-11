@@ -15,6 +15,7 @@ const DeleteTransaction = (props) => {
            setTimeout(async ()=>{
                clearTimeout()
                await dispatch(showDetailWallet(user.idUser))
+               await dispatch(showTransactionByOnlyMonth(user.idUser))
            },1000)
 
 
@@ -33,6 +34,7 @@ const DeleteTransaction = (props) => {
             },1000)
 
         }
+
     }
     return (
             <div onClick={ async ()=>{

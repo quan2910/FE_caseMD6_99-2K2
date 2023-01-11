@@ -45,7 +45,7 @@ function BarChart() {
                     "#2a71d0",
                 ],
                 borderColor: "black",
-                borderWidth: 2,
+                borderWidth: 0.2,
             },
         ],
     };

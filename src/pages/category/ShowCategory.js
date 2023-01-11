@@ -49,7 +49,7 @@ export default function ShowCategory() {
                         <th scope="col"></th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Category</th>
                         <th scope="col" style={{textAlign: "center"}}>Status</th>
-                        <th scope="col" colSpan={2} style={{textAlign: "center"}}>Action</th>
+                        <th scope="col" style={{textAlign: "center"}}>Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -73,10 +73,10 @@ export default function ShowCategory() {
                                         <td style={{textAlign: "center"}}>
                                             <EditCategory idCategory={item.idCategory}></EditCategory>
                                         </td>
-                                        <td style={{textAlign: "center"}} onClick={() => {
-                                            handleDelteCategory(item.idCategory)
-                                        }}
-                                        ><i className="fa-regular fa-trash-can"></i></td>
+                                        {/*<td style={{textAlign: "center"}} onClick={() => {*/}
+                                        {/*    handleDelteCategory(item.idCategory)*/}
+                                        {/*}}*/}
+                                        {/*><i className="fa-regular fa-trash-can"></i></td>*/}
                                     </tr>
                                 )
                             }
