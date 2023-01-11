@@ -1,17 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {deleteTransaction} from "../../service/transactionService";
-import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
+import {showDetailWallet, showTransactionByMoth, showTransactionByOnlyMonth} from "../../service/walletService";
 import Swal from 'sweetalert2'
 const DeleteTransaction = (props) => {
     let dispatch = useDispatch()
+
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     let handleDelete = async ()=>{
         await dispatch(deleteTransaction(props.idTransaction))
         if(props.date==''){
-            await dispatch(showDetailWallet(user.idUser))
+           setTimeout(async ()=>{
+               clearTimeout()
+               await dispatch(showDetailWallet(user.idUser))
+               await dispatch(showTransactionByOnlyMonth(user.idUser))
+           },1000)
+
+
         }else {
             let str =props.date
             let date = str.split('-');
@@ -20,13 +27,18 @@ const DeleteTransaction = (props) => {
                 year:date[0],
                 month:date[1]
             }
-            await dispatch(showTransactionByMoth(dataMonth))
+            setTimeout(async ()=>{
+                clearTimeout()
+                await dispatch(showTransactionByMoth(dataMonth))
+                await dispatch(showTransactionByOnlyMonth(user.idUser))
+            },1000)
+
         }
+
     }
     return (
-
-            <td onClick={ ()=>{
-                Swal.fire({
+            <div onClick={ async ()=>{
+              await  Swal.fire({
                     title: 'Are you sure?',
                     text: "You won't be able to revert this!",
                     icon: 'warning',
@@ -35,6 +47,7 @@ const DeleteTransaction = (props) => {
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then(async (result) => {
+
                     if (result.isConfirmed) { await handleDelete()
                         Swal.fire(
                             'Deleted!',
@@ -43,8 +56,7 @@ const DeleteTransaction = (props) => {
                         )
                     }
                 })
-            }}><i className="fa-regular fa-trash-can"></i></td>
-
+            }}><i className="fa-regular fa-trash-can"></i></div>
     );
 };
 

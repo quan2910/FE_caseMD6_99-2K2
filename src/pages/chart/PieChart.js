@@ -81,13 +81,13 @@ const PieChart = (props) => {
                 data: showTotal().map(total=>total),
                 backgroundColor: showCategoryDone().map((category)=>category.color),
                 borderColor: "black",
-                borderWidth: 1,
+                borderWidth: 0.2,
             },
         ],
     };
     if(!userData){return <h1>loading</h1>}
     return <>
-        <Pie data={userData} />;
+        <Pie data={userData} />
         </>
 
 };

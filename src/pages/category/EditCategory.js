@@ -68,7 +68,7 @@ export default function EditCategory(props) {
                             nameCategory: categoryEdit.nameCategory,
                             statusCategory: '',
                             userId: '',
-                            color: ''
+                            color: categoryEdit.color
                         }}
                         onSubmit={async (event) => {
                             let data = {
@@ -76,7 +76,8 @@ export default function EditCategory(props) {
                                 nameCategory: event.nameCategory,
                                 statusCategory: event.statusCategory,
                                 userId: categoryEdit.idUser,
-                                color: event.color
+                                color: event.color,
+
                             }
                             await  dispatch(editCategory(data))
                             await dispatch(getCategory())
@@ -93,7 +94,7 @@ export default function EditCategory(props) {
                         <Form>
                             <Stack spacing={2}>
                                 <div style={{width:100}}>
-                                    <Field style={{height: 60}} type="color" name="color" defaultValue="#e66465" ></Field>
+                                    <Field style={{height: 60}} type="color" name="color"  ></Field>
                                 </div>
                                 <Field style={{height: "40px", width: 600, background: "lightgrey"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40, background: "lightgrey"}} className="custom-select" id="inputGroupSelect02">

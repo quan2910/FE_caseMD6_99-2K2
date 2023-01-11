@@ -32,12 +32,8 @@ export default function CreateWallet() {
     })
 
     useEffect(()=>{
-        dispatch(getWallets())
+        dispatch(getMoneyType())
     },[])
-
-    // useEffect(()=>{
-    //     dispatch(getMoneyType())
-    // },[])
 
     return (
         <>
@@ -86,7 +82,6 @@ export default function CreateWallet() {
                                 userId: ''
                             }}
                             onSubmit={async (e) => {
-
                                 let status;
                                 if (check.length > 0) {
                                     status = 0
@@ -128,6 +123,7 @@ export default function CreateWallet() {
                     </ModalDialog>
                 </Modal>
             </React.Fragment>
+
         </>
     )
 }

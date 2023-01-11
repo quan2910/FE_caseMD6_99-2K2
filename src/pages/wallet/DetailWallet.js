@@ -7,7 +7,11 @@ import {Link} from "react-router-dom";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import StatusWallet from "./StatusWallet";
+import LimitMoney from "./LimitMoney";
+import {useEffect} from "react";
+import {addLimit, editLimit, getLimit} from "../../service/limitMoneyService";
 export default function DetailWallet(props) {
+    const dispatch = useDispatch();
     const [open, setOpen] = React.useState(false);
     const wallets = useSelector(state => {
         return state.wallet.wallets
@@ -20,6 +24,19 @@ export default function DetailWallet(props) {
             return walletDetail
         }
     })
+    const limits = useSelector(state => {
+        return state.limit.limitMoney
+    })
+    let limitDetail = {};
+     limits && limits.map((itemLimit)=>{
+         if (itemLimit.walletId == props.idWallet){
+             limitDetail = itemLimit
+             return limitDetail
+         }
+     })
+     useEffect(()=>{
+         dispatch(getLimit())
+     },[])
     return (
         <React.Fragment>
             <Link
@@ -51,8 +68,9 @@ export default function DetailWallet(props) {
                     </Typography>
                     <div style={{textAlign:"center"}}>
                         <h4 style={{fontWeight: "bold"}}>Name: {walletDetail.nameWallet}</h4>
-                        <h4>Money: {walletDetail.moneyAmount}</h4>
+                        <h4>Money: {walletDetail.moneyAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h4>
                         <h4>Money Type: {walletDetail.nameMoneyType}</h4>
+                        <h4>Money Limit: {limitDetail.moneyLimit} {walletDetail.nameMoneyType}</h4>
                         <StatusWallet idWallet={walletDetail.idWallet}/>
                     </div>
                 </ModalDialog>

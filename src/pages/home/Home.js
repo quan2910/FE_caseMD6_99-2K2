@@ -1,6 +1,8 @@
 import "../../style/style.css"
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import React, {useRef} from 'react';
+import { useDownloadExcel } from 'react-export-table-to-excel';
 import {
     showDetailWallet,
     showTransactionByDate,
@@ -17,17 +19,33 @@ import {deleteTransaction} from "../../service/transactionService";
 import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
+import Pagination from "./pagination";
+import LimitMoney from "../wallet/LimitMoney";
+import {getLimit} from "../../service/limitMoneyService";
 
 
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
+    const wallets = useSelector(state => {
+        console.log("1",state)
+        return state.wallet.detailWalletHome.wallet[0]
+    })
+    const limits = useSelector(state => {
+        return state.limit.limitMoney
+    })
     let dispatch = useDispatch()
     let detailWalletHome = useSelector(state => {
         return state.wallet.detailWalletHome
     })
+    const tableRef = useRef(null);
 
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
     let [time,setTime]=useState('"yyyy-MM-dd"')
     let d = new Date();
     let monthNow = 0 + (d.getMonth()+1).toString()
@@ -35,6 +53,10 @@ export default function Home() {
     let [dataDate,setDataDate] = useState({})
     let [type,setType]=useState('')
     let [flag,setFlag] =useState(true)
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
     useEffect(()=>{
         (async ()=>{
             let dataMonth = {
@@ -44,6 +66,8 @@ export default function Home() {
             }
             await dispatch(showTransactionByMoth(dataMonth))
             await dispatch(showTransactionByOnlyMonth(user.idUser))
+            await dispatch(getLimit())
+            handleStyle()
         })()
     }, [])
 
@@ -121,7 +145,35 @@ export default function Home() {
             return ''
         }
     }
-
+  let  handleTypeMoney = ()=>{
+        if(detailWalletHome.wallet[0].moneyTypeId==2){
+            return "USD"
+        }else {
+            return "VND"
+        }
+    }
+    const indexOfLastPost = currentPage * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    let currentPosts;
+    if(detailWalletHome){
+    currentPosts = detailWalletHome.transactions.slice(indexOfFirstPost, indexOfLastPost);
+    }
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+    const [color, setColor] = useState("black")
+    let handleStyle=()=>{
+        let a = true
+        limits && limits.map((itemLimit)=>{
+            if (itemLimit.walletId == wallets.idWallet&&totalConsumableMoney().ConsumableMoney >= itemLimit.moneyLimit){
+                  a = false
+            } else {
+            }
+            if(a==false){
+                return setColor('red')
+            }else {
+            }
+        })
+    }
 
     if (!detailWalletHome) return <div>Loading...</div>
     if (!detailWalletHome.wallet) return <div>Loading...</div>
@@ -160,11 +212,11 @@ export default function Home() {
                             <div className="col-lg-4">
                                 <h3  style={{marginBottom:-2}}>{detailWalletHome.wallet[0].nameWallet}</h3>
                                 <h5 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                                    TotalMoney : {totalConsumableMoney().total}
+                                    TotalMoney : {totalConsumableMoney().total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{wallets.nameMoneyType} {handleTypeMoney()}
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:color}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
                                 <input
                                     style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
@@ -175,7 +227,7 @@ export default function Home() {
                                     }}  type={'month'} value={month}></input>
                             </div>
                             <div className="col-lg-4">
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 50}}></i> <strong style={{color:"black"}}>Revenue: {totalConsumableMoney().moneyIncome.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</strong>
                             </div>
 
                         </div>
@@ -189,7 +241,8 @@ export default function Home() {
                         </div>
                         <div className="row" >
                             <div className="col-lg-12">
-                                <table className="table table-striped" style={{marginTop: 10}}>
+                                <button onClick={onDownload}> Export excel </button>
+                                <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
                                         <th style={{textAlign:"center"}} scope="col">STT</th>
@@ -201,11 +254,11 @@ export default function Home() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {detailWalletHome.transactions.map((transaction,index)=>{
+                                    {currentPosts.map((transaction,index)=>{
                                         return <tr>
-                                            <th style={{textAlign:"center"}} scope="row">{index+1}</th>
-                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString("en-US", {timeZone: "Asia/Jakarta"})}</td>
-                                            <td style={{textAlign:"center"}}>{transaction.totalSpent}</td>
+                                            <th style={{textAlign:"center"}} scope="row">{++indexOfFirstPost }</th>
+                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>
                                             <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
                                             <td style={{textAlign:"center"}}>{transaction.note}</td>
                                             <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
@@ -214,14 +267,21 @@ export default function Home() {
                                         </tr>
                                     })}
                                     </tbody>
+                                    <Pagination
+                                        postsPerPage={postsPerPage}
+                                        totalPosts={detailWalletHome.transactions.length}
+                                        paginate={paginate}
+                                    />
                                 </table>
+                                <h4 style={{fontWeight:"bold"}}>Chart of the last 6 months</h4>
                                 <div style={{width:"800px"}}><BarChart></BarChart></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div  style={{ width: 300, marginTop: -250 }}>
+            <div  style={{ width: 300, marginTop: -280 }}>
+                <h4 style={{fontWeight:"bold"}}>This month's chart</h4>
                 <div className={"row"}>
                     <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
                         Expenditure

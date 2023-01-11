@@ -9,7 +9,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCategory} from "../../service/categoriesService";
 import {addTransaction, updateTransaction} from "../../service/transactionService";
-import {showDetailWallet, showTransactionByMoth} from "../../service/walletService";
+import {showDetailWallet, showTransactionByMoth, showTransactionByOnlyMonth} from "../../service/walletService";
 import {findById} from "../../service/userService";
 import Swal from "sweetalert2";
 
@@ -106,6 +106,7 @@ if(transaction.idTransaction==props.idTransaction){
                             await dispatch(updateTransaction(data))
                             if(props.date==''){
                                 await dispatch(showDetailWallet(user.idUser))
+
                             }else {
                                 let str =props.date
                                 let date = str.split('-');
@@ -125,6 +126,7 @@ if(transaction.idTransaction==props.idTransaction){
                             }
                             await dispatch(getCategory())
                             await dispatch(findById(user.idUser))
+                            await dispatch(showTransactionByOnlyMonth(user.idUser))
 
 
                             setOpen(false)
