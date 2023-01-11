@@ -19,6 +19,7 @@ export const editLimit = createAsyncThunk(
     'limits/editLimit',
     async (data) => {
         const res = await axios.put('http://localhost:3000/limits/edit-limit', data)
+        return res
     }
 )
 export const deleteLimit = createAsyncThunk(

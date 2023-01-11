@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {addLimit, deleteLimit, getLimit} from "../../service/limitMoneyService";
+import {addLimit, deleteLimit, editLimit, getLimit} from "../../service/limitMoneyService";
 
 
 const initialState = {
@@ -20,7 +20,9 @@ const limitMoneySlide = createSlice({
         })
         builder.addCase(deleteLimit.fulfilled, (state, action) => {
             state.limitMoney = state.limitMoney.filter(item => item.idLimit != action.payload)
-        })
+        });
+        builder.addCase(editLimit.fulfilled, (state, action) => {
+        });
     }
 })
 export default limitMoneySlide.reducer

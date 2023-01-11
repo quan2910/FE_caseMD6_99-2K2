@@ -20,6 +20,8 @@ import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
 import Pagination from "./pagination";
+import LimitMoney from "../wallet/LimitMoney";
+import {getLimit} from "../../service/limitMoneyService";
 
 
 export default function Home() {
@@ -27,8 +29,11 @@ export default function Home() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        console.log(state)
-        return state.wallet.wallets
+        console.log("1",state)
+        return state.wallet.detailWalletHome.wallet[0]
+    })
+    const limits = useSelector(state => {
+        return state.limit.limitMoney
     })
     let dispatch = useDispatch()
     let detailWalletHome = useSelector(state => {
@@ -61,6 +66,8 @@ export default function Home() {
             }
             await dispatch(showTransactionByMoth(dataMonth))
             await dispatch(showTransactionByOnlyMonth(user.idUser))
+            await dispatch(getLimit())
+            handleStyle()
         })()
     }, [])
 
@@ -147,11 +154,26 @@ export default function Home() {
     }
     const indexOfLastPost = currentPage * postsPerPage;
     let indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = detailWalletHome.transactions.slice(indexOfFirstPost, indexOfLastPost);
-
+    let currentPosts;
+    if(detailWalletHome){
+    currentPosts = detailWalletHome.transactions.slice(indexOfFirstPost, indexOfLastPost);
+    }
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
-
+    const [color, setColor] = useState("black")
+    let handleStyle=()=>{
+        let a = true
+        limits && limits.map((itemLimit)=>{
+            if (itemLimit.walletId == wallets.idWallet&&totalConsumableMoney().ConsumableMoney >= itemLimit.moneyLimit){
+                  a = false
+            } else {
+            }
+            if(a==false){
+                return setColor('red')
+            }else {
+            }
+        })
+    }
 
     if (!detailWalletHome) return <div>Loading...</div>
     if (!detailWalletHome.wallet) return <div>Loading...</div>
@@ -194,7 +216,7 @@ export default function Home() {
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:color}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
                                 <input
                                     style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
