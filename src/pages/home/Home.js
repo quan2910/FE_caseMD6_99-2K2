@@ -261,7 +261,7 @@ export default function Home() {
                         />
                     </div>
                 </div>
-                {/*<PieChart type={type}></PieChart>*/}
+                <PieChart type={type}></PieChart>
             </div>
         </>
     )

@@ -13,5 +13,6 @@ export const store = configureStore({
         category: categoriesReducer,
         transaction: transactionReducer,
         moneyType: moneyTypeSlice,
+
     }
 })

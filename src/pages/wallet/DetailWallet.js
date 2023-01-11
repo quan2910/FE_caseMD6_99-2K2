@@ -10,11 +10,12 @@ import StatusWallet from "./StatusWallet";
 export default function DetailWallet(props) {
     const [open, setOpen] = React.useState(false);
     const wallets = useSelector(state => {
-        return state.wallet.detailWalletHome.wallet
+        return state.wallet.wallets
     })
     let walletDetail = {}
     wallets.map(item=>{
         if(item.idWallet === props.idWallet) {
+            console.log(item)
             walletDetail = item;
             return walletDetail
         }

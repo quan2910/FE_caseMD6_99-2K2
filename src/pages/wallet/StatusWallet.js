@@ -3,15 +3,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {editWallet, getWallets} from "../../service/walletsService";
 import Swal from "sweetalert2";
 export default function StatusWallet(props) {
-    const wallet = useSelector(state => {
-        return state.wallet.detailWalletHome.wallet
+    const wallets = useSelector(state => {
+        return state.wallet.wallets;
     })
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     const dispatch = useDispatch();
     let walletDetail = {}
-    wallet.map(item => {
+    wallets.map(item => {
         if (item.idWallet === props.idWallet) {
             walletDetail = item;
             return walletDetail
@@ -28,7 +28,7 @@ export default function StatusWallet(props) {
             confirmButtonText: 'Yes'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                wallet.map(async item => {
+                wallets.map(async item => {
                     if (item.idWallet === idWallet) {
                         if (item.status === 1) {
                             Swal.fire({
@@ -36,7 +36,7 @@ export default function StatusWallet(props) {
                                 title: 'You need turn on the other wallet if you want to turn off this wallet'
                             })
                         } else {
-                            wallet.map(async item=>{
+                            wallets.map(async item=>{
                                 if(item.userId === user.idUser) {
                                     let data = {
                                         idWallet: item.idWallet,
@@ -59,7 +59,7 @@ export default function StatusWallet(props) {
     }
     return (
         <>
-            {wallet.map(item => {
+            {wallets.map(item => {
                 if (item.idWallet === props.idWallet) {
                     if (item.status === 1) {
                         return (

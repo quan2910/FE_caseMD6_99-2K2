@@ -21,9 +21,8 @@ export default function CreateWallet() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
-
     const wallets = useSelector(state => {
-        return state.wallet.detailWalletHome.wallet
+        return state.wallet.wallets
     })
     let check = []
     wallets.map(item => {
@@ -33,8 +32,12 @@ export default function CreateWallet() {
     })
 
     useEffect(()=>{
-        dispatch(getMoneyType())
+        dispatch(getWallets())
     },[])
+
+    // useEffect(()=>{
+    //     dispatch(getMoneyType())
+    // },[])
 
     return (
         <>
@@ -83,7 +86,7 @@ export default function CreateWallet() {
                                 userId: ''
                             }}
                             onSubmit={async (e) => {
-                                console.log(e)
+
                                 let status;
                                 if (check.length > 0) {
                                     status = 0
@@ -125,7 +128,6 @@ export default function CreateWallet() {
                     </ModalDialog>
                 </Modal>
             </React.Fragment>
-
         </>
     )
 }
