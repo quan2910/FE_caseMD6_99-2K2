@@ -21,7 +21,8 @@ import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
 import Pagination from "./pagination";
 import {getLimit} from "../../service/limitMoneyService";
-
+import * as FileSaver from "file-saver";
+import * as XLSX from 'xlsx';
 
 export default function Home() {
     const user = useSelector(state => {
@@ -171,6 +172,31 @@ export default function Home() {
             }
         })
     }
+  const  fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+   const fileExtension = '.xlsx';
+  let  exportExcel=(jsonData, fileName)=> {
+        const ws = XLSX.utils.json_to_sheet(jsonData);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveExcelFile(excelBuffer, fileName);
+}
+    let saveExcelFile=(buffer, fileName)=> {
+        const data = new Blob([buffer], {type: fileType});
+    FileSaver.saveAs(data, fileName + fileExtension);
+}
+let arrExcel = [...detailWalletHome.transactions]
+    let arr = []
+    let index = 1
+    arrExcel.map(transaction=>{
+        let a = {
+            stt : index++,
+            note:transaction.note,
+            time :transaction.time,
+            totalSpent:transaction.totalSpent,
+            nameCategory:transaction.nameCategory
+        }
+        arr.push(a)
+    })
 
     if (!detailWalletHome) return <div>Loading...</div>
     if (!detailWalletHome.wallet) return <div>Loading...</div>
@@ -239,7 +265,7 @@ export default function Home() {
                         </div>
                         <div className="row" >
                             <div className="col-lg-12">
-                                <button onClick={onDownload}> Export excel </button>
+                                <button onClick={exportExcel(arr,detailWalletHome.wallet[0].nameWallet)}> Export excel </button>
                                 <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
