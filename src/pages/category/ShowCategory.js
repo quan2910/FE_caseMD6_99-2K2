@@ -56,7 +56,7 @@ export default function ShowCategory() {
         dispatch(showDetailWallet(user.idUser))
     }, [])
     return (
-        <div className="row" style={{marginLeft: 180}}>
+        <div className="row" style={{marginLeft: 200}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12, background: "#82AAE3"}}>
                 <CreateCategory></CreateCategory>
             </button>
