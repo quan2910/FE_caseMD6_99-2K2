@@ -64,7 +64,7 @@ export default function ShowCategory() {
                 <table className="table table-striped" style={{width: 1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
-                        <th scope="col" style={{textAlign: "center"}}>STT</th>
+                        <th scope="col" style={{textAlign: "center"}}>Number</th>
                         <th scope="col"></th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Category</th>
                         <th scope="col" style={{textAlign: "center"}}>Status</th>

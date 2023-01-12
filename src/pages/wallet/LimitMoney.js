@@ -42,8 +42,12 @@ export default function LimitMoney(prop) {
                             }
                         })
                         if(a ==true){
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'This wallet already has a spending limit!',
+                            })
                             setOpen(false)
-
                         }else {
                             setOpen(true)
                         }

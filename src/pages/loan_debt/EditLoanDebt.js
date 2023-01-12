@@ -105,9 +105,9 @@ export default function EditLoanDebt(props) {
                                 <Field as={'select'} name={'idCategoryLoanDebt'}
                                        style={{height: 40, backgroundColor: "lightgray"}} className="custom-select"
                                        id="inputGroupSelect02">
-                                    <option selected>Cho vay hay nợ...</option>
-                                    <option value="1">Cho vay</option>
-                                    <option value="2">Nợ</option>
+                                    <option selected>Loans or Debts...</option>
+                                    <option value="1">Loans</option>
+                                    <option value="2">Debts</option>
                                 </Field>
                                 <Button style={{
                                     backgroundColor: "#82AAE3",

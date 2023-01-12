@@ -202,6 +202,7 @@ export default function Home() {
     if (!detailWalletHome.wallet) return <div>Loading...</div>
     return (
         <>
+
             <div className="about-me containerTemplate" style={{marginTop: -35}}>
                 <div className="row">
                     <div className="col-3" style={{marginTop:"28px"}}>
@@ -212,7 +213,7 @@ export default function Home() {
                             resetForm()
                         }}
                         >
-                            <Form style={{marginTop: -180}}>
+                            <Form style={{marginTop: -200}}>
                                 <div style={{marginLeft: -195}}>From</div>
                                 <div className="col-12" style={{marginBottom: 50, color: "black"}}>
                                     <Field type={'date'} name={'formDate'}/>
@@ -269,7 +270,7 @@ export default function Home() {
                                 <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
-                                        <th style={{textAlign:"center"}} scope="col">STT</th>
+                                        <th style={{textAlign:"center"}} scope="col">Number</th>
                                         <th style={{textAlign:"center"}} scope="col">Time</th>
                                         <th style={{textAlign:"center"}} scope="col">Total Spent</th>
                                         <th style={{textAlign:"center"}} scope="col">Name Category</th>
@@ -304,7 +305,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div  style={{ width: 300, marginTop: -280 }}>
+            <div  style={{ width: 300, marginTop: -375 }}>
                 <h4 style={{fontWeight:"bold"}}>This month's chart</h4>
                 <div className={"row"}>
                     <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
@@ -344,8 +345,11 @@ export default function Home() {
                             value={'thu'}
                         />
                     </div>
+                    <div>
+                        <PieChart type={type}></PieChart>
+                    </div>
                 </div>
-                <PieChart type={type}></PieChart>
+
             </div>
         </>
     )
