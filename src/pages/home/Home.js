@@ -346,8 +346,11 @@ export default function Home() {
                             value={'thu'}
                         />
                     </div>
+                    <div>
+                        <PieChart type={type}></PieChart>
+                    </div>
                 </div>
-                <PieChart type={type}></PieChart>
+
             </div>
         </>
     )
