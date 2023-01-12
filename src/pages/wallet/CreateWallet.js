@@ -82,7 +82,6 @@ export default function CreateWallet() {
                                 userId: ''
                             }}
                             onSubmit={async (e) => {
-                                console.log(e)
                                 let status;
                                 if (check.length > 0) {
                                     status = 0

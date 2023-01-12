@@ -5,6 +5,9 @@ import {deleteWallet, getWallets} from "../../service/walletsService";
 import Swal from "sweetalert2";
 import EditWallet from "./EditWallet"
 import DetailWallet from "./DetailWallet";
+import LimitMoney from "./LimitMoney";
+import {getLimit} from "../../service/limitMoneyService";
+import {Link} from "react-router-dom";
 
 export default function ShowWallet() {
     const dispatch = useDispatch();
@@ -39,10 +42,11 @@ export default function ShowWallet() {
             })
         }
     }
+
     let stt = 1
     useEffect(  ()=>{
         dispatch(getWallets())
-
+        dispatch(getLimit())
     },[])
     let handleTypeMoney = (moneyTypeId)=>{
         if(moneyTypeId==1){
@@ -54,10 +58,12 @@ export default function ShowWallet() {
 
     if (!wallets) return <div>Loading...</div>
     return (
+
         <div className="row" style={{marginLeft:180}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
                 <CreateWallet></CreateWallet>
             </button>
+            <button style={{width: 200, marginBottom: 20, marginLeft: 12}}><LimitMoney></LimitMoney></button>
             <div className="col-lg-12">
                 <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>

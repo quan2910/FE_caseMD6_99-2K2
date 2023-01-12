@@ -20,14 +20,20 @@ import EditTransaction from "../transaction/editTransaction";
 import {blue} from "@mui/material/colors";
 import BarChart from "../chart/barChart";
 import Pagination from "./pagination";
-
+import {getLimit} from "../../service/limitMoneyService";
+import * as FileSaver from "file-saver";
+import * as XLSX from 'xlsx';
 
 export default function Home() {
     const user = useSelector(state => {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        return state.wallet.wallets
+        console.log("1",state)
+        return state.wallet.detailWalletHome.wallet[0]
+    })
+    const limits = useSelector(state => {
+        return state.limit.limitMoney
     })
     let dispatch = useDispatch()
     let detailWalletHome = useSelector(state => {
@@ -60,6 +66,8 @@ export default function Home() {
             }
             await dispatch(showTransactionByMoth(dataMonth))
             await dispatch(showTransactionByOnlyMonth(user.idUser))
+            await dispatch(getLimit())
+            handleStyle()
         })()
     }, [])
 
@@ -137,7 +145,7 @@ export default function Home() {
             return ''
         }
     }
-  let  handleTypeMoney = ()=>{
+    let  handleTypeMoney = ()=>{
         if(detailWalletHome.wallet[0].moneyTypeId==2){
             return "USD"
         }else {
@@ -150,6 +158,45 @@ export default function Home() {
 
     // Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
+    const [color, setColor] = useState("black")
+    let handleStyle=()=>{
+        let a = true
+        limits && limits.map((itemLimit)=>{
+            if (itemLimit.walletId == wallets.idWallet&&totalConsumableMoney().ConsumableMoney >= itemLimit.moneyLimit){
+                a = false
+            } else {
+            }
+            if(a==false){
+                return setColor('red')
+            }else {
+            }
+        })
+    }
+  const  fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+   const fileExtension = '.xlsx';
+    let arrExcel = [...detailWalletHome.transactions]
+    let arr = []
+    let index = 1
+    arrExcel.map(transaction=>{
+        let a = {
+            stt : index++,
+            note:transaction.note,
+            time :transaction.time,
+            totalSpent:transaction.totalSpent,
+            nameCategory:transaction.nameCategory
+        }
+        arr.push(a)
+    })
+  let  exportExcel=(jsonData, fileName)=> {
+        const ws = XLSX.utils.json_to_sheet(jsonData);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveExcelFile(excelBuffer, fileName);
+}
+    let saveExcelFile=(buffer, fileName)=> {
+        const data = new Blob([buffer], {type: fileType});
+    FileSaver.saveAs(data, fileName + fileExtension);
+}
 
 
     if (!detailWalletHome) return <div>Loading...</div>
@@ -193,7 +240,8 @@ export default function Home() {
                                 </h5>
                             </div>
                             <div className="col-lg-4"  >
-                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:"black"}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
+
+                                <i className="bi bi-chevron-right" style={{color:"black", marginLeft: 60}}></i> <strong style={{color:color}}>Expenditure: {totalConsumableMoney().ConsumableMoney.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}  {handleTypeMoney()}</strong>
                                 <input
                                     style={{background:"white", color:"blue", fontWeight:"bold", width: 200, marginLeft: 60}}
                                     onChange={(event)=>{
@@ -218,7 +266,7 @@ export default function Home() {
                         </div>
                         <div className="row" >
                             <div className="col-lg-12">
-                                <button onClick={onDownload}> Export excel </button>
+                                <button onClick={() => {exportExcel(arr,detailWalletHome.wallet[0].nameWallet)}}> Export excel </button>
                                 <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
