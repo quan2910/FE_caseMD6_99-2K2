@@ -32,7 +32,6 @@ const DeleteTransaction = (props) => {
                 await dispatch(showTransactionByMoth(dataMonth))
                 await dispatch(showTransactionByOnlyMonth(user.idUser))
             },1000)
-
         }
 
     }

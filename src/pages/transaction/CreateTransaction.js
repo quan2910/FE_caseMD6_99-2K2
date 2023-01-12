@@ -25,9 +25,6 @@ export default function CreateTransaction(props) {
         dispatch(getCategory());
     }, [categories])
 
-    // if (!categories) {
-    //     return <h1>haha</h1>
-    // }
     return (
         <React.Fragment>
             <Button
