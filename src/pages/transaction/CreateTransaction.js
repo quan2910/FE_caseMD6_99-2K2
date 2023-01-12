@@ -18,6 +18,7 @@ export default function CreateTransaction(props) {
     const [income,setIncome]= useState('')
     const dispatch = useDispatch();
     const categories = useSelector(state => {
+        console.log('state.category.category', state.category.category)
         return  state.category.category
     })
     const user = useSelector(state => {
@@ -117,18 +118,18 @@ export default function CreateTransaction(props) {
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" style={{padding: '8px 8px'}}/>
-                                    <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="Revenue" style={{padding: '8px 8px'}}/>
+                                    <label className="form-check-label" htmlFor="inlineRadio1">Revenue</label>
                                 </div>
                                 <div className="form-check form-check-inline">
                                     <input onChange={(event)=>{
                                         setIncome(event.target.value)
-                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" style={{padding: '8px 8px'}}/>
-                                    <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
+                                    }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="Expenditure" style={{padding: '8px 8px'}}/>
+                                    <label className="form-check-label" htmlFor="inlineRadio2">Expenditure</label>
                                 </div>
                             </div>
                             <Field as={'select'} name={'categoryId'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
-                                <option selected>Loại chi tiêu...</option>
+                                <option selected>Type of spending...</option>
                                 {categories.map(item => {
                                     if(user.idUser==item.userId && item.statusCategory==income) {
                                         return (

@@ -79,7 +79,7 @@ export default function Home() {
             moneyIncome :0}
         if (detailWalletHome) {
             detailWalletHome.transactions.map((transaction,index)=>{
-                if(transaction.statusCategory=="thu"){
+                if(transaction.statusCategory=="Revenue"){
                     totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
                 }else {
                     totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
