@@ -15,7 +15,7 @@ const PieChart = (props) => {
         dispatch(getCategory())
     },[])
     const categories = useSelector(state => {
-        return  state.category.category
+        return state.category.category
     })
     const dispatch = useDispatch()
 

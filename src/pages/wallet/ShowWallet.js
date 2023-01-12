@@ -15,7 +15,6 @@ export default function ShowWallet() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        console.log("state.wallet.wallets",state.wallet.wallets)
         return state.wallet.wallets
     })
 

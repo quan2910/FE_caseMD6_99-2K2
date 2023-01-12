@@ -25,7 +25,6 @@ const userSlice = createSlice({
             state.currentUser = action.payload
         })
         builder.addCase(changePassword.fulfilled, (state,action)=>{
-
         })
     }
 })

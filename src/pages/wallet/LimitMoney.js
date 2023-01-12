@@ -26,14 +26,6 @@ export default function LimitMoney(prop) {
     useEffect(() => {
         dispatch(getLimit())
     }, [])
-    let check = {}
-    // limits && limits.map((itemLimit)=>{
-    //     if (itemLimit.walletId == wallets.idWallet){
-    //         check = itemLimit
-    //     } else {
-    //         check = 2
-    //     }
-    // })
     return (
         <>
             <React.Fragment>
@@ -47,7 +39,6 @@ export default function LimitMoney(prop) {
                                 a = true
                                 return
                             } else {
-
                             }
                         })
                         if(a ==true){

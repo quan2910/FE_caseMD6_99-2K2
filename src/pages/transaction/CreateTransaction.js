@@ -133,13 +133,13 @@ export default function CreateTransaction(props) {
                                        style={{height: 40, backgroundColor: "lightgray"}} className="custom-select"
                                        id="inputGroupSelect02">
                                     <option selected>Loại chi tiêu...</option>
-                                        {/*{categories.map(item => {*/}
-                                        {/*    if (user.idUser == item.userId && item.statusCategory == income) {*/}
-                                        {/*        return (*/}
-                                        {/*            <option value={item.idCategory}>{item.nameCategory}</option>*/}
-                                        {/*        )*/}
-                                        {/*    }*/}
-                                        {/*})}*/}
+                                        {categories.map(item => {
+                                            if (user.idUser == item.userId && item.statusCategory == income) {
+                                                return (
+                                                    <option value={item.idCategory}>{item.nameCategory}</option>
+                                                )
+                                            }
+                                        })}
                                 </Field>
                                 <Button type="submit" style={{
                                     marginLeft: 230,

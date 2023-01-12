@@ -153,13 +153,13 @@ if(transaction.idTransaction==props.idTransaction){
                                 </div>
                                 <Field as={'select'} name={'categoryId'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
                                     <option selected>Loại chi tiêu...</option>
-                                    {/*{categories.map(item => {*/}
-                                    {/*    if(user.idUser==item.userId && item.statusCategory==income) {*/}
-                                    {/*        return (*/}
-                                    {/*            <option  value={item.idCategory}>{item.nameCategory}</option>*/}
-                                    {/*        )*/}
-                                    {/*    }*/}
-                                    {/*})}*/}
+                                        {categories.map(item => {
+                                            if(user.idUser==item.userId && item.statusCategory==income) {
+                                                return (
+                                                    <option  value={item.idCategory}>{item.nameCategory}</option>
+                                                )
+                                            }
+                                        })}
                                 </Field>
                                 <Button type="submit" style={{marginLeft: 230 ,backgroundColor: "#82AAE3", color:"white", width: "150px",align:"center", borderRadius: "20px"}}>Save</Button>
                             </Stack>

@@ -19,7 +19,6 @@ export default function DetailWallet(props) {
     let walletDetail = {}
     wallets.map(item=>{
         if(item.idWallet === props.idWallet) {
-            console.log(item)
             walletDetail = item;
             return walletDetail
         }
