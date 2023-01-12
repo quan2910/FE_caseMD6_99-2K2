@@ -174,17 +174,7 @@ export default function Home() {
     }
   const  fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
    const fileExtension = '.xlsx';
-  let  exportExcel=(jsonData, fileName)=> {
-        const ws = XLSX.utils.json_to_sheet(jsonData);
-    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
-    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
-    saveExcelFile(excelBuffer, fileName);
-}
-    let saveExcelFile=(buffer, fileName)=> {
-        const data = new Blob([buffer], {type: fileType});
-    FileSaver.saveAs(data, fileName + fileExtension);
-}
-let arrExcel = [...detailWalletHome.transactions]
+    let arrExcel = [...detailWalletHome.transactions]
     let arr = []
     let index = 1
     arrExcel.map(transaction=>{
@@ -197,6 +187,17 @@ let arrExcel = [...detailWalletHome.transactions]
         }
         arr.push(a)
     })
+  let  exportExcel=(jsonData, fileName)=> {
+        const ws = XLSX.utils.json_to_sheet(jsonData);
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] };
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    saveExcelFile(excelBuffer, fileName);
+}
+    let saveExcelFile=(buffer, fileName)=> {
+        const data = new Blob([buffer], {type: fileType});
+    FileSaver.saveAs(data, fileName + fileExtension);
+}
+
 
     if (!detailWalletHome) return <div>Loading...</div>
     if (!detailWalletHome.wallet) return <div>Loading...</div>
@@ -265,7 +266,7 @@ let arrExcel = [...detailWalletHome.transactions]
                         </div>
                         <div className="row" >
                             <div className="col-lg-12">
-                                <button onClick={exportExcel(arr,detailWalletHome.wallet[0].nameWallet)}> Export excel </button>
+                                <button onClick={() => {exportExcel(arr,detailWalletHome.wallet[0].nameWallet)}}> Export excel </button>
                                 <table  ref={tableRef} className="table table-striped" style={{marginTop: 10}}>
                                     <thead>
                                     <tr>
