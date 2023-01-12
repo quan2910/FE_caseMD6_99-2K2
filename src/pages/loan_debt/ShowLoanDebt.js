@@ -151,7 +151,7 @@ export default function ShowLoanDebt() {
                     </tr>
                     </thead>
                     <tbody>
-                    {loanDebt.map((item, index) => {
+                    {loanDebt && loanDebt.map((item, index) => {
                         return (
                             <tr>
                                 <th scope="row" style={{textAlign: "center"}}>{index++}</th>
