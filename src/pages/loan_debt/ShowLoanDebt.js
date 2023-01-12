@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 export default function ShowLoanDebt() {
     const dispatch = useDispatch()
     const loanDebt = useSelector(state => {
+        console.log('state.loanDebt.loanDebt', state)
         return state.loanDebt.loanDebt
     })
     const wallet = useSelector(state => {
@@ -119,7 +120,7 @@ export default function ShowLoanDebt() {
                 </div>
                 <div className="col-lg-4">
                     <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                        Nợ
+                        Debts
                     </h4>
                     <h5>
                         {totalLoanDebt().debt.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}
@@ -127,7 +128,7 @@ export default function ShowLoanDebt() {
                 </div>
                 <div className="col-lg-4">
                     <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
-                        Cho vay
+                        Loans
                     </h4>
                     <h5>
                         {totalLoanDebt().loan.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}
@@ -142,11 +143,11 @@ export default function ShowLoanDebt() {
                 <table className="table table-striped" style={{width: 1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
-                        <th scope="col" style={{textAlign: "center"}}>STT</th>
+                        <th scope="col" style={{textAlign: "center"}}>Number</th>
                         <th scope="col" style={{width: 170, textAlign: "center"}}>Name</th>
                         <th scope="col" style={{width: 170, textAlign: "center"}}>Money</th>
                         <th scope="col" style={{textAlign: "center"}}>Content</th>
-                        <th scope="col" style={{textAlign: "center"}}>Cho vay/ Nợ</th>
+                        <th scope="col" style={{textAlign: "center"}}>Loans/Debts</th>
                         <th scope="col" colSpan={2} style={{width: 100, textAlign: "center"}}>Action</th>
                     </tr>
                     </thead>

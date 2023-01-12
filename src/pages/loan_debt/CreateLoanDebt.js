@@ -89,9 +89,9 @@ export default function CreateLoanDebt() {
                                 <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Content'} autoFocus required name={'contentLoanDebt'}/>
                                 <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Money'} autoFocus required name={'moneyLoanDebt'}/>
                                 <Field as={'select'} name={'idCategoryLoanDebt'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
-                                    <option selected>Cho vay hay nợ...</option>
-                                    <option value="1">Cho vay</option>
-                                    <option value="2">Nợ</option>
+                                    <option selected>Loans or Debts...</option>
+                                    <option value="1">Loans</option>
+                                    <option value="2">Debts</option>
                                 </Field>
                                 <Button style={{backgroundColor: "#82AAE3",color:"white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>

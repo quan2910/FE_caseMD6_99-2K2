@@ -87,9 +87,9 @@ export default function CreateCategory() {
                                 </div>
                                 <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
                                 <Field as={'select'} name={'statusCategory'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
-                                    <option selected>Thu hay chi...</option>
-                                    <option value="thu">Thu</option>
-                                    <option value="chi">Chi</option>
+                                    <option selected>Revenue or Expenditure...</option>
+                                    <option value="Revenue">Revenue</option>
+                                    <option value="Expenditure">Expenditure</option>
                                 </Field>
                                 <Button style={{backgroundColor: "#82AAE3",color:"white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>

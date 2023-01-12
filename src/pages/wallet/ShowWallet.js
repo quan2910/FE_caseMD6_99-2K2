@@ -24,7 +24,7 @@ export default function ShowWallet() {
         if(idWallet==currentWallet.idWallet) {
             Swal.fire({
                 icon: 'warning',
-                title: 'Ví đang bật xóa đb'
+                title: 'You cannot delete the enabled wallet!'
             })
         } else {
             Swal.fire({
@@ -68,7 +68,7 @@ export default function ShowWallet() {
                 <table className="table table-striped" style={{ width:1000, borderRadius: "1%"}}>
                     <thead>
                     <tr>
-                        <th scope="col" style={{textAlign: "center"}}>STT</th>
+                        <th scope="col" style={{textAlign: "center"}}>Number</th>
                         <th scope={"col"} style={{textAlign: "center"}}>Detail</th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Name Wallet</th>
                         <th scope="col" style={{width: 300, textAlign: "center"}}>Money Type</th>
