@@ -58,7 +58,7 @@ export default function ShowLoanDebt() {
         }
         if (transaction) {
             transaction.map((transaction) => {
-                if (transaction.statusCategory == "thu") {
+                if (transaction.statusCategory == "Revenue") {
                     totalMoney.thu += transaction.totalSpent
                 } else {
                     totalMoney.chi += transaction.totalSpent

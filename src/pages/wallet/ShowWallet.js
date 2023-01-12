@@ -59,7 +59,7 @@ export default function ShowWallet() {
     if (!wallets) return <div>Loading...</div>
     return (
 
-        <div className="row" style={{marginLeft:180}}>
+        <div className="row" style={{marginLeft:250}}>
             <button style={{width: 200, marginBottom: 20, marginLeft: 12}}>
                 <CreateWallet></CreateWallet>
             </button>
