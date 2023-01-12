@@ -10,7 +10,8 @@ import {addWallets, deleteWallet, editWallet, getWallets} from "../../service/wa
 let initialState = {
     detailWalletHome :JSON.parse(localStorage.getItem('walletDetail')),
     wallets: [],
-    transactionMonth:[]
+    transactionMonth:[],
+    allTransaction:{}
 }
 const walletSlice = createSlice({
     name: 'wallet',
@@ -19,6 +20,7 @@ const walletSlice = createSlice({
     extraReducers: builder => {
         builder.addCase(showDetailWallet.fulfilled, (state, action) => {
            state.detailWalletHome = action.payload
+            state.allTransaction = action.payload
             localStorage.setItem('walletDetail',JSON.stringify(action.payload))
         })
         builder.addCase(showTransactionByMoth.fulfilled, (state, action) => {
