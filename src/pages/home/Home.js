@@ -69,6 +69,11 @@ export default function Home() {
             handleStyle()
         })()
     }, [])
+    useEffect(()=>{
+        (async ()=>{
+            handleStyle()
+        })()
+    }, [detailWalletHome])
 
 
     let totalConsumableMoney = ()=>{
@@ -164,10 +169,10 @@ export default function Home() {
             if (itemLimit.walletId == wallets.idWallet&&totalConsumableMoney().ConsumableMoney >= itemLimit.moneyLimit){
                 a = false
             } else {
+                setColor('black')
             }
-            if(a==false){
+             if(a==false){
                 return setColor('red')
-            }else {
             }
         })
     }
