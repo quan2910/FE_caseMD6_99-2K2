@@ -2,8 +2,8 @@ import CreateCategory from "../category/CreateCategory";
 import EditCategory from "../category/EditCategory";
 import {useDispatch, useSelector} from "react-redux";
 import {deleteCategory, getCategory} from "../../service/categoriesService";
-import {useEffect} from "react";
-import {deleteLoanDebt, getDetailLoanDebt, getLoanDebt} from "../../service/loanDebtService";
+import {useEffect, useState} from "react";
+import {deleteLoanDebt, getDetailLoanDebt} from "../../service/loanDebtService";
 import {showDetailWallet, showTransactionByMoth, showTransactionByOnlyMonth} from "../../service/walletService";
 import CreateLoanDebt from "./CreateLoanDebt";
 import EditLoanDebt from "./EditLoanDebt";
@@ -96,10 +96,10 @@ export default function ShowLoanDebt() {
             }
         })
     }
-    let  handleTypeMoney = ()=>{
-        if(detailWalletHome.wallet[0].moneyTypeId==2){
+    let handleTypeMoney = () => {
+        if (detailWalletHome.wallet[0].moneyTypeId == 2) {
             return "USD"
-        }else {
+        } else {
             return "VND"
         }
     }
@@ -109,7 +109,7 @@ export default function ShowLoanDebt() {
     return (
         <div className="row" style={{marginLeft: 250}}>
             <div className="row">
-                <div className="col-lg-4"  >
+                <div className="col-lg-4">
                     <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
                         TotalMoney
                     </h4>
@@ -118,7 +118,7 @@ export default function ShowLoanDebt() {
                     </h5>
                 </div>
                 <div className="col-lg-4">
-                    <h4 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                    <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
                         Nợ
                     </h4>
                     <h5>
@@ -126,7 +126,7 @@ export default function ShowLoanDebt() {
                     </h5>
                 </div>
                 <div className="col-lg-4">
-                    <h4 style={{color:"black",marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
+                    <h4 style={{color: "black", marginTop: 23, marginLeft: 0, fontWeight: "bold"}}>
                         Cho vay
                     </h4>
                     <h5>
