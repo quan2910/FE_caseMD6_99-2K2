@@ -68,7 +68,7 @@ function Login(props) {
                 if(checkLogin.payload.user.authenticUser[0].checkBegin==true){
                     navigate('/home')
                 }else {
-                    navigate('/home/show-wallet')
+                    navigate('create-wallet-begin')
                 }
             },1500)
         }

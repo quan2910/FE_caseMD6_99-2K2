@@ -317,7 +317,7 @@ export default function Home() {
                             name="defaultExampleRadios"
                             onChange={(event)=>{
                                 setType(event.target.value)   }}
-                            value={'chi'}
+                            value={'Expenditure'}
                         />
                     </div>
                     <div style={{textAlign:"center", color:"black"}} className="custom-control custom-radio col-4">
@@ -342,7 +342,7 @@ export default function Home() {
                             defaultChecked=""
                             onChange={(event)=>{
                                 setType(event.target.value)}}
-                            value={'thu'}
+                            value={'Revenue'}
                         />
                     </div>
                     <div>

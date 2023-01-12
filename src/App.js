@@ -10,6 +10,7 @@ import ShowCategory from "./pages/category/ShowCategory";
 import ShowWallet from "./pages/wallet/ShowWallet";
 import './App.css';
 import ShowLoanDebt from "./pages/loan_debt/ShowLoanDebt";
+import CreateWallet2 from "./pages/wallet/CreateWallet2";
 function App() {
 
     return (
@@ -27,6 +28,7 @@ function App() {
                         <Route path={"show-wallet"} element={<ShowWallet/>}/>
                         <Route path={"loan-debt"} element={<ShowLoanDebt/>}/>
                     </Route>
+                    <Route path={"create-wallet-begin"} element={<CreateWallet2/>}/>
                 </Routes>
             </div>
         </div>

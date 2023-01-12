@@ -19,7 +19,7 @@ function BarChart() {
                 ConsumableMoney:0,
                 moneyIncome :0}
            month.map((transaction)=>{
-               if(transaction.statusCategory=="thu"){
+               if(transaction.statusCategory=="Revenue"){
                    totalMoney.moneyIncome = totalMoney.moneyIncome+transaction.totalSpent
                }else {
                    totalMoney.ConsumableMoney = totalMoney.ConsumableMoney+transaction.totalSpent
