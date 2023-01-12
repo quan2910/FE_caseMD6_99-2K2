@@ -16,7 +16,7 @@ const Profile = () => {
         await dispatch(updateProfile(values))
         await dispatch(findById(user.idUser))
         Swal.fire({
-            position: 'top-end',
+            position: 'center',
             icon: 'success',
             title: 'Profile was updated!',
             showConfirmButton: false,

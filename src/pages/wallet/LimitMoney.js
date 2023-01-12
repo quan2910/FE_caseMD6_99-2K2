@@ -107,7 +107,7 @@ export default function LimitMoney(prop) {
                             await dispatch(addLimit(data))
                             await dispatch(getLimit())
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Limit Success!',
                                 showConfirmButton: false,

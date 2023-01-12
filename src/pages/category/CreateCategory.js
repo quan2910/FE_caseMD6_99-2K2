@@ -71,7 +71,7 @@ export default function CreateCategory() {
                             await  dispatch(addCategory(data))
                             await dispatch(getCategory())
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Create Success!',
                                 showConfirmButton: false,

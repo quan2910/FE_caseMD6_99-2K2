@@ -117,7 +117,7 @@ if(transaction.idTransaction==props.idTransaction){
                                 }
                                 await dispatch(showTransactionByMoth(dataMonth))
                                 Swal.fire({
-                                    position: 'top-end',
+                                    position: 'center',
                                     icon: 'success',
                                     title: 'Create Success!',
                                     showConfirmButton: false,
@@ -141,14 +141,14 @@ if(transaction.idTransaction==props.idTransaction){
                                     <div className="form-check form-check-inline">
                                         <input onChange={(event)=>{
                                             setIncome(event.target.value)
-                                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="thu" style={{padding: '8px 8px'}}/>
-                                        <label className="form-check-label" htmlFor="inlineRadio1">Thu</label>
+                                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" defaultValue="Revenue" style={{padding: '8px 8px'}}/>
+                                        <label className="form-check-label" htmlFor="inlineRadio1">Revenue</label>
                                     </div>
                                     <div className="form-check form-check-inline">
                                         <input onChange={(event)=>{
                                             setIncome(event.target.value)
-                                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="chi" style={{padding: '8px 8px'}}/>
-                                        <label className="form-check-label" htmlFor="inlineRadio2">Chi</label>
+                                        }} className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" defaultValue="Expenditure" style={{padding: '8px 8px'}}/>
+                                        <label className="form-check-label" htmlFor="inlineRadio2">Expenditure</label>
                                     </div>
                                 </div>
                                 <Field as={'select'} name={'categoryId'} style={{height:40, backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">

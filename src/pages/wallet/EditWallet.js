@@ -104,7 +104,7 @@ export default function EditWallet(props) {
                                 await dispatch(editLimit(dataLimit))
                                 await dispatch(getLimit())
                                 Swal.fire({
-                                    position: 'top-end',
+                                    position: 'center',
                                     icon: 'success',
                                     title: 'Edit Success!',
                                     showConfirmButton: false,

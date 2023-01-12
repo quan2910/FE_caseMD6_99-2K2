@@ -74,7 +74,7 @@ export default function CreateLoanDebt() {
                             await  dispatch(addLoanDebt(data))
                             await dispatch(getDetailLoanDebt(wallet.idWallet))
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Create Success!',
                                 showConfirmButton: false,

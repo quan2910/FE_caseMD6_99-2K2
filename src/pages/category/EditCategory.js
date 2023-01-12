@@ -82,7 +82,7 @@ export default function EditCategory(props) {
                             await  dispatch(editCategory(data))
                             await dispatch(getCategory())
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Edit Success!',
                                 showConfirmButton: false,

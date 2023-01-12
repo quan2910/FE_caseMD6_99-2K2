@@ -57,7 +57,7 @@ function Login(props) {
             reset()
         } else {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: 'Login Success !',
                 showConfirmButton: false,
@@ -90,7 +90,7 @@ function Login(props) {
             })
         } else {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: 'Login Success !',
                 showConfirmButton: false,

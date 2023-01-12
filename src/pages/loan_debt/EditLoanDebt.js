@@ -85,7 +85,7 @@ export default function EditLoanDebt(props) {
                             await  dispatch(editLoanDebt(data))
                             await dispatch(getDetailLoanDebt(loanDebtEdit.idWallet))
                             Swal.fire({
-                                position: 'top-end',
+                                position: 'center',
                                 icon: 'success',
                                 title: 'Edit Success!',
                                 showConfirmButton: false,

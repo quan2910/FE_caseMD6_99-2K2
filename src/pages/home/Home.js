@@ -29,7 +29,6 @@ export default function Home() {
         return state.user.currentUser.user.authenticUser[0]
     })
     const wallets = useSelector(state => {
-        console.log("1",state)
         return state.wallet.detailWalletHome.wallet[0]
     })
     const limits = useSelector(state => {
@@ -126,7 +125,7 @@ export default function Home() {
         setDataDate(date)
         if(values.formDate>values.toDate){
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'error',
                 title: 'DATE ERROR',
                 showConfirmButton: false,
@@ -177,7 +176,7 @@ export default function Home() {
     let arrExcel = [...detailWalletHome.transactions]
     let arr = []
     let index = 1
-    arrExcel.map(transaction=>{
+    arrExcel && arrExcel.map(transaction=>{
         let a = {
             stt : index++,
             note:transaction.note,
@@ -280,7 +279,7 @@ export default function Home() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {currentPosts.map((transaction,index)=>{
+                                    {currentPosts && currentPosts.map((transaction,index)=>{
                                         return <tr>
                                             <th style={{textAlign:"center"}} scope="row">{++indexOfFirstPost }</th>
                                             <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>

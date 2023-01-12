@@ -33,7 +33,7 @@ export default function ChangePassword() {
         let data = await dispatch(changePassword({...values, idUser}))
         if(data.payload.user.check) {
             Swal.fire({
-                position: 'top-end',
+                position: 'center',
                 icon: 'success',
                 title: 'Change Password Success !',
                 showConfirmButton: false,

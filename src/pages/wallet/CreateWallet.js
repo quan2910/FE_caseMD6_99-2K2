@@ -98,7 +98,7 @@ export default function CreateWallet() {
                                 await dispatch(addWallets(data))
                                 await dispatch(getWallets())
                                 Swal.fire({
-                                    position: 'top-end',
+                                    position: 'center',
                                     icon: 'success',
                                     title: 'Create Success!',
                                     showConfirmButton: false,

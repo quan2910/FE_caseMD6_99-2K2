@@ -96,7 +96,7 @@ export default function CreateTransaction(props) {
                                 }
                                 await dispatch(showTransactionByMoth(dataMonth))
                                 Swal.fire({
-                                    position: 'top-end',
+                                    position: 'center',
                                     icon: 'success',
                                     title: 'Create Success!',
                                     showConfirmButton: false,

@@ -37,7 +37,7 @@ function Register(props) {
                     reset()
                 } else {
                     Swal.fire({
-                        position: 'top-end',
+                        position: 'center',
                         icon: 'success',
                         title: 'Register Success !',
                         showConfirmButton: false,
