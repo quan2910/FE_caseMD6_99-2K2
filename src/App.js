@@ -9,6 +9,7 @@ import Profile from "./pages/user/profile";
 import ShowCategory from "./pages/category/ShowCategory";
 import ShowWallet from "./pages/wallet/ShowWallet";
 import './App.css';
+import ShowLoanDebt from "./pages/loan_debt/ShowLoanDebt";
 function App() {
 
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route path={"profile"} element={<Profile/>}/>
                         <Route path={"show-category"} element={<ShowCategory/>}/>
                         <Route path={"show-wallet"} element={<ShowWallet/>}/>
+                        <Route path={"loan-debt"} element={<ShowLoanDebt/>}/>
                     </Route>
                 </Routes>
             </div>

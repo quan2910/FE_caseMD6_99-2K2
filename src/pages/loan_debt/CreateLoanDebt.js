@@ -6,37 +6,30 @@ import Stack from '@mui/joy/Stack';
 import Typography from '@mui/joy/Typography';
 import {Field, Form, Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
-import {addCategory, editCategory, getCategory} from "../../service/categoriesService";
+import {addCategory, getCategory} from "../../service/categoriesService";
 import {Link} from "react-router-dom";
-import '@fortawesome/fontawesome-free/css/all.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import Swal from "sweetalert2";
-export default function EditCategory(props) {
+import Swal from 'sweetalert2'
+import {addLoanDebt, getDetailLoanDebt} from "../../service/loanDebtService";
+
+export default function CreateLoanDebt() {
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
-    const categories = useSelector(state => {
-        return  state.category.category
-    })
-    let categoryEdit = {}
-    categories && categories.map(item=>{
-        if(item.idCategory == props.idCategory) {
-            categoryEdit = item;
-            return categoryEdit
-        }
+    const wallet = useSelector(state => {
+        return state.wallet.detailWalletHome.wallet[0]
     })
     return (
         <React.Fragment>
             <Link
                 color="neutral"
-                style={{color: "black"}}
+                style={{color: "white"}}
                 className={'btn-primary'}
                 onClick={() => setOpen(true)}
             >
-                <i className="fa-regular fa-pen-to-square"></i>
+                Create Loan Debt
             </Link>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <ModalDialog
-                    style={{color: "black", width:800,background:"white", boxShadow: '2px 4px 5px black'}}
+                    style={{color: "black", width:800, boxShadow: '2px 4px 5px black', background:"white"}}
                     aria-labelledby="basic-modal-dialog-title"
                     aria-describedby="basic-modal-dialog-description"
                     sx={{
@@ -51,7 +44,7 @@ export default function EditCategory(props) {
                         fontSize="1.25em"
                         mb="0.25em"
                     >
-                        Edit Category
+                        Create Loan Debt
                     </Typography>
                     <Typography
                         id="basic-modal-dialog-description"
@@ -64,27 +57,26 @@ export default function EditCategory(props) {
                     </Typography>
                     <Formik
                         initialValues={{
-                            idCategory: categoryEdit.idCategory,
-                            nameCategory: categoryEdit.nameCategory,
-                            statusCategory: '',
-                            userId: '',
-                            color: categoryEdit.color
+                            namePersonLoanDebt: '',
+                            contentLoanDebt: '',
+                            moneyLoanDebt: '',
+                            idCategoryLoanDebt: '',
+                            idWallet: ''
                         }}
                         onSubmit={async (event) => {
                             let data = {
-                                idCategory: categoryEdit.idCategory,
-                                nameCategory: event.nameCategory,
-                                statusCategory: event.statusCategory,
-                                userId: categoryEdit.idUser,
-                                color: event.color,
-
+                                namePersonLoanDebt: event.namePersonLoanDebt,
+                                contentLoanDebt: event.contentLoanDebt,
+                                moneyLoanDebt: event.moneyLoanDebt,
+                                idCategoryLoanDebt: event.idCategoryLoanDebt,
+                                idWallet: wallet.idWallet
                             }
-                            await  dispatch(editCategory(data))
-                            await dispatch(getCategory())
+                            await  dispatch(addLoanDebt(data))
+                            await dispatch(getDetailLoanDebt(wallet.idWallet))
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Edit Success!',
+                                title: 'Create Success!',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
@@ -93,16 +85,15 @@ export default function EditCategory(props) {
                     >
                         <Form>
                             <Stack spacing={2}>
-                                <div style={{width:100}}>
-                                    <Field style={{height: 60}} type="color" name="color"  ></Field>
-                                </div>
-                                <Field style={{height: "40px", width: 600, background: "lightgrey"}} placeholder={'Name Category'} autoFocus required name={'nameCategory'}/>
-                                <Field as={'select'} name={'statusCategory'} style={{height:40, background: "lightgrey"}} className="custom-select" id="inputGroupSelect02">
-                                    <option selected>Thu hay chi...</option>
-                                    <option value="thu">Thu</option>
-                                    <option value="chi">Chi</option>
+                                <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Name'} autoFocus required name={'namePersonLoanDebt'}/>
+                                <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Content'} autoFocus required name={'contentLoanDebt'}/>
+                                <Field style={{height: "40px", backgroundColor:"lightgray", width: 600}} placeholder={'Money'} autoFocus required name={'moneyLoanDebt'}/>
+                                <Field as={'select'} name={'idCategoryLoanDebt'} style={{height:40,backgroundColor:"lightgray"}} className="custom-select" id="inputGroupSelect02">
+                                    <option selected>Cho vay hay nợ...</option>
+                                    <option value="1">Cho vay</option>
+                                    <option value="2">Nợ</option>
                                 </Field>
-                                <Button style={{backgroundColor: "#82AAE3",color: "white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
+                                <Button style={{backgroundColor: "#82AAE3",color:"white", width:150, marginLeft:237, borderRadius: "20px"}} type="submit">Save</Button>
                             </Stack>
                         </Form>
                     </Formik>
