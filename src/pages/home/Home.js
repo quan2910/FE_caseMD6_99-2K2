@@ -279,18 +279,18 @@ export default function Home() {
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {/*{currentPosts && currentPosts.map((transaction,index)=>{*/}
-                                    {/*    return <tr>*/}
-                                    {/*        <th style={{textAlign:"center"}} scope="row">{++indexOfFirstPost }</th>*/}
-                                    {/*        <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>*/}
-                                    {/*        <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>*/}
-                                    {/*        <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>*/}
-                                    {/*        <td style={{textAlign:"center"}}>{transaction.note}</td>*/}
-                                    {/*        <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>*/}
-                                    {/*        <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>*/}
+                                    {currentPosts && currentPosts.map((transaction,index)=>{
+                                        return <tr>
+                                            <th style={{textAlign:"center"}} scope="row">{++indexOfFirstPost }</th>
+                                            <td style={{textAlign:"center"}}>{new Date(transaction.time).toLocaleString().substring(10)}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.totalSpent.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} {handleTypeMoney()}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.nameCategory}</td>
+                                            <td style={{textAlign:"center"}}>{transaction.note}</td>
+                                            <td style={{}}><EditTransaction date={month} idTransaction={transaction.idTransaction} idWallet={detailWalletHome.wallet[0].idWallet}></EditTransaction></td>
+                                            <td style={{textAlign:"center"}}><DeleteTransaction date={month} idTransaction={transaction.idTransaction}></DeleteTransaction></td>
 
-                                    {/*    </tr>*/}
-                                    {/*})}*/}
+                                        </tr>
+                                    })}
                                     </tbody>
                                     <Pagination
                                         postsPerPage={postsPerPage}
